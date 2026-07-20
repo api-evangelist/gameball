@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/overview/authentication
+docs: https://docs.gameball.co/api-reference/overview/authentication
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+  notes: >-
+    Gameball authenticates server-to-server API calls with two API-key headers.
+    APIKey identifies the account/workspace and is required on every request.
+    SecretKey is additionally required on sensitive/transactional operations, and
+    on all operations when "High Security Mode" is enabled for the account. No
+    OAuth 2.0 flow or bearer-token grant is used. Requests must originate
+    server-side so the SecretKey is never exposed to the client.
+schemes:
+  - name: APIKey
+    type: apiKey
+    in: header
+    parameter_name: APIKey
+    required: true
+    description: >-
+      Primary account API key sent on every request. Sufficient on its own for
+      standard, non-sensitive endpoints.
+    source: https://docs.gameball.co/api-reference/overview/authentication
+  - name: SecretKey
+    type: apiKey
+    in: header
+    parameter_name: SecretKey
+    required: false
+    description: >-
+      Transaction/secret key. Required alongside APIKey for sensitive operations
+      (transactions, redemptions, holds, coupon burns) and for ALL requests when
+      High Security Mode is enabled. Must only be sent from server-side code.
+    source: https://docs.gameball.co/api-reference/overview/authentication
+widget_auth:
+  mechanism: customer hash
+  description: >-
+    Client-side widget/mobile SDK sessions are secured with a per-customer hash
+    (HMAC of the customer id using the account transaction/secret key) generated
+    server-side and passed to the SDK. See the Get Customer Hash operation.
+  docs: https://docs.gameball.co/api-reference/customers/management/get-customer-hash
