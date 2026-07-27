@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  Derived from Gameball API reference (auth, errors, rate-limiting, webhooks)
+  at https://docs.gameball.co/api-reference — no OpenAPI in repo.
+standards:
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented URLs, JSON request/response bodies, standard HTTP verbs and status codes.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom Gameball error object (code/type/message/documentationUrl/requestId), not application/problem+json.
+  - id: oauth2
+    conforms: false
+    evidence: Authentication is API-key header based (APIKey + SecretKey); no OAuth 2.0 flow.
+  - id: oidc
+    conforms: false
+  - id: webhooks-signed
+    conforms: true
+    evidence: Webhook deliveries carry an X-GB-Signature verification header and X-GB-Webhook-Version.
+  - id: idempotent-writes
+    conforms: true
+    evidence: Transaction writes de-duplicated on transaction id/timestamp (errors 9003/9004).
+  - id: rate-limiting
+    conforms: true
+    evidence: Documented per-resource per-second and per-30s quotas with HTTP 429 on exceed.
+  - id: pci-dss
+    conforms: false
+    evidence: No published compliance/certification program located at enrichment time.
+  - id: soc2
+    conforms: false
+    evidence: No published trust center or SOC 2 attestation located at enrichment time.

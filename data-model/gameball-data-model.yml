@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/introduction
+docs: https://docs.gameball.co/api-reference
+note: >-
+  Derived from the Gameball API object reference (no OpenAPI in repo). Entities
+  and relationships reflect the documented resource groups: Customers, Events,
+  Orders/Payments, Transactions, Coupons, Campaigns, Tiers, Tags, Holds.
+entities:
+  - name: Customer
+    key: customerId (merchant id) / gb_customer_id (Gameball id)
+    description: The end customer enrolled in the loyalty program; carries balance, tier, tags and attributes.
+  - name: CustomerAttribute
+    description: Custom data field attached to a customer profile.
+  - name: Tag
+    description: Segmentation label applied to customers.
+  - name: Event
+    description: Behavioral event tracked against a customer (drives action-based campaigns).
+  - name: Order
+    description: Purchase order submitted for points/cashback calculation and rewards.
+  - name: Payment
+    description: Non-order payment record submitted to trigger loyalty rewards.
+  - name: Transaction
+    key: transactionId
+    description: Points ledger entry (cashback award, redemption, manual adjustment, refund).
+  - name: Hold
+    description: Pre-authorized reservation of a customer's points prior to capture/release.
+  - name: Coupon
+    description: Issued discount/reward code with generate/validate/burn/release lifecycle.
+  - name: RewardCampaign
+    description: Action-based, time-based, multiplier or gamification campaign that awards rewards.
+  - name: Tier
+    description: VIP loyalty tier with thresholds and benefits.
+  - name: RedemptionOption
+    description: Configured way for a customer to spend points.
+relationships:
+  - {from: Transaction, to: Customer, type: belongs_to, via: customerId}
+  - {from: Event, to: Customer, type: belongs_to, via: customerId}
+  - {from: Order, to: Customer, type: belongs_to, via: customerId}
+  - {from: Payment, to: Customer, type: belongs_to, via: customerId}
+  - {from: Hold, to: Customer, type: belongs_to, via: customerId}
+  - {from: Hold, to: Transaction, type: has_one, via: transactionId}
+  - {from: Coupon, to: Customer, type: belongs_to, via: customerId}
+  - {from: Customer, to: Tag, type: has_many, via: tags}
+  - {from: Customer, to: CustomerAttribute, type: has_many, via: attributes}
+  - {from: Customer, to: Tier, type: has_one, via: tier}
+  - {from: RewardCampaign, to: Customer, type: has_many, via: campaign customers}
+  - {from: Order, to: Transaction, type: has_many, via: cashback/redemption}

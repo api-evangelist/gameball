@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/installation-guides/v3/web/getting-started
+docs: https://docs.gameball.co/installation-guides/v3/index
+families:
+  - family: Web Widget
+    description: >-
+      Embeddable JavaScript loyalty widget rendered on a merchant's website. Shows
+      the customer's points balance, tiers, referrals, redemption options and
+      gamification campaigns (spin the wheel, scratch & win, missions, stamps).
+    loader: Gameball JS SDK (script include + init with client APIKey and customer hash)
+    docs: https://docs.gameball.co/installation-guides/v3/web/getting-started
+  - family: Mobile In-App Widget
+    description: Native mobile engagement/widget surface embedded via the iOS, Android, Flutter and React Native SDKs.
+    loader: Platform mobile SDKs (gameball-ios, gameball-android, gameball-flutter, gameball-react-native)
+    docs: https://docs.gameball.co/installation-guides/v3/ios/index
+  - family: Gamification Campaign Surfaces
+    description: >-
+      Prebuilt interactive campaign UIs (Spin the Wheel, Scratch & Win, Missions,
+      Stamps) surfaced inside the widget and configured from the dashboard.
+    loader: Rendered by the Web/Mobile widget
+    docs: https://docs.gameball.co/product-documentation/rewards-campaigns/templates/engagement-gamification/spin-the-wheel
+notes: >-
+  Client-side embeddable surfaces are secured with a per-customer hash generated
+  server-side (see authentication/gameball-authentication.yml widget_auth).

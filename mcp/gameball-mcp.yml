@@ -1,0 +1,79 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://github.com/gameballers/gameball-mcp-codex
+server:
+  name: gameball-mcp
+  vendor: Gameball
+  repo: https://github.com/Gameball-Engineering/gameball-mcp
+  codex_repo: https://github.com/gameballers/gameball-mcp-codex
+  transport: http
+  notes: >-
+    Official Gameball MCP server. Per-tool documentation ("codex" entries) is
+    published in the public gameball-mcp-codex repository and served on demand at
+    codex://tools/<tool_name>. The server implementation repo
+    (Gameball-Engineering/gameball-mcp) is private. Tool list below is enumerated
+    verbatim from the codex repository (one markdown file per registered tool).
+tools:
+  # Customers
+  - name: get_customers
+  - name: get_customers_count
+  - name: get_customer_details
+  - name: get_customer_attributes
+  - name: add_customer_points
+  - name: deduct_customer_points
+  - name: assign_customer_tags
+  - name: remove_customer_tags
+  - name: get_tags
+  # Earning rules & configuration
+  - name: get_earning_config
+  - name: update_earning_config
+  - name: get_earning_rules
+  - name: update_earning_rules
+  - name: create_custom_earning_rule
+  - name: get_custom_earning_rules
+  - name: update_custom_earning_rule
+  - name: delete_custom_earning_rule
+  # Redemption
+  - name: create_redemption_option
+  - name: get_redemption_option
+  - name: get_redemption_options
+  - name: update_redemption_option
+  - name: delete_redemption_option
+  - name: toggle_redemption_option_activation
+  # Reward campaigns
+  - name: create_event_campaign
+  - name: create_date_campaign
+  - name: create_calendar_campaign
+  - name: create_game_campaign
+  - name: get_reward_campaign
+  - name: get_reward_campaigns
+  - name: get_reward_campaigns_count
+  - name: get_reward_campaigns_stats
+  - name: get_reward_campaign_customers
+  - name: get_reward_campaign_customers_count
+  - name: update_reward_campaign
+  - name: toggle_reward_campaign_activation
+  - name: delete_reward_campaign
+  - name: get_campaign_template
+  # Missions & newsletters
+  - name: create_mission
+  - name: create_newsletter
+  # Tiers
+  - name: get_tiers
+  - name: get_tier_details
+  # Program & widget
+  - name: get_program_activation
+  - name: toggle_program_activation
+  - name: get_widget_settings
+  - name: update_widget_settings
+  - name: update_widget_style
+  - name: update_widget_sorting
+  - name: get_supported_languages
+  - name: update_supported_languages
+  # Analytics & reference data
+  - name: get_analytics_chart
+  - name: get_events
+  - name: get_collections
+  - name: get_icons
+  - name: get_merchants

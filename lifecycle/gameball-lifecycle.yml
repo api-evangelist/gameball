@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/introduction
+versioning:
+  scheme: uri-path
+  current: v4.0
+  detail: >-
+    Major API version is pinned in the request path
+    (https://api.gameball.co/api/{version}). v4.0 is the current stable release;
+    v3.x remains documented for existing SDK integrations.
+  docs: https://docs.gameball.co/api-reference/introduction
+changelog:
+  product_updates: https://docs.gameball.co/changelog/product-updates/2025
+  api_updates: https://docs.gameball.co/changelog/api-updates/2025
+  index: https://docs.gameball.co/changelog/updates
+  cross_ref: changelog/gameball-changelog.yml
+deprecation:
+  policy_url: https://docs.gameball.co/changelog/api-updates/2025
+  sunset_header: unknown
+  detail: >-
+    API version changes and breaking changes are communicated through the API
+    Updates changelog stream; no formal RFC 8594 Sunset/Deprecation header
+    contract is documented.
+status_page: null
+sla: null
+notes: >-
+  No public status page (status.gameball.co / statuspage / instatus not found)
+  and no published uptime SLA were located at enrichment time.

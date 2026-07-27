@@ -1,0 +1,244 @@
+# Gameball Documentation
+
+> Gameball is a loyalty and gamification platform that helps businesses turn one-time buyers into loyal customers through points, tiers, referrals, reward campaigns, and smart communications.
+
+## Getting Started
+
+- [What is Gameball](https://docs.gameball.co/product-documentation/getting-started/what-is-gameball): Platform overview and key concepts
+- [Launch Checklist](https://docs.gameball.co/product-documentation/getting-started/launch-checklist): Steps to go live with your loyalty program
+
+## Understanding Your Customers
+
+- [Introduction to Customers](https://docs.gameball.co/product-documentation/understanding-your-customers/gameball-customers/introduction-to-customers-on-gameball): How customers are created and managed in Gameball
+- [Customer Profile](https://docs.gameball.co/product-documentation/understanding-your-customers/customer-profile/explore-and-manage-a-customer-profile): View and manage individual customer profiles
+- [Customer Attributes](https://docs.gameball.co/product-documentation/understanding-your-customers/customer-profile/customer-profile-attributes): Custom data fields attached to customer profiles
+- [Customer Tags](https://docs.gameball.co/product-documentation/understanding-your-customers/customer-profile/group-your-customers-by-tags): Group customers with tags for targeting
+- [Customer Events](https://docs.gameball.co/product-documentation/understanding-your-customers/customer-profile/customer-events): Behavioral events tracked per customer
+- [Manage Customer List](https://docs.gameball.co/product-documentation/understanding-your-customers/your-customers/manage-your-customer-list): Search, filter, and manage your full customer base
+- [Import Customers in Bulk](https://docs.gameball.co/product-documentation/understanding-your-customers/your-customers/update-customer-data-in-bulk): Upload customer data via CSV
+
+## Loyalty Programs
+
+- [Earn Points — Launch & Configure](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/launch-and-configure-your-earn-pointing-system): Set up your cashback/points earning program
+- [Eligible Orders for Earning](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/eligible-orders-for-earning): Which orders count toward point rewards
+- [Points Calculation Rules](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/understanding-loyalty-points-calculations-and-rules): How points are calculated, rounded, and capped
+- [Collection-Based Earning Rules](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/collection-based-earning-rules): Award different points per product collection
+- [Custom Earning Rules](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/custom-earning-rules): Define earning rules based on custom conditions
+- [Redeem Points — Launch & Configure](https://docs.gameball.co/product-documentation/programs/loyalty-points-redeem/launch-and-configure-your-redeem-pointing-system): Set up how customers spend points
+- [Referral Program](https://docs.gameball.co/product-documentation/programs/referral-program/launching-referral-program): Launch and configure a refer-a-friend program
+- [VIP Tiers — Configure](https://docs.gameball.co/product-documentation/programs/vip-tiers/configuring-gameball-vip-tiers): Create and configure loyalty tiers
+- [Tiering Up Methods](https://docs.gameball.co/product-documentation/programs/vip-tiers/tier-settings/tiering-up-methods): How customers move between tiers
+- [Tier Expiry](https://docs.gameball.co/product-documentation/programs/vip-tiers/tier-settings/understanding-tier-expiry): How and when tier status expires
+- [Tier Benefits](https://docs.gameball.co/product-documentation/programs/vip-tiers/tier-settings/customizing-benefits-for-different-tiers): Assign different rewards per tier
+
+## Reward Campaigns
+
+- [Reward Campaign Overview](https://docs.gameball.co/product-documentation/rewards-campaigns/reward-campaign-intro): What reward campaigns are and how they work
+- [Campaign Setup Guide](https://docs.gameball.co/product-documentation/rewards-campaigns/reward-campaign-general-setup-guide): Step-by-step guide to creating any campaign
+- [Campaign Insights](https://docs.gameball.co/product-documentation/rewards-campaigns/reward-campaigns-insights): Track performance of active campaigns
+- [Reward Types](https://docs.gameball.co/product-documentation/rewards-campaigns/faqs/understanding-rewards-types): Points, coupons, cashback — what each reward type means
+- [Action-Based Campaign](https://docs.gameball.co/product-documentation/rewards-campaigns/start-from-scratch/create-action-based-reward-campaign): Campaign triggered by a customer action or event
+- [Time-Based Campaign](https://docs.gameball.co/product-documentation/rewards-campaigns/start-from-scratch/create-time-based-reward-campaign): Campaign that runs on a schedule
+- [Point Multiplier Campaign](https://docs.gameball.co/product-documentation/rewards-campaigns/start-from-scratch/create-point-multiplier-reward-campaign): Boost earning rate for a period or segment
+- [Gamification Campaigns](https://docs.gameball.co/product-documentation/rewards-campaigns/templates/engagement-gamification/spin-the-wheel): Spin the Wheel, Scratch & Win, Missions, Stamps, and other game-based campaigns
+- [Purchase Incentive Campaigns](https://docs.gameball.co/product-documentation/rewards-campaigns/templates/purchase-order-incentives/first-order): First order, repeat order, spend threshold, and collection-based purchase campaigns
+
+## Communication Campaigns
+
+- [Introduction](https://docs.gameball.co/product-documentation/communication-campaigns/introduction-to-communication-campaigns): Overview of email, SMS, push, and web message channels
+- [Email Campaigns](https://docs.gameball.co/product-documentation/communication-campaigns/create-and-configure-email-campaigns): Create and configure email campaigns
+- [Push Notification Campaigns](https://docs.gameball.co/product-documentation/communication-campaigns/create-and-configure-mobile-push-campaigns): Create and configure mobile push campaigns
+- [SMS Campaigns](https://docs.gameball.co/product-documentation/communication-campaigns/create-and-configure-sms-campaigns): Create and configure SMS campaigns
+- [Web Message Campaigns](https://docs.gameball.co/product-documentation/communication-campaigns/create-and-configure-web-message-campaigns): In-browser notification campaigns
+- [Dynamic Variables](https://docs.gameball.co/product-documentation/communication-campaigns/dynamic-variables-in-communication-campaigns): Personalize messages with customer data variables
+
+## Automation Campaigns
+
+- [Introduction](https://docs.gameball.co/product-documentation/automation-campaigns/introduction-to-automation-campaigns): What automation campaigns are and when to use them
+- [Create an Automation](https://docs.gameball.co/product-documentation/automation-campaigns/how-to-create-an-automation-campaign): Step-by-step campaign builder walkthrough
+- [Automation Triggers](https://docs.gameball.co/product-documentation/automation-campaigns/automation-triggers): Events and conditions that start an automation
+- [Automation Actions](https://docs.gameball.co/product-documentation/automation-campaigns/automation-actions): What automations can do (send message, award points, etc.)
+- [Webhooks in Automation](https://docs.gameball.co/product-documentation/automation-campaigns/webhooks-in-automation): Trigger external systems from automation flows
+
+## Customer Segmentation
+
+- [Introduction to Segmentation](https://docs.gameball.co/product-documentation/customer-segmentation/introduction-to-segmentation): What customer segments are and how to use them
+- [How to Segment Customers](https://docs.gameball.co/product-documentation/customer-segmentation/how-to-segment-customers): Building segment conditions in the dashboard
+- [RFM Segments](https://docs.gameball.co/product-documentation/customer-segmentation/rfm-segments/introduction-to-rfm-segments): Recency, Frequency, Monetary segmentation explained
+
+## Analytics
+
+- [Analytics Overview](https://docs.gameball.co/product-documentation/analytics/introduction-to-gameball-analytics): What data is tracked and where to find it
+- [Member Analytics](https://docs.gameball.co/product-documentation/analytics/member-analytics): Customer enrollment and loyalty engagement metrics
+- [Campaign Performance](https://docs.gameball.co/product-documentation/analytics/track-your-campaign-performance): Track campaign reach and conversions
+- [Purchase Behavior](https://docs.gameball.co/product-documentation/analytics/track-your-purchase-behaviour): Revenue and order insights for loyalty members
+- [Referral Performance](https://docs.gameball.co/product-documentation/analytics/track-your-referral-performance): Track referral program outcomes
+
+## Customer Widget
+
+- [Widget Introduction](https://docs.gameball.co/product-documentation/customer-widget/introduction-to-customer-widget): Overview of the customer-facing loyalty widget
+- [Customize Widget Style](https://docs.gameball.co/product-documentation/customer-widget/start-configuring-profile/customize-your-gameball-customer-widget-to-match-your-brand): Colors, fonts, and branding customization
+- [Widget Language](https://docs.gameball.co/product-documentation/customer-widget/start-configuring-profile/configure-customer-widget-language-on-your-platform): Set widget language per platform
+- [Widget Visibility](https://docs.gameball.co/product-documentation/customer-widget/start-configuring-profile/control-gameball-widget-visibility-on-your-platform): Show/hide the widget for specific pages or users
+- [Guest Widget](https://docs.gameball.co/product-documentation/customer-widget/start-configuring-profile/guest-widget-configuration-for-web): Configure the widget for non-logged-in visitors
+
+## Onsite Components
+
+- [Points at Checkout](https://docs.gameball.co/product-documentation/onsite-components/checkout-components/display-earned-points-at-checkout): Show points earned from current order at checkout
+- [Redemption at Checkout](https://docs.gameball.co/product-documentation/onsite-components/checkout-components/display-points-redemption-at-checkout): Let customers redeem points at checkout
+- [Available Coupons at Checkout](https://docs.gameball.co/product-documentation/onsite-components/checkout-components/display-available-coupons-at-checkout): Surface redeemable coupons in the checkout flow
+- [Potential Points on Product Pages](https://docs.gameball.co/product-documentation/onsite-components/general-components/display-potential-points-on-product-pages): Show points customers will earn per product
+
+## Coupons
+
+- [Coupon Engine Overview](https://docs.gameball.co/product-documentation/coupons/introduction-to-coupon-engine): How Gameball's coupon system works
+- [Create a Coupon Manually](https://docs.gameball.co/product-documentation/coupons/creating-coupon-manually): Generate coupons directly from the dashboard
+
+## Admin Settings
+
+- [Get API Keys](https://docs.gameball.co/product-documentation/admin-settings/get-api-keys): Find your API and secret keys
+- [Manage Events](https://docs.gameball.co/product-documentation/admin-settings/create-and-send-events): Define and send custom events to Gameball
+- [Customer Attributes Settings](https://docs.gameball.co/product-documentation/admin-settings/manage-customer-attributes): Add custom fields to customer profiles
+- [Currency Settings](https://docs.gameball.co/product-documentation/admin-settings/configure-currency-settings): Set your store's currency for points calculations
+- [User Roles](https://docs.gameball.co/product-documentation/admin-settings/create-user-assign-roles): Add team members and assign dashboard permissions
+- [Firebase Push Notifications](https://docs.gameball.co/product-documentation/admin-settings/configure-firebase-push-notifications): Connect Firebase for mobile push
+- [Multiple Workspaces](https://docs.gameball.co/product-documentation/admin-settings/creating-multiple-workspaces): Manage multiple brands or storefronts from one account
+- [Family Wallet](https://docs.gameball.co/product-documentation/admin-settings/gameball-family-wallet): Share points balance across family or group accounts
+
+## Apps & Integrations
+
+- [Integrations Overview](https://docs.gameball.co/product-documentation/apps-integrations/introduction-to-apps-integrations): All supported third-party integrations
+- [Klaviyo](https://docs.gameball.co/product-documentation/apps-integrations/klaviyo-integration): Sync Gameball loyalty data with Klaviyo
+- [HubSpot](https://docs.gameball.co/product-documentation/apps-integrations/hubspot-integration): Sync loyalty events and customer data with HubSpot
+- [Shopify Flow](https://docs.gameball.co/product-documentation/apps-integrations/shopify-flow/introduction-to-shopify-flow): Automate loyalty actions using Shopify Flow
+- [Zapier](https://docs.gameball.co/product-documentation/apps-integrations/zapier-integration): Connect Gameball to 5,000+ apps via Zapier
+- [Judge.me](https://docs.gameball.co/product-documentation/apps-integrations/judge-me-integration): Award points for product reviews via Judge.me
+- [Segment](https://docs.gameball.co/product-documentation/apps-integrations/segment-integration): Send Segment events into Gameball
+- [Omnisend](https://docs.gameball.co/product-documentation/apps-integrations/omnisend-integration): Sync loyalty data with Omnisend email/SMS
+- [Google Wallet](https://docs.gameball.co/product-documentation/apps-integrations/google-wallet-integration): Issue loyalty cards to Google Wallet
+
+## SDK Installation (v3)
+
+- [Installation Overview](https://docs.gameball.co/installation-guides/v3/index): Which SDK to use and how to get started
+- [Web SDK — Getting Started](https://docs.gameball.co/installation-guides/v3/web/getting-started): Install the Gameball JS widget on your website
+- [Web SDK — Track Events](https://docs.gameball.co/installation-guides/v3/web/track-events): Send custom events from your website
+- [Web SDK — Track Orders](https://docs.gameball.co/installation-guides/v3/web/track-orders): Submit purchase orders for points calculation
+- [Web SDK — Redemption](https://docs.gameball.co/installation-guides/v3/web/integrate-redemption): Integrate the redemption flow on web
+- [POS Integration](https://docs.gameball.co/installation-guides/v3/pos/index): Overview of POS loyalty integration
+- [iOS SDK](https://docs.gameball.co/installation-guides/v3/ios/index): Install and configure the Gameball iOS SDK
+- [Android SDK](https://docs.gameball.co/installation-guides/v3/android/index): Install and configure the Gameball Android SDK
+- [Flutter SDK](https://docs.gameball.co/installation-guides/v3/flutter/index): Install and configure the Gameball Flutter SDK
+- [React Native SDK](https://docs.gameball.co/installation-guides/v3/react-native/index): Install and configure the Gameball React Native SDK
+
+## Technical Tutorials
+
+- [Welcome & Overview](https://docs.gameball.co/tutorials/general/welcome): What's covered in the technical tutorials
+- [Core Entities](https://docs.gameball.co/tutorials/general/entities/attributes): Attributes, events, coupons, orders, and payments explained
+- [Tracking Events](https://docs.gameball.co/tutorials/experiences/tracking-events): How to send behavioral events via API
+- [Preview Points on Order](https://docs.gameball.co/tutorials/experiences/order-handling/preview-points): Calculate expected points before order submission
+- [Submit an Order](https://docs.gameball.co/tutorials/experiences/order-handling/submit-order): Submit purchase orders to trigger point rewards
+- [Order Calculation Examples](https://docs.gameball.co/tutorials/experiences/order-handling/special-use-cases/order-calculation-examples): Real examples of how order totals and points are calculated
+- [Points Redemption](https://docs.gameball.co/tutorials/experiences/points-redemption/index): Overview of redemption flows via API
+- [Pay with Points](https://docs.gameball.co/tutorials/experiences/points-redemption/pay-with-points): Let customers pay for orders using earned points
+- [Coupon Engine](https://docs.gameball.co/tutorials/experiences/gameball-discounts-engine/coupons/index): Retrieve, validate, and burn coupons via API
+- [Refund Handling](https://docs.gameball.co/tutorials/experiences/refund-handling/index): How to reverse points when an order is refunded
+- [Referral Integration](https://docs.gameball.co/tutorials/experiences/referral/index): Track referral conversions via API
+- [Build Your Own UI](https://docs.gameball.co/tutorials/experiences/more/build-your-own-ui/index): Use the API to build a fully custom loyalty UI
+- [Batch APIs](https://docs.gameball.co/tutorials/experiences/more/batch-apis): Submit bulk operations for customers, orders, and transactions
+- [Omni-Channel Integration](https://docs.gameball.co/tutorials/experiences/more/omni-channel): Unify loyalty across online and offline channels
+
+## API Reference — Overview
+
+- [API Introduction](https://docs.gameball.co/api-reference/introduction): Authentication, base URL, and request format
+- [Authentication](https://docs.gameball.co/api-reference/overview/authentication): API key and secret key usage
+- [Rate Limiting](https://docs.gameball.co/api-reference/overview/rate-limiting): API rate limits and best practices
+- [Status & Error Codes](https://docs.gameball.co/api-reference/overview/status-error-codes): HTTP status codes and error response format
+
+## API Reference — Customers
+
+- [Create/Update Customer](https://docs.gameball.co/api-reference/customers/management/create-customer): Register or update a customer in Gameball
+- [Get Customer](https://docs.gameball.co/api-reference/customers/management/get-customer): Retrieve a customer's profile and loyalty data
+- [Get Customer Details](https://docs.gameball.co/api-reference/customers/management/get-customer-details): Extended customer data including tier, balance, and metadata
+- [Get Customer Hash](https://docs.gameball.co/api-reference/customers/management/get-customer-hash): Generate a secure hash for widget authentication (required for widget security)
+- [Validate Referrer Code](https://docs.gameball.co/api-reference/customers/management/validate-referrer-code): Check whether a referral code is valid before applying it
+- [Achieve Social Campaign](https://docs.gameball.co/api-reference/customers/management/achieve-social-campaign): Mark a social campaign as achieved for a customer from your backend
+- [Delete Customer](https://docs.gameball.co/api-reference/customers/management/delete-customer): Remove a customer record from Gameball
+- [Customer Balance](https://docs.gameball.co/api-reference/customers/progress/get-customer-balance): Get a customer's current points balance
+- [Customer Progress](https://docs.gameball.co/api-reference/customers/progress/get-customer-progress): Get a customer's tier and loyalty program progress
+- [Customer Activities](https://docs.gameball.co/api-reference/customers/progress/get-customer-activities): List a customer's loyalty activity history
+- [Campaign Progress](https://docs.gameball.co/api-reference/customers/progress/get-customer-campaigns-progress): Get a customer's progress across active campaigns
+- [Customer Referrals](https://docs.gameball.co/api-reference/customers/progress/get-customer-referrals): List referrals made by a customer
+- [Attach Customer Tags](https://docs.gameball.co/api-reference/customers/tags/attach-customer-tags): Assign tags to a customer for segmentation
+- [Remove Customer Tag](https://docs.gameball.co/api-reference/customers/tags/remove-customer-tag): Remove a tag from a customer
+
+## API Reference — Events
+
+- [Send Events](https://docs.gameball.co/api-reference/events/send-events): Track customer behavioral events via the Events API
+
+## API Reference — Orders
+
+- [Order Tracking](https://docs.gameball.co/api-reference/order/order-tracking): Submit purchase orders to trigger point rewards
+- [Calculate Order Cashback](https://docs.gameball.co/api-reference/order/calculate-order-cashback): Preview cashback/points a customer will earn before submitting an order
+
+## API Reference — Payments
+
+- [Payment Tracking](https://docs.gameball.co/api-reference/payment/payment-tracking): Submit payment records (non-order) to trigger loyalty rewards
+- [Calculate Payment Cashback](https://docs.gameball.co/api-reference/payment/calculate-payment-cashback): Preview cashback before processing a payment
+
+## API Reference — Transactions
+
+- [Redeem Points](https://docs.gameball.co/api-reference/transactions/cashback-and-redemptions/redeem): Redeem a customer's points for a discount or reward
+- [Award Cashback](https://docs.gameball.co/api-reference/transactions/cashback-and-redemptions/cashback): Manually award cashback points to a customer
+- [Refund Transaction](https://docs.gameball.co/api-reference/transactions/cashback-and-redemptions/refund): Reverse points awarded when an order is refunded
+- [Hold Points](https://docs.gameball.co/api-reference/transactions/hold-management/hold): Place a hold on a customer's points before final capture (POS / deferred redemption)
+- [Release Hold](https://docs.gameball.co/api-reference/transactions/hold-management/release): Release or capture a points hold
+- [Get Hold](https://docs.gameball.co/api-reference/transactions/hold-management/get-hold): Retrieve the status of a points hold
+- [Manual Transaction](https://docs.gameball.co/api-reference/transactions/transaction-management/manual-transaction): Create a manual points adjustment outside normal order flow
+- [Activate Transaction](https://docs.gameball.co/api-reference/transactions/transaction-management/activate): Immediately activate pending points, bypassing the configured return window
+
+## API Reference — Coupons
+
+- [Generate Coupon](https://docs.gameball.co/api-reference/coupons/generate-coupon): Issue a new coupon for a customer
+- [Validate Coupon](https://docs.gameball.co/api-reference/coupons/validate-single-coupon): Check if a coupon is valid before applying it
+- [Validate Multiple Coupons](https://docs.gameball.co/api-reference/coupons/validate-multiple-coupons): Validate a batch of coupons in a single call
+- [Burn Coupon](https://docs.gameball.co/api-reference/coupons/burn-coupon): Mark a coupon as used after successful redemption (final step in coupon lifecycle)
+- [Release Coupons](https://docs.gameball.co/api-reference/coupons/release-coupons): Release reserved/held coupons back to available
+
+## API Reference — Configurations
+
+- [Cashback Settings](https://docs.gameball.co/api-reference/configurations/reward-configurations/cashback-settings): Read the active cashback earning configuration
+- [Redemption Settings](https://docs.gameball.co/api-reference/configurations/reward-configurations/redemption-settings): Read the points redemption configuration
+- [VIP Tiers Config](https://docs.gameball.co/api-reference/configurations/program-configurations/vip-tiers): Read VIP tier definitions and thresholds
+- [Referral Settings](https://docs.gameball.co/api-reference/configurations/program-configurations/referral-settings): Read referral program configuration
+- [Widget Configuration](https://docs.gameball.co/api-reference/configurations/widget-configuration/index): Read widget display and behavior settings
+
+## API Reference — Leaderboard
+
+- [Customer Leaderboard](https://docs.gameball.co/api-reference/leaderboard/customer-leaderboard): Retrieve top customers ranked by points for leaderboard display
+
+## API Reference — Batch Operations
+
+- [Batch Overview](https://docs.gameball.co/api-reference/batches/batches): Overview of batch APIs for high-volume operations
+- [Batch Customer Data](https://docs.gameball.co/api-reference/batches/batch-creation/customer-data): Create or update customers in bulk
+- [Batch Orders](https://docs.gameball.co/api-reference/batches/batch-creation/orders): Submit multiple orders in a single batch
+- [Batch Events](https://docs.gameball.co/api-reference/batches/batch-creation/events): Send multiple behavioral events in one call
+- [Batch Adjustments](https://docs.gameball.co/api-reference/batches/batch-creation/adjustments): Apply points adjustments to many customers at once
+- [Check Batch Status](https://docs.gameball.co/api-reference/batches/batch-management/check-status): Poll the processing status of a submitted batch
+
+## API Reference — Webhooks
+
+- [Webhooks Overview](https://docs.gameball.co/api-reference/webhooks/overview): Event-driven notifications sent by Gameball to your server
+- [Subscribe to Webhooks](https://docs.gameball.co/api-reference/webhooks/subscribing): Register and manage webhook endpoint subscriptions
+- [Notification Topics](https://docs.gameball.co/api-reference/webhooks/webhook-topics/notifications): Webhook events for loyalty notifications (points earned, tier changes, etc.)
+- [Profile Update Topics](https://docs.gameball.co/api-reference/webhooks/webhook-topics/profile-updates): Webhook events triggered by customer profile changes
+
+## Optional
+
+- [Crossover Reward Program](https://docs.gameball.co/product-documentation/programs/loyalty-points-earn/crossover-reward-program/gameball-merchants-crossover-rewards-experience): Share loyalty across multiple brands/merchants
+- [Instant Notifications](https://docs.gameball.co/product-documentation/instant-notifications/send-real-time-notifications): Real-time push/email triggers per loyalty event
+- [RFM Segments — Use Cases](https://docs.gameball.co/product-documentation/customer-segmentation/rfm-segments/using-rfm-segments-to-serve-your-goals): Practical examples for using RFM data
+- [Shopify Guides](https://docs.gameball.co/product-documentation/guides-strategies-faqs/shopify-guides/use-pos-get-rewards): POS, discount, and Shopify-specific how-tos
+- [Data Warehouse Ingestion](https://docs.gameball.co/product-documentation/admin-settings/data-warehouse-ingestion): Export Gameball data to your data warehouse
+- [Family Wallet Tutorial](https://docs.gameball.co/tutorials/experiences/more/family-wallet): API integration for group/family point sharing
+- [Dynamic Link Referral Alternatives](https://docs.gameball.co/tutorials/experiences/referral/dynamic-link-referral-alternatives): Alternative referral tracking without deep link providers
+- [Changelog](https://docs.gameball.co/changelog/updates): Recent product updates and release notes

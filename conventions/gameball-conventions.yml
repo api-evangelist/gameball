@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/introduction
+docs:
+  - https://docs.gameball.co/api-reference/overview/authentication
+  - https://docs.gameball.co/api-reference/overview/rate-limiting
+  - https://docs.gameball.co/api-reference/overview/status-error-codes
+authentication:
+  style: api-key-headers
+  headers: [APIKey, SecretKey]
+  detail: APIKey on every request; SecretKey added for sensitive/transactional operations and all requests under High Security Mode.
+  cross_ref: authentication/gameball-authentication.yml
+base_url: https://api.gameball.co/api/{version}
+versioning:
+  scheme: uri-path
+  current: v4.0
+  detail: Major version pinned in the request path (…/api/v4.0/…). v3.x remains documented for existing SDK installs.
+  cross_ref: lifecycle/gameball-lifecycle.yml
+idempotency:
+  supported: true
+  mechanism: natural-key deduplication on transactions
+  detail: >-
+    Transaction-creating operations (order tracking, manual transaction, cashback,
+    redemption, hold) are de-duplicated by Gameball on the caller-supplied
+    transaction identifier and timestamp. A repeated transaction ID is rejected
+    with application error 9004 (Duplicate transaction ID) and a repeated
+    timestamp with 9003 (Duplicate transaction timestamp), so a safely-retried
+    write does not double-award or double-deduct points. There is no generic
+    Idempotency-Key header; idempotency is keyed on the domain transaction id.
+  evidence_codes: [9003, 9004]
+  cross_ref: errors/gameball-error-codes.yml
+request_tracing:
+  field: requestId
+  location: error response body
+  detail: Every error object carries a requestId for support/debugging correlation.
+error_envelope:
+  format: gameball-error-object
+  fields: [code, type, message, documentationUrl, requestId]
+  cross_ref: errors/gameball-error-codes.yml
+rate_limit_signaling:
+  status: 429
+  detail: Per-second and per-30-second quotas enforced per resource; exceeding returns HTTP 429 Too Many Requests. No documented X-RateLimit-* response headers.
+  cross_ref: rate-limits/gameball-rate-limits.yml
+batch:
+  supported: true
+  detail: Batch endpoints exist for high-volume customer, order, event and adjustment ingestion, with an asynchronous status-polling model.
+  docs: https://docs.gameball.co/api-reference/batches/batches
+webhooks:
+  supported: true
+  cross_ref: asyncapi/gameball-webhooks.yml

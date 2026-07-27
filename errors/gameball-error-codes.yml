@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/overview/status-error-codes
+docs: https://docs.gameball.co/api-reference/overview/status-error-codes
+format: gameball-error-object
+envelope:
+  fields:
+    - name: code
+      description: Internal Gameball application error code (see catalog below).
+    - name: type
+      description: Error category (e.g. Authentication Error, Payload Error).
+    - name: message
+      description: Human-readable explanation of what caused the error.
+    - name: documentationUrl
+      description: Link to relevant documentation for the error.
+    - name: requestId
+      description: Unique identifier for tracking/debugging the failed request.
+http_status_families:
+  - "2xx: success"
+  - "4xx: client error (invalid request)"
+  - "5xx: server error (Gameball infrastructure)"
+error_classes:
+  - class: "1xxx"
+    name: Authentication Errors
+  - class: "2xxx"
+    name: Request Errors
+  - class: "3xxx"
+    name: Payload Errors
+  - class: "4xxx"
+    name: General Errors
+  - class: "5xxx"
+    name: Server Errors
+  - class: "6xxx"
+    name: Configuration Errors
+  - class: "7xxx"
+    name: Customer Errors
+  - class: "8xxx"
+    name: Subscription Errors
+  - class: "9xxx"
+    name: Transaction Errors
+errors:
+  - {code: 1000, http: 401, meaning: Unauthorized access}
+  - {code: 1001, http: 401, meaning: Missing secret key}
+  - {code: 1002, http: 403, meaning: Insufficient permissions}
+  - {code: 2000, http: 412, meaning: Required precondition unmet}
+  - {code: 2001, http: 422, meaning: Concurrent request in progress}
+  - {code: 3000, http: 400, meaning: Missing arguments}
+  - {code: 3001, http: 422, meaning: Null arguments}
+  - {code: 3002, http: 415, meaning: Unsupported file extension}
+  - {code: 3003, http: 422, meaning: Invalid value}
+  - {code: 3004, http: 400, meaning: Operation not achievable}
+  - {code: 3005, http: 422, meaning: Invalid hashed body}
+  - {code: 3006, http: 422, meaning: Invalid name length}
+  - {code: 3007, http: 422, meaning: Duplicate name}
+  - {code: 3008, http: 422, meaning: Duplicate email}
+  - {code: 3009, http: 422, meaning: Entity inactive}
+  - {code: 3010, http: 422, meaning: Invalid leveling method}
+  - {code: 3011, http: 422, meaning: Operation exceeds limits}
+  - {code: 3012, http: 422, meaning: reCAPTCHA validation failed}
+  - {code: 3013, http: 415, meaning: Unsupported file/request type}
+  - {code: 3014, http: 423, meaning: Resource is read-only}
+  - {code: 3015, http: 423, meaning: Requires editing before use}
+  - {code: 3016, http: 400, meaning: Invalid payload}
+  - {code: 3017, http: 404, meaning: Event not found}
+  - {code: 4000, http: 400, meaning: Operation failed}
+  - {code: 4004, http: 404, meaning: Resource not found}
+  - {code: 4500, http: 400, meaning: General processing error}
+  - {code: 5000, http: 500, meaning: Unexpected server error}
+  - {code: 5003, http: 503, meaning: Temporary service unavailability}
+  - {code: 6000, http: 422, meaning: Gameball disabled}
+  - {code: 6001, http: 422, meaning: Cashback disabled}
+  - {code: 6002, http: 422, meaning: Default language not set}
+  - {code: 6003, http: 403, meaning: No access to coupon configurations}
+  - {code: 7000, http: 404, meaning: Customer not found}
+  - {code: 7001, http: 422, meaning: Customer already exists}
+  - {code: 7002, http: 422, meaning: Customer already referred}
+  - {code: 7003, http: 404, meaning: Referral code not found}
+  - {code: 7004, http: 422, meaning: Guest identifier exists}
+  - {code: 7005, http: 422, meaning: Duplicate referral}
+  - {code: 7006, http: 422, meaning: Invalid referral}
+  - {code: 8000, http: 403, meaning: Feature unavailable on current subscription}
+  - {code: 9000, http: 422, meaning: Non-reversible transaction type}
+  - {code: 9001, http: 422, meaning: Transaction already cancelled}
+  - {code: 9002, http: 404, meaning: Transaction not found}
+  - {code: 9003, http: 422, meaning: Duplicate transaction timestamp}
+  - {code: 9004, http: 422, meaning: Duplicate transaction ID}
+  - {code: 9005, http: 404, meaning: Reversed transaction not found}
+  - {code: 9006, http: 404, meaning: Transaction hold reference not found}
+  - {code: 9007, http: 422, meaning: Invalid transaction time}
+  - {code: 9008, http: 422, meaning: Insufficient balance points}

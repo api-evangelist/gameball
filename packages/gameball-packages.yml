@@ -1,0 +1,80 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/gameballers
+packages:
+  - language: javascript
+    registry: npm
+    name: gameball
+    url: https://www.npmjs.com/package/gameball
+    install: npm install gameball
+    repo: https://github.com/gameballers/gameball-node
+    official: true
+  - language: python
+    registry: pypi
+    name: gameball
+    url: https://pypi.org/project/gameball/
+    install: pip install gameball
+    repo: https://github.com/gameballers/gameball-python
+    official: true
+  - language: php
+    registry: packagist
+    name: gameball/gameball-php
+    url: https://packagist.org/packages/gameball/gameball-php
+    install: composer require gameball/gameball-php
+    repo: https://github.com/gameballers/gameball-php
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: gameball
+    url: https://rubygems.org/gems/gameball
+    install: gem install gameball
+    repo: https://github.com/gameballers/gameball-ruby
+    official: true
+  - language: csharp
+    registry: nuget
+    name: gameball
+    url: https://www.nuget.org/packages/gameball
+    install: dotnet add package gameball
+    repo: https://github.com/gameballers/gameball-dotnet
+    official: true
+  - language: swift
+    registry: github
+    name: gameball-ios
+    url: https://github.com/gameballers/gameball-ios
+    install: "SwiftPM / CocoaPods: pod 'Gameball'"
+    repo: https://github.com/gameballers/gameball-ios
+    official: true
+    note: Mobile client SDK (widget/engagement) rather than server SDK.
+  - language: kotlin
+    registry: github
+    name: gameball-android
+    url: https://github.com/gameballers/gameball-android
+    install: "Gradle: implementation 'com.gameball:gameball'"
+    repo: https://github.com/gameballers/gameball-android
+    official: true
+    note: Mobile client SDK.
+  - language: dart
+    registry: github
+    name: gameball-flutter
+    url: https://github.com/gameballers/gameball-flutter
+    install: "flutter pub add gameball_sdk"
+    repo: https://github.com/gameballers/gameball-flutter
+    official: true
+    note: Mobile client SDK.
+  - language: typescript
+    registry: github
+    name: gameball-react-native
+    url: https://github.com/gameballers/gameball-react-native
+    install: "npm install @gameball/react-native"
+    repo: https://github.com/gameballers/gameball-react-native
+    official: true
+    note: Mobile client SDK.
+plugins:
+  - platform: shopify
+    name: Gameball for Shopify
+    url: https://apps.shopify.com/gameball
+    official: true
+  - platform: magento
+    name: Gameball Magento Plugin
+    url: https://github.com/gameballers/magento-plugin
+    official: true

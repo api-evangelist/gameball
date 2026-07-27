@@ -1,7 +1,16 @@
 aid: gameball
 name: Gameball
-description: Gameball is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Gameball is a customer loyalty and gamification platform that helps consumer
+  brands turn one-time buyers into repeat customers through points, VIP tiers,
+  referrals, cashback, coupons, reward campaigns and gamified experiences (spin
+  the wheel, scratch & win, missions, stamps) plus email/SMS/push communication
+  and automation campaigns. It exposes a RESTful API (base
+  https://api.gameball.co/api/{version}, current v4.0) secured with APIKey and
+  SecretKey headers, alongside server SDKs for Node.js, Python, PHP, Ruby and
+  .NET, mobile/web client SDKs, signed webhooks, batch ingestion APIs and an
+  official MCP server. Gameball is trusted by 3,000+ brands across 70+ countries
+  and is a 500 Global portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/gameball/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +18,53 @@ x-backed-by:
 - 500-global
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://cdn.prod.website-files.com/6908b0d43805904c24a1139a/6909d1a17d9fb50ab471f71f_logo.svg
 tags:
 - Company
-apis: []
+- Loyalty
+- Rewards
+- Gamification
+- Customer Engagement
+- Retention
+- Referrals
+- Marketing
+- E-commerce
+apis:
+- name: Gameball REST API
+  description: >-
+    RESTful loyalty & gamification API for managing customers, events, orders,
+    payments, points transactions, holds, coupons, reward campaigns, VIP tiers,
+    redemption options, leaderboards and batch operations.
+  humanURL: https://docs.gameball.co/api-reference/introduction
+  baseURL: https://api.gameball.co/api/v4.0
+  properties:
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +73,62 @@ maintainers:
 common:
 - type: Website
   url: https://gameball.co
+- type: DeveloperPortal
+  url: https://developer.gameball.co
+- type: Documentation
+  url: https://docs.gameball.co
+- type: APIReference
+  url: https://docs.gameball.co/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.gameball.co/product-documentation/getting-started/launch-checklist
+- type: Support
+  url: https://docs.gameball.co/
+- type: Blog
+  url: https://www.gameball.co/blog
+- type: GitHubOrganization
+  url: https://github.com/gameballers
+- type: Pricing
+  url: https://www.gameball.co/pricing
+- type: SignUp
+  url: https://app.gameball.co/login
+- type: TermsOfService
+  url: https://www.gameball.co/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.gameball.co/privacy-policy
+- type: Authentication
+  url: authentication/gameball-authentication.yml
+- type: Packages
+  url: packages/gameball-packages.yml
+- type: SDKs
+  url: packages/gameball-packages.yml
+- type: MCPServer
+  url: mcp/gameball-mcp.yml
+- type: LLMsTxt
+  url: llms/gameball-llms.txt
+- type: ErrorCatalog
+  url: errors/gameball-error-codes.yml
+- type: Conventions
+  url: conventions/gameball-conventions.yml
+- type: Idempotency
+  url: conventions/gameball-conventions.yml
+- type: RateLimits
+  url: rate-limits/gameball-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/gameball-lifecycle.yml
+- type: ChangeLog
+  url: changelog/gameball-changelog.yml
+- type: Webhooks
+  url: asyncapi/gameball-webhooks.yml
+- type: Components
+  url: components/gameball-components.yml
+- type: Conformance
+  url: conformance/gameball-conformance.yml
+- type: DataModel
+  url: data-model/gameball-data-model.yml
+- type: DomainSecurity
+  url: security/gameball-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/changelog/updates
+docs: https://docs.gameball.co/changelog/updates
+scheme: dual-stream
+current_api_version: v4.0
+streams:
+  - name: Product Updates
+    url: https://docs.gameball.co/changelog/product-updates/2025
+    covers: Features, enhancements and fixes across loyalty programs, campaigns, widgets and analytics.
+  - name: API Updates
+    url: https://docs.gameball.co/changelog/api-updates/2025
+    covers: API version releases, breaking changes, new endpoints and migration guidance.
+entries: []
+notes: >-
+  Gameball publishes a live, dated changelog split into Product Updates and API
+  Updates streams. Individual dated entries are rendered client-side on the docs
+  site and were not captured verbatim at enrichment time; the stream URLs above
+  are the canonical source of truth. Current documented API version is v4.0.

@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.gameball.co/api-reference/webhooks/overview
+spec_type: Webhooks
+docs:
+  overview: https://docs.gameball.co/api-reference/webhooks/overview
+  subscribing: https://docs.gameball.co/api-reference/webhooks/subscribing
+  notifications: https://docs.gameball.co/api-reference/webhooks/webhook-topics/notifications
+  profile_updates: https://docs.gameball.co/api-reference/webhooks/webhook-topics/profile-updates
+delivery:
+  transport: https
+  method: POST
+  format: json
+  subscription: >-
+    Apps subscribe to specific webhook topics and register a POST endpoint;
+    Gameball delivers events to that endpoint as they occur.
+security:
+  signature_header: X-GB-Signature
+  version_header: X-GB-Webhook-Version
+  detail: >-
+    Each delivery carries an X-GB-Signature header used to verify the payload
+    originates from Gameball, plus an X-GB-Webhook-Version header (e.g. v4)
+    indicating the webhook schema version.
+retry_policy:
+  max_retries: 3
+  schedule: [5m, 20m, 60m]
+  detail: On a non-2xx response Gameball retries after 5, then 20, then 60 minutes; after the third failure the event is discarded.
+topics:
+  - name: customer.notification.push
+    category: Notifications
+    description: >-
+      Fired every time Gameball generates a customer notification for delivery
+      via push or SMS. Payload includes event, client_id, customer_id,
+      gb_customer_id, created_at, and a data[] array of multi-language
+      notification objects (local, icon, title, body).
+    docs: https://docs.gameball.co/api-reference/webhooks/webhook-topics/notifications
+  - name: customer.profile.updated
+    category: Profile Updates
+    description: Fired when a customer's profile changes (attributes, tier, balance, tags).
+    docs: https://docs.gameball.co/api-reference/webhooks/webhook-topics/profile-updates
+notes: >-
+  Gameball documents webhooks but does not publish a machine-readable AsyncAPI
+  document; this artifact captures the webhook catalog. Topic list reflects the
+  two documented topic categories (Notifications, Profile Updates).
