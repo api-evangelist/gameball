@@ -6,11 +6,16 @@ description: >-
   referrals, cashback, coupons, reward campaigns and gamified experiences (spin
   the wheel, scratch & win, missions, stamps) plus email/SMS/push communication
   and automation campaigns. It exposes a RESTful API (base
-  https://api.gameball.co/api/{version}, current v4.0) secured with APIKey and
-  SecretKey headers, alongside server SDKs for Node.js, Python, PHP, Ruby and
-  .NET, mobile/web client SDKs, signed webhooks, batch ingestion APIs and an
-  official MCP server. Gameball is trusted by 3,000+ brands across 70+ countries
-  and is a 500 Global portfolio company.
+  https://api.gameball.co/api/{version}) secured with APIKey and SecretKey
+  headers — v4.1 "Secure Integration Mode" is the documented current release,
+  though the only OpenAPI Gameball publishes is v4.0. Alongside it are server
+  SDKs for Node.js, Python, PHP, Ruby and .NET, actively-maintained mobile
+  client SDKs for iOS, Android, Flutter and React Native, an embeddable web
+  widget, signed webhooks, asynchronous batch ingestion, a test/live dual-key
+  sandbox, an official OAuth-gated remote MCP server at https://mcp.gameball.co
+  exposing 54 dashboard tools, a published A2A agent card and a
+  provider-authored Agent Skill. Gameball is trusted by 3,000+ brands across
+  70+ countries and is a 500 Global portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/gameball/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -32,7 +37,7 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 image: https://cdn.prod.website-files.com/6908b0d43805904c24a1139a/6909d1a17d9fb50ab471f71f_logo.svg
 tags:
 - Company
@@ -65,6 +70,40 @@ apis:
     url: asyncapi/gameball-webhooks.yml
   - type: ErrorCatalog
     url: errors/gameball-error-codes.yml
+  - type: OpenAPI
+    url: openapi/gameball-openapi.json
+  - type: Overlay
+    url: overlays/gameball-openapi-overlay.yaml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+- name: Gameball MCP Server
+  description: >-
+    Official remote Model Context Protocol server exposing 54 tools over the
+    Gameball merchant/dashboard surface — customer lookup and points
+    adjustment, tag management, earning configuration and custom earning rules,
+    redemption options, reward-campaign authoring (event, date, calendar, game,
+    mission), tier and program state, widget settings and localization, and
+    analytics. OAuth 2.0 with PKCE and dynamic client registration; a single
+    "mcp" scope covers the whole surface.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/gameball-mcp.yml
+  - type: MCPServer
+    url: https://mcp.gameball.co/mcp
+  - type: ToolCrosswalk
+    url: mcp/gameball-tool-crosswalk.yml
+  - type: OAuthScopes
+    url: scopes/gameball-scopes.yml
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: SourceCode
+    url: https://github.com/gameballers/gameball-mcp-codex
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -127,8 +166,38 @@ common:
   url: data-model/gameball-data-model.yml
 - type: DomainSecurity
   url: security/gameball-domain-security.yml
+- type: OpenAPI
+  url: openapi/gameball-openapi.json
+- type: Overlay
+  url: overlays/gameball-openapi-overlay.yaml
+- type: AgentCard
+  url: a2a/gameball-a2a.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/gameball-well-known.yml
+- type: MCPServer
+  url: https://mcp.gameball.co/mcp
+- type: ToolCrosswalk
+  url: mcp/gameball-tool-crosswalk.yml
+- type: OAuthScopes
+  url: scopes/gameball-scopes.yml
+- type: Plans
+  url: plans/gameball-plans-pricing.yml
+- type: Sandbox
+  url: sandbox/gameball-sandbox.yml
+- type: ErrorCatalog
+  url: errors/gameball-problem-types.yml
+- type: StatusPage
+  url: https://gameball.statuspage.io
+- type: LLMsTxt
+  url: https://docs.gameball.co/llms.txt
+- type: ChangeLog
+  url: https://docs.gameball.co/changelog/updates
+- type: HelpCenter
+  url: https://help.gameball.co
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 19
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
