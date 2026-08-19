@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.gameball.co/.well-known/agent-skills/gameball/skill.md (the
+  provider-published skill, saved verbatim) plus four skills generated from
+  openapi/gameball-openapi.json.
+api: Gameball REST API v4.0
+base_url: https://api.gameball.co/api/v4.0
+openapi: openapi/gameball-openapi.json
+skills:
+  - file: gameball-skill.md
+    name: Gameball
+    method: searched
+    source: https://docs.gameball.co/.well-known/agent-skills/gameball/skill.md
+    http_status: 200
+    content_type: text/markdown
+    bytes: 13304
+    fetched: '2026-08-13'
+    provider_published: true
+    referenced_by: a2a/gameball-agent-card.json
+    description: >-
+      Gameball's OWN Agent Skill, saved verbatim and unmodified. It is the
+      single skill declared in Gameball's A2A agent card and covers the product
+      summary, when to use Gameball, authentication headers, the core endpoint
+      table and the widget/mobile SDK surfaces. Nothing in this file was
+      authored by API Evangelist.
+  - file: gameball-award-points-for-an-order.md
+    name: gameball-award-points-for-an-order
+    method: generated
+    source: openapi/gameball-openapi.json
+    provider_published: false
+    operations: [createCustomer, trackOrder, calculateOrderCashback, previewOrderRewards, getCustomerBalance, getOrderTransactions]
+    description: >-
+      Enroll a customer and award points for a purchase, with the natural-key
+      retry rule that stops a timeout from double-awarding.
+  - file: gameball-redeem-points-at-checkout.md
+    name: gameball-redeem-points-at-checkout
+    method: generated
+    source: openapi/gameball-openapi.json
+    provider_published: false
+    operations: [getCustomerBalance, getCustomerCoupons]
+    description: >-
+      Spend points at checkout via hold, coupon issue/validate, then burn on
+      payment or release on abandonment. Most of this flow's operations carry no
+      operationId in the published spec and are addressed by method and path.
+  - file: gameball-track-events-and-referrals.md
+    name: gameball-track-events-and-referrals
+    method: generated
+    source: openapi/gameball-openapi.json
+    provider_published: false
+    operations: [sendEvents, previewEventRewards, validateReferrerCode, createCustomer, getCustomerReferrals, getCustomerReferralsCount, getCustomerCampaignsProgress, getCustomerActivities, getCustomerStampsProgress, getCustomerDailyStreakProgress, achieveSocialChallenge, attachCustomerTags]
+    description: >-
+      Behavioral event ingestion for action-based campaigns plus the referral
+      signup flow, including cursor pagination and the header-vs-query `lang`
+      inconsistency.
+  - file: gameball-bulk-ingest.md
+    name: gameball-bulk-ingest
+    method: generated
+    source: openapi/gameball-openapi.json
+    provider_published: false
+    operations: [batchOrderTransactions]
+    description: >-
+      The asynchronous batch surface for migrations and nightly syncs, with the
+      deterministic-id rule that makes a batch safely resubmittable.
+grounding_note: >-
+  Every operationId named in the generated skills was verified present in
+  openapi/gameball-openapi.json. Where the published specification omits an
+  operationId — it does so on 42 of 78 operations — the skill addresses the
+  operation by HTTP method and path and says so, rather than inventing a name.
+cross_refs:
+  errors: errors/gameball-error-codes.yml
+  problem_types: errors/gameball-problem-types.yml
+  conventions: conventions/gameball-conventions.yml
+  rate_limits: rate-limits/gameball-rate-limits.yml
+  authentication: authentication/gameball-authentication.yml
+  webhooks: asyncapi/gameball-webhooks.yml
+  packages: packages/gameball-packages.yml
+  overlay: overlays/gameball-openapi-overlay.yaml

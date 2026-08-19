@@ -1,10 +1,17 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://docs.gameball.co/api-reference/introduction
 docs:
   - https://docs.gameball.co/api-reference/overview/authentication
   - https://docs.gameball.co/api-reference/overview/rate-limiting
   - https://docs.gameball.co/api-reference/overview/status-error-codes
+openapi: openapi/gameball-openapi.json
+update_note: >-
+  Pagination, expansion, localization and content-negotiation sections added
+  2026-08-13, derived from the published OpenAPI
+  (https://docs.gameball.co/api-reference/openapi.json) which was harvested in
+  this round. Everything already in this file was searched from the docs and is
+  unchanged.
 authentication:
   style: api-key-headers
   headers: [APIKey, SecretKey]
@@ -29,6 +36,73 @@ idempotency:
     Idempotency-Key header; idempotency is keyed on the domain transaction id.
   evidence_codes: [9003, 9004]
   cross_ref: errors/gameball-error-codes.yml
+pagination:
+  style: cursor
+  supported_on: 5
+  detail: >-
+    Cursor pagination on the five collection reads that support it. `startAfter`
+    takes the id of the last record from the previous page (exclusive) and
+    `limit` sets the page size. There is no offset/page parameter, no total
+    count in the page envelope, and no Link header — the separate
+    /count operations exist to supply totals.
+  params:
+    - name: startAfter
+      in: query
+      type: integer
+      semantics: id-exclusive cursor; omit for the first page
+    - name: limit
+      in: query
+      type: integer
+      semantics: records per page
+    - name: direction
+      in: query
+      type: string
+      semantics: transaction ledger only — "+" accumulation or "-" deduction
+  operations:
+    - GET /api/v4.0/integrations/transactions
+    - GET /api/v4.0/integrations/transactions/customer-view
+    - GET /api/v4.0/integrations/customers/{customerId}/referrals
+    - GET /api/v4.0/integrations/customers/{customerId}/activities
+    - GET /api/v4.0/integrations/customers/{customerId}/notifications
+  count_operations:
+    - GET /api/v4.0/integrations/transactions/count
+    - GET /api/v4.0/integrations/customers/{customerId}/referrals/count
+    - GET /api/v4.0/integrations/customers/{customerId}/activities/count
+    - GET /api/v4.0/integrations/customers/{customerId}/notifications/count
+  source: openapi/gameball-openapi.json
+field_expansion:
+  supported: true
+  param: expand
+  in: query
+  detail: >-
+    An `expand` query parameter appears on two operations in the published
+    specification. Gameball publishes no general expansion reference, so the
+    accepted values are only discoverable per-operation.
+  source: openapi/gameball-openapi.json
+localization:
+  supported: true
+  mechanism: lang
+  detail: >-
+    A `lang` parameter selects the response language on 9 operations — sent as
+    a HEADER on 7 of them and as a QUERY parameter on the other 2. The
+    inconsistency is in the published specification, not a documentation error,
+    and a client must check per operation.
+  header_operations: 7
+  query_operations: 2
+  cross_ref: openapi/gameball-openapi.json
+content_negotiation:
+  request: application/json
+  response: application/json
+  detail: >-
+    Every one of the 75 response bodies in the published specification is
+    application/json. No alternate representations, no application/problem+json.
+sparse_fieldsets:
+  supported: false
+metadata_fields:
+  supported: false
+  detail: >-
+    Gameball has no generic metadata bag on its resources. Customer-scoped
+    custom data is modelled explicitly as customer attributes and tags.
 request_tracing:
   field: requestId
   location: error response body

@@ -1,9 +1,10 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://docs.gameball.co/api-reference/overview/authentication
 docs: https://docs.gameball.co/api-reference/overview/authentication
+openapi: openapi/gameball-openapi.json
 summary:
-  types: [apiKey]
+  types: [apiKey, http]
   api_key_in: [header]
   oauth2_flows: []
   notes: >-
@@ -40,3 +41,69 @@ widget_auth:
     (HMAC of the customer id using the account transaction/secret key) generated
     server-side and passed to the SDK. See the Get Customer Hash operation.
   docs: https://docs.gameball.co/api-reference/customers/management/get-customer-hash
+openapi_declared:
+  source: openapi/gameball-openapi.json
+  checked: '2026-08-13'
+  security_schemes:
+    - name: apiKey
+      type: apiKey
+      in: header
+      parameter_name: apikey
+      note: >-
+        The published specification spells the header lowercase ("apikey") while
+        the documentation writes it "APIKey". HTTP header names are
+        case-insensitive, so both work.
+    - name: secretKey
+      type: apiKey
+      in: header
+      parameter_name: secretkey
+      note: Documentation spells it "SecretKey"; same case-insensitivity applies.
+    - name: bearerAuth
+      type: http
+      scheme: bearer
+      documented: false
+      finding: undocumented-scheme
+      note: >-
+        DECLARED BUT UNDOCUMENTED. bearerAuth is the document-level default
+        security requirement in the published specification, yet
+        https://docs.gameball.co/api-reference/overview/authentication describes
+        no bearer-token grant for the REST API. In practice it applies to only
+        3 of 78 operations — the three /plants paths left over from the
+        Mintlify OpenAPI starter template. Every real Gameball operation
+        overrides the default explicitly. Treat bearerAuth as specification
+        residue, not as an available credential. Flagged in
+        overlays/gameball-openapi-overlay.yaml.
+  per_operation_requirements:
+    - requirement: apiKey + secretKey
+      operations: 54
+      note: >-
+        Two thirds of the surface requires BOTH headers even without High
+        Security Mode — all transaction, coupon, batch and configuration-write
+        operations.
+    - requirement: apiKey only
+      operations: 21
+    - requirement: inherits document default (bearerAuth)
+      operations: 3
+      note: The three template-residue /plants operations.
+  live_probe:
+    url: https://api.gameball.co/api/v4.0/openapi.json
+    http_status: 401
+    body: >-
+      {"code": 1000, "type": "AUTHENTICATION_ERROR", "message": "Unauthorized
+      access. Please authenticate to proceed."}
+    checked: '2026-08-13'
+    note: >-
+      Confirms the API host rejects unauthenticated calls with the Gameball
+      error envelope rather than a WWW-Authenticate challenge.
+mcp_authentication:
+  surface: https://mcp.gameball.co/mcp
+  type: oauth2
+  detail: >-
+    Gameball's MCP server is a SEPARATE authentication surface from the REST
+    API and it does use OAuth 2.0 — authorization_code + refresh_token with
+    PKCE (S256) and RFC 7591 dynamic client registration, advertising a single
+    scope "mcp". This is the only OAuth at Gameball; the REST API has none.
+  cross_ref: scopes/gameball-scopes.yml
+  metadata:
+    - well-known/gameball-oauth-authorization-server.json
+    - well-known/gameball-oauth-protected-resource.json

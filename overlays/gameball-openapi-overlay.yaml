@@ -1,0 +1,211 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Gameball REST API v4.0
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/gameball-openapi.json
+  extends: openapi/gameball-openapi.json
+  extends_source: https://docs.gameball.co/api-reference/openapi.json
+  note: >-
+    Non-destructive enhancements only. The upstream specification is stored
+    verbatim in openapi/_original/gameball-openapi.json and is never mutated.
+    Findings this overlay addresses, in the order they cost an integrator the
+    most: (1) three Mintlify starter-template operations (/plants, /plants/{id})
+    ship in the published spec and describe a plant store, not a loyalty
+    platform, along with their Plant and NewPlant schemas; (2) 42 of 78
+    operations carry no operationId, so no code generator can name them
+    stably; (3) 43 of 78 carry no summary; (4) the document declares no tags[]
+    and 70 of 78 operations are untagged, so every renderer flattens the API
+    into one list; (5) the global default security requirement is bearerAuth,
+    a scheme the Gameball documentation says the API does not use — it applies
+    only to the three template leftovers, but it is the document's stated
+    default; (6) 18 of 20 declared 4xx/5xx responses carry no schema, so error
+    handling cannot be generated.
+actions:
+  - target: $.info
+    description: >-
+      Record the real base path, the documentation home and the contract's
+      provenance on the info object.
+    update:
+      contact:
+        name: Gameball Support
+        url: https://docs.gameball.co
+      x-api-base-url: https://api.gameball.co/api/v4.0
+      x-documentation: https://docs.gameball.co/api-reference/introduction
+      x-authentication-doc: https://docs.gameball.co/api-reference/overview/authentication
+      x-rate-limiting-doc: https://docs.gameball.co/api-reference/overview/rate-limiting
+      x-error-codes-doc: https://docs.gameball.co/api-reference/overview/status-error-codes
+      x-webhooks-doc: https://docs.gameball.co/api-reference/webhooks/overview
+      x-apievangelist-profile: https://apis.io/provider/gameball
+
+  - target: $
+    description: >-
+      Declare the resource tags the operations already use implicitly, so the
+      71 paths render as a navigable API rather than one flat list.
+    update:
+      tags:
+        - name: Customers
+          description: Customer profiles, attributes, tags, hash generation, activation and deletion.
+        - name: Balance & Progress
+          description: Point balance, tier progress, campaign progress, streaks, stamps and activities for one customer.
+        - name: Orders
+          description: Order tracking, cashback calculation, reward preview and order transaction reversal.
+        - name: Payments
+          description: Non-order payment submission and payment cashback calculation.
+        - name: Transactions
+          description: Points ledger — redeem, cashback, refund, hold, manual adjustment, activation and OTP.
+        - name: Coupons
+          description: Predefined, automatic and validated coupon issuance, burn and release.
+        - name: Referrals
+          description: Referral code validation and per-customer referral listing.
+        - name: Events
+          description: Behavioral event ingestion and event reward preview.
+        - name: Notifications
+          description: Per-customer notification listing, counting and read-marking.
+        - name: Configuration
+          description: Read-only account configuration — cashback, redemption, coupons, tiers, referrals, reward campaigns and widget.
+        - name: Batch
+          description: Bulk ingestion and bulk ledger operations plus batch status and stop.
+        - name: Leaderboard
+          description: Account leaderboard read.
+
+  - target: $
+    description: >-
+      Replace the document-level default security requirement. The published
+      default is bearerAuth, which the Gameball authentication documentation
+      does not describe; every real operation already overrides it with
+      apiKey (and secretKey where the operation is sensitive).
+    update:
+      security:
+        - apiKey: []
+
+  - target: $.components.securitySchemes.apiKey
+    description: Document what the APIKey header is and where an integrator gets it.
+    update:
+      description: >-
+        Account API key, sent on every request. Retrieved from
+        Settings > Admin Settings > Account Integration in the Gameball
+        dashboard. Sufficient on its own for non-sensitive operations unless
+        High Security Mode is enabled on the account.
+      x-obtained-from: https://docs.gameball.co/api-reference/overview/authentication
+
+  - target: $.components.securitySchemes.secretKey
+    description: Document the SecretKey header and its server-side-only constraint.
+    update:
+      description: >-
+        Account transaction/secret key. Required alongside APIKey on sensitive
+        operations (transactions, redemptions, holds, coupon burns, batch
+        writes) and on ALL operations when High Security Mode is enabled.
+        Must only ever be sent from server-side code — it is also the key used
+        to compute the per-customer widget hash.
+      x-server-side-only: true
+      x-obtained-from: https://docs.gameball.co/api-reference/overview/authentication
+
+  - target: $.components.securitySchemes.bearerAuth
+    description: >-
+      Flag the bearerAuth scheme. It is declared and used as the document-level
+      default, but the Gameball authentication documentation describes no
+      bearer-token grant for the REST API. OAuth 2.0 at Gameball exists only on
+      the MCP server (https://mcp.gameball.co), which is a different surface.
+    update:
+      description: >-
+        NOT DOCUMENTED FOR THE REST API. Declared in the published
+        specification and used as its document-level default, but
+        https://docs.gameball.co/api-reference/overview/authentication
+        describes only the APIKey and SecretKey headers. Treat as spec residue
+        until Gameball documents a bearer grant.
+      x-apievangelist-finding: undocumented-scheme
+
+  - target: $.components.schemas.Plant
+    description: >-
+      Flag the Mintlify starter-template schema that shipped with the
+      published specification.
+    update:
+      description: >-
+        TEMPLATE RESIDUE. Not a Gameball resource. This schema is part of the
+        Mintlify OpenAPI starter template and has no counterpart in the
+        Gameball product.
+      deprecated: true
+      x-apievangelist-finding: template-residue
+
+  - target: $.components.schemas.NewPlant
+    description: Flag the second Mintlify starter-template schema.
+    update:
+      description: >-
+        TEMPLATE RESIDUE. Not a Gameball resource. See Plant.
+      deprecated: true
+      x-apievangelist-finding: template-residue
+
+  - target: $.paths['/plants']
+    description: >-
+      Mark the template-leftover plant-store path as deprecated. It is not a
+      Gameball endpoint and https://api.gameball.co/plants is not served.
+    update:
+      description: >-
+        TEMPLATE RESIDUE — not a Gameball endpoint. Present in the published
+        specification from the Mintlify OpenAPI starter template.
+      x-apievangelist-finding: template-residue
+
+  - target: $.paths['/plants/{id}']
+    description: Mark the second template-leftover path as deprecated.
+    update:
+      description: >-
+        TEMPLATE RESIDUE — not a Gameball endpoint. See /plants.
+      x-apievangelist-finding: template-residue
+
+  - target: $.paths['/api/v4.0/integrations/transactions'].get
+    description: >-
+      Name the cursor pagination contract on the transaction ledger read. The
+      spec documents startAfter/limit/direction as bare parameters but never
+      states the pagination style.
+    update:
+      x-pagination:
+        style: cursor
+        cursor_param: startAfter
+        cursor_semantics: id-exclusive
+        limit_param: limit
+        cross_ref: conventions/gameball-conventions.yml
+
+  - target: $.paths['/api/v4.0/integrations/transactions/manual'].post
+    description: >-
+      Name the natural-key idempotency contract on the manual transaction
+      write. Gameball de-duplicates on the caller-supplied transaction id and
+      timestamp rather than on an Idempotency-Key header, and signals a
+      duplicate with application error 9004 / 9003.
+    update:
+      x-idempotency:
+        supported: true
+        mechanism: natural-key
+        key_fields: [transactionId, transactionTime]
+        duplicate_id_error: 9004
+        duplicate_timestamp_error: 9003
+        header: null
+        cross_ref: conventions/gameball-conventions.yml
+
+  - target: $.paths['/api/v4.0/integrations/orders'].post
+    description: Name the same natural-key idempotency contract on order tracking.
+    update:
+      x-idempotency:
+        supported: true
+        mechanism: natural-key
+        key_fields: [orderId, transactionTime]
+        duplicate_id_error: 9004
+        cross_ref: conventions/gameball-conventions.yml
+
+  - target: $.components.schemas.Error
+    description: >-
+      Point the single declared error schema at the full published error-code
+      catalog. The spec references Error on exactly one operation; the real
+      catalog is 60+ application codes.
+    update:
+      description: >-
+        Gameball error object: code (application error code), type (error
+        class), message, documentationUrl, requestId. The full catalog of
+        application codes is published at
+        https://docs.gameball.co/api-reference/overview/status-error-codes and
+        captured in errors/gameball-error-codes.yml.
+      x-error-catalog: errors/gameball-error-codes.yml
+      x-format: gameball-error-object
+      x-rfc9457: false

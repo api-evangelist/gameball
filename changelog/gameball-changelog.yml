@@ -1,19 +1,139 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://docs.gameball.co/changelog/updates
 docs: https://docs.gameball.co/changelog/updates
 scheme: dual-stream
-current_api_version: v4.0
+current_api_version: v4.1
+current_api_version_note: >-
+  CORRECTED 2026-08-13. The previous round recorded v4.0. The API Updates
+  changelog announces **API v4.1 — Secure Integration Mode** (January 2025),
+  documented at https://docs.gameball.co/api-reference/introduction-v4.1 with
+  its own base path https://api.gameball.co/api/v4.1/integrations/... The
+  MACHINE-READABLE contract has not followed: the only OpenAPI Gameball
+  publishes, at https://docs.gameball.co/api-reference/openapi.json, is
+  info.version 4.0.0 with every path under /api/v4.0/. No v4.1 OpenAPI is
+  served — /api-reference/openapi-v4.1.json and /api-reference/v4.1/openapi.json
+  both 404. An integrator generating a client from the published spec builds
+  against the superseded version.
 streams:
   - name: Product Updates
     url: https://docs.gameball.co/changelog/product-updates/2025
     covers: Features, enhancements and fixes across loyalty programs, campaigns, widgets and analytics.
+    entries_captured: 15
+    machine_readable: https://docs.gameball.co/changelog/product-updates/2025.md
   - name: API Updates
     url: https://docs.gameball.co/changelog/api-updates/2025
     covers: API version releases, breaking changes, new endpoints and migration guidance.
-entries: []
+    entries_captured: 1
+    machine_readable: https://docs.gameball.co/changelog/api-updates/2025.md
+cadence:
+  product: >-
+    Roughly fortnightly through 2025, tightening to weekly in Q4 (Oct 1, Oct 20,
+    Oct 27, Nov 3, Nov 10, Nov 17, Dec 1, Dec 8).
+  api: >-
+    One entry across the whole of 2025. The API stream is far quieter than the
+    product stream.
+  gap: >-
+    The newest dated entry on either stream is 2025-12-08. No 2026 changelog
+    page exists — /changelog/api-updates/2026 returns 404 and
+    /changelog/product-updates/2026 does not resolve — so the changelog has
+    been silent for eight months as of this check.
+api_entries:
+  - version: v4.1
+    date: '2025-01'
+    label: January 2025
+    title: Gameball API V4.1 — Secure Integration Mode
+    tags: [API, Security]
+    breaking: true
+    url: https://docs.gameball.co/api-reference/introduction-v4.1
+    breaking_changes:
+      - >-
+        Mandatory SecretKey: all endpoints under /api/v4.1/integrations/...
+        require BOTH APIKey and SecretKey. Requests without SecretKey are
+        rejected. This makes the previously optional "High Security Mode"
+        behaviour mandatory.
+      - >-
+        Server-side only: integration endpoints can no longer be called from
+        browsers or mobile apps directly. All calls must route through the
+        integrator's backend.
+    additions:
+      - >-
+        Minimum Version Enforcement — merchants can set a minimum allowed API
+        version from the dashboard and reject older, less secure patterns.
+      - >-
+        Per-customer JWE session tokens for widget/mobile access, signed and
+        encrypted with the account SecretKey, replacing direct client access.
+    migration: >-
+      v4.0 integrations must add SecretKey headers and move all calls
+      server-side. Migration guide at
+      https://docs.gameball.co/api-reference/introduction-v4.1
+product_entries:
+  - date: '2025-12-08'
+    label: December 8 2025
+    highlights: Automation Goals, Lead Form Attributes & More
+    breaking: false
+  - date: '2025-12-01'
+    label: December 1 2025
+    highlights: Budget Control, Auto Game Popups & More
+    breaking: false
+  - date: '2025-11-17'
+    label: November 17 2025
+    highlights: Recurring Date Campaigns, Game Funnel Analytics & More
+    breaking: false
+  - date: '2025-11-10'
+    label: November 10 2025
+    highlights: Redemption Insights, points_redeemed Event & More
+    breaking: false
+    api_relevant: true
+    api_note: Adds a points_redeemed event, visible to event-driven integrations.
+  - date: '2025-11-03'
+    label: November 3 2025
+    highlights: Tier Visibility, Automation Attributes & More
+    breaking: false
+  - date: '2025-10-27'
+    label: October 27 2025
+    highlights: Guest Play, Google Wallet, API Testing & More
+    breaking: false
+    api_relevant: true
+  - date: '2025-10-20'
+    label: October 20 2025
+    highlights: Customer Tags, Points Expiry, Referral Status & More
+    breaking: false
+    api_relevant: true
+  - date: '2025-10-01'
+    label: October 1 2025
+    highlights: A/B Testing in Automations, Expiry Notifications & More
+    breaking: false
+  - date: '2025-08-26'
+    label: August 26 2025
+    highlights: Milestone Campaign, Dynamic Coupons, Points Expiry Automation & More
+    breaking: false
+  - date: '2025-07-28'
+    label: July 28 2025
+    highlights: Mission Campaign, External Rewards, Security & More
+    breaking: false
+  - date: '2025-07-07'
+    label: July 7 2025
+    highlights: Order Segments, Continuous Re-Evaluation, New Games & More
+    breaking: false
+  - date: '2025-06-16'
+    label: June 16 2025
+    highlights: 5 New Games, Scratch & Win Lead Form & More
+    breaking: false
+  - date: '2025-05-26'
+    label: May 26 2025
+    highlights: Stamps Campaign, Tax Exclusion & More
+    breaking: false
+  - date: '2025-05-12'
+    label: May 12 2025
+    highlights: The Catcher Game, SMS Reminders, Redemption Controls & More
+    breaking: false
+  - date: null
+    label: Play & Win Launch
+    highlights: A New Home for Games in the Widget
+    breaking: false
+    note: Undated entry — the changelog gives it a name rather than a date.
 notes: >-
-  Gameball publishes a live, dated changelog split into Product Updates and API
-  Updates streams. Individual dated entries are rendered client-side on the docs
-  site and were not captured verbatim at enrichment time; the stream URLs above
-  are the canonical source of truth. Current documented API version is v4.0.
+  Entries captured verbatim from the Mintlify markdown renditions of the two
+  changelog streams (…/2025.md), which return the same content the HTML pages
+  render client-side. Window is 2025 only; there is no 2026 page.

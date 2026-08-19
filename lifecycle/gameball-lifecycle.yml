@@ -1,14 +1,36 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://docs.gameball.co/api-reference/introduction
 versioning:
   scheme: uri-path
-  current: v4.0
+  current: v4.1
+  spec_version: v4.0
   detail: >-
     Major API version is pinned in the request path
-    (https://api.gameball.co/api/{version}). v4.0 is the current stable release;
-    v3.x remains documented for existing SDK integrations.
+    (https://api.gameball.co/api/{version}). v4.1 "Secure Integration Mode" is
+    the current documented release (January 2025) and mandates BOTH APIKey and
+    SecretKey on every /api/v4.1/integrations/... call, server-side only, with
+    per-customer JWE session tokens for widget/mobile. v4.0 remains callable and
+    is the ONLY version with a published OpenAPI. v3.x remains documented for
+    existing SDK integrations.
   docs: https://docs.gameball.co/api-reference/introduction
+  docs_v41: https://docs.gameball.co/api-reference/introduction-v4.1
+  contract_lag:
+    finding: >-
+      The documented current version (v4.1) and the machine-readable contract
+      (v4.0) have been out of step since January 2025. No v4.1 OpenAPI is
+      served — /api-reference/openapi-v4.1.json and
+      /api-reference/v4.1/openapi.json both return 404 — so a client generated
+      from Gameball's published spec targets the superseded version and will
+      miss v4.1's mandatory SecretKey requirement.
+    checked: '2026-08-13'
+  minimum_version_enforcement:
+    supported: true
+    detail: >-
+      Merchants can set a minimum allowed API version from the Gameball
+      dashboard, rejecting calls on older versions. This is a merchant-side
+      control, not a Gameball-wide sunset — which means an integration can be
+      switched off by the merchant without any deprecation notice from Gameball.
 changelog:
   product_updates: https://docs.gameball.co/changelog/product-updates/2025
   api_updates: https://docs.gameball.co/changelog/api-updates/2025
@@ -21,8 +43,51 @@ deprecation:
     API version changes and breaking changes are communicated through the API
     Updates changelog stream; no formal RFC 8594 Sunset/Deprecation header
     contract is documented.
-status_page: null
-sla: null
+status_page:
+  url: https://gameball.statuspage.io
+  provider: Atlassian Statuspage
+  page_id: k16wr2rswgfc
+  api: https://gameball.statuspage.io/api/v2/summary.json
+  method: probed
+  http_status: 200
+  checked: '2026-08-13'
+  time_zone: Africa/Cairo
+  current_status: All Systems Operational
+  subscribe: email with OTP confirmation
+  components:
+    - Merchant Dashboard
+    - Core Engines
+    - Transactions
+    - Customer Widget
+    - Analytics
+    - Shopify Rewards and Redemption
+    - Notifications
+    - Outbound Messaging
+    - Coupon Engine
+  detail: >-
+    FOUND 2026-08-13, correcting the previous round's "no public status page"
+    finding. The page is a real Atlassian Statuspage with nine named components
+    and a machine-readable summary.json, but it is NOT linked from
+    gameball.co, docs.gameball.co or the API reference, and status.gameball.co
+    does not resolve (DNS failure, curl exit 000) — so it is only reachable by
+    guessing the statuspage.io subdomain. An unlinked status page is a status
+    page most integrators will never find.
+  misses:
+    - url: https://status.gameball.co
+      status: 000
+      note: does not resolve
+    - url: https://gameball.instatus.com
+      status: 200
+      note: >-
+        NOT Gameball. Returns the generic Instatus marketing page ("Get ready
+        for downtime"), the vendor catch-all for an unclaimed subdomain.
+sla:
+  published: false
+  detail: >-
+    No uptime SLA, no credit schedule and no support-response commitment is
+    published. The pricing page promises "Enterprise-Grade Support" with a
+    dedicated CSM and 24/7 support on the Enterprise tier without attaching any
+    numbers. See plans/gameball-plans-pricing.yml.
 notes: >-
-  No public status page (status.gameball.co / statuspage / instatus not found)
-  and no published uptime SLA were located at enrichment time.
+  Status page located 2026-08-13 at https://gameball.statuspage.io. Still no
+  published SLA and still no RFC 8594 Sunset/Deprecation header contract.

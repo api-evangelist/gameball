@@ -162,6 +162,7 @@
 - [Get Customer Hash](https://docs.gameball.co/api-reference/customers/management/get-customer-hash): Generate a secure hash for widget authentication (required for widget security)
 - [Validate Referrer Code](https://docs.gameball.co/api-reference/customers/management/validate-referrer-code): Check whether a referral code is valid before applying it
 - [Achieve Social Campaign](https://docs.gameball.co/api-reference/customers/management/achieve-social-campaign): Mark a social campaign as achieved for a customer from your backend
+- [Update Customer Activation](https://docs.gameball.co/api-reference/customers/management/update-customer-activation): Opt a customer in or out of the loyalty program (dashboard include/exclude)
 - [Delete Customer](https://docs.gameball.co/api-reference/customers/management/delete-customer): Remove a customer record from Gameball
 - [Customer Balance](https://docs.gameball.co/api-reference/customers/progress/get-customer-balance): Get a customer's current points balance
 - [Customer Progress](https://docs.gameball.co/api-reference/customers/progress/get-customer-progress): Get a customer's tier and loyalty program progress
@@ -174,11 +175,14 @@
 ## API Reference — Events
 
 - [Send Events](https://docs.gameball.co/api-reference/events/send-events): Track customer behavioral events via the Events API
+- [Preview Event Rewards](https://docs.gameball.co/api-reference/events/preview-event-rewards): Quote points and coupon rewards a customer would earn from custom events before awarding anything
 
 ## API Reference — Orders
 
 - [Order Tracking](https://docs.gameball.co/api-reference/order/order-tracking): Submit purchase orders to trigger point rewards
 - [Calculate Order Cashback](https://docs.gameball.co/api-reference/order/calculate-order-cashback): Preview cashback/points a customer will earn before submitting an order
+- [Preview Order Rewards](https://docs.gameball.co/api-reference/order/preview-order-rewards): Quote cashback plus place_order campaign rewards before checkout
+- [Order Transactions](https://docs.gameball.co/api-reference/order/order-transactions): Retrieve payment, reward, and refund history for a single order
 
 ## API Reference — Payments
 
@@ -221,6 +225,7 @@
 - [Batch Overview](https://docs.gameball.co/api-reference/batches/batches): Overview of batch APIs for high-volume operations
 - [Batch Customer Data](https://docs.gameball.co/api-reference/batches/batch-creation/customer-data): Create or update customers in bulk
 - [Batch Orders](https://docs.gameball.co/api-reference/batches/batch-creation/orders): Submit multiple orders in a single batch
+- [Batch Order Transactions](https://docs.gameball.co/api-reference/batches/batch-creation/order-transactions): Retrieve payment, reward, and refund history for up to 1,000 orders in one batch
 - [Batch Events](https://docs.gameball.co/api-reference/batches/batch-creation/events): Send multiple behavioral events in one call
 - [Batch Adjustments](https://docs.gameball.co/api-reference/batches/batch-creation/adjustments): Apply points adjustments to many customers at once
 - [Check Batch Status](https://docs.gameball.co/api-reference/batches/batch-management/check-status): Poll the processing status of a submitted batch

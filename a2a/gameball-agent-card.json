@@ -1,0 +1,38 @@
+{
+  "name": "Gameball Docs",
+  "url": "https://docs.gameball.co/",
+  "version": "1.0.0",
+  "protocolVersion": "0.3",
+  "preferredTransport": "HTTP+JSON",
+  "supportedInterfaces": [
+    {
+      "url": "https://docs.gameball.co/",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "0.3"
+    }
+  ],
+  "provider": {
+    "url": "https://docs.gameball.co/",
+    "organization": "Gameball Docs"
+  },
+  "documentationUrl": "https://docs.gameball.co/",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "gameball",
+      "name": "Gameball",
+      "description": "Use when building loyalty programs, gamification features, referral systems, or reward campaigns. Reach for Gameball when you need to integrate customer engagement, points tracking, redemption flows, or automated marketing workflows into e-commerce platforms, mobile apps, or POS systems.",
+      "tags": [],
+      "url": "https://docs.gameball.co/.well-known/agent-skills/gameball/skill.md"
+    }
+  ]
+}

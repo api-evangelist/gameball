@@ -1,0 +1,90 @@
+generated: '2026-08-13'
+method: probed
+source: https://docs.gameball.co/.well-known/agent-card.json
+spec: A2A Agent Card
+card_file: a2a/gameball-agent-card.json
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.gameball.co
+  also_served_on:
+    - host: developer.gameball.co
+      path: /.well-known/agent-card.json
+      note: >-
+        developer.gameball.co serves a byte-identical card (same MD5) — it is an
+        alias of the same Mintlify-hosted documentation site.
+  misses:
+    - host: gameball.co
+      status: 404
+    - host: www.gameball.co
+      status: 404
+    - host: api.gameball.co
+      status: 404
+    - host: mcp.gameball.co
+      status: 404
+    - host: docs.gameball.co
+      path: /.well-known/agent.json
+      status: 404
+      note: legacy pre-0.3 path is not served
+    - host: app.gameball.co
+      status: 200
+      note: >-
+        NOT a hit. app.gameball.co is a single-page application whose catch-all
+        answers 200 with the same 15,494-byte HTML shell for EVERY /.well-known/*
+        path, including paths that cannot exist. Recorded as a miss.
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://docs.gameball.co/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  bytes: 942
+card:
+  name: Gameball Docs
+  url: https://docs.gameball.co/
+  version: '1.0.0'
+  protocolVersion: '0.3'
+  preferredTransport: HTTP+JSON
+  provider_organization: Gameball Docs
+  documentationUrl: https://docs.gameball.co/
+  capabilities:
+    streaming: false
+    pushNotifications: false
+  skills:
+    - id: gameball
+      name: Gameball
+      url: https://docs.gameball.co/.well-known/agent-skills/gameball/skill.md
+      description: >-
+        Use when building loyalty programs, gamification features, referral
+        systems, or reward campaigns.
+grade: conformant
+grade_basis:
+  capabilities_is_object: true
+  protocolVersion_present: true
+  skills_is_array: true
+  preferredTransport_present: true
+  defaultInputModes_present: true
+  defaultOutputModes_present: true
+deviations:
+  - id: protocol-version-0-3
+    severity: informational
+    detail: >-
+      protocolVersion is "0.3", not "1.0.0" — the card is published against the
+      pre-1.0 A2A draft. All hard conformance checks still pass.
+  - id: docs-scoped-agent
+    severity: informational
+    detail: >-
+      The card describes the documentation agent ("Gameball Docs"), not the
+      Gameball REST API itself. url and supportedInterfaces both point at
+      https://docs.gameball.co/ rather than https://api.gameball.co. The single
+      declared skill links to a provider-authored Agent Skill markdown file
+      (saved verbatim to skills/gameball-skill.md) that documents the REST API.
+  - id: empty-skill-tags
+    severity: informational
+    detail: The one declared skill carries an empty tags[] array.
+related:
+  agent_skill: skills/gameball-skill.md
+  mcp: mcp/gameball-mcp.yml
+  llms_txt: llms/gameball-llms.txt
+note: >-
+  Card fetched verbatim and saved unmodified to a2a/gameball-agent-card.json.
+  Nothing in this manifest was authored on Gameball's behalf.

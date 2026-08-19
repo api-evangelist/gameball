@@ -1,0 +1,10 @@
+{
+  "resource": "https://mcp.gameball.co/",
+  "authorization_servers": [
+    "https://mcp.gameball.co/"
+  ],
+  "scopes_supported": [
+    "mcp"
+  ],
+  "resource_name": "Gameball MCP"
+}

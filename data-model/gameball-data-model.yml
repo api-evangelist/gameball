@@ -46,3 +46,57 @@ relationships:
   - {from: Customer, to: Tier, type: has_one, via: tier}
   - {from: RewardCampaign, to: Customer, type: has_many, via: campaign customers}
   - {from: Order, to: Transaction, type: has_many, via: cashback/redemption}
+openapi_derived:
+  generated: '2026-08-13'
+  method: derived
+  source: openapi/gameball-openapi.json
+  note: >-
+    Added 2026-08-13 after the published OpenAPI was harvested. The searched
+    entity model above (built from the object reference) is unchanged and
+    remains the authoritative shape; this section records what the machine
+    -readable contract actually declares, and the two do not fully agree.
+  schema_count: 44
+  finding: >-
+    The published specification declares 44 component schemas but only 8 $ref
+    links between them, so the contract encodes almost no entity graph. Most
+    relationships in the model above are expressed as bare id FIELDS
+    (customerId, transactionId, orderId, holdReferenceId, batchId,
+    lockReference, challengeId, campaignId) carried in paths and query strings
+    rather than as typed references between schemas — which is why the
+    relationships[] list above is derived from the documentation rather than
+    from the spec. Two of the 44 schemas (Plant, NewPlant) are Mintlify starter
+    -template residue and model nothing in the Gameball product.
+  schema_ref_links:
+    - {from: CustomerDetails, to: Customer, type: has_one}
+    - {from: CustomerCoupons, to: Coupon, type: has_many}
+    - {from: CustomerTierProgressResponse, to: TierState, type: has_one}
+    - {from: RewardPreviewCampaign, to: RewardPreviewProgress, type: has_one}
+    - {from: RewardPreviewEventResult, to: RewardPreviewCampaign, type: has_many}
+    - {from: EventRewardPreviewResponse, to: RewardPreviewEventResult, type: has_one}
+    - {from: OrderRewardPreviewResponse, to: RewardPreviewEventResult, type: has_one}
+    - {from: NewPlant, to: Plant, type: template-residue, note: not a Gameball relationship}
+  identifier_fields:
+    - {field: customerId, addresses: Customer, appears_in: "23 path parameters, 7 query parameters"}
+    - {field: transactionId, addresses: Transaction, appears_in: 1 path parameter}
+    - {field: orderId, addresses: Order, appears_in: 2 path parameters}
+    - {field: holdReferenceId, addresses: Hold, appears_in: 2 path parameters}
+    - {field: batchId, addresses: Batch, appears_in: 2 path parameters}
+    - {field: lockReference, addresses: Coupon, appears_in: 1 path parameter}
+    - {field: code, addresses: Coupon, appears_in: 1 path parameter}
+    - {field: campaignId, addresses: RewardCampaign, appears_in: 1 path parameter}
+    - {field: challengeId, addresses: RewardCampaign (stamps), appears_in: 1 path parameter}
+    - {field: referrerCode, addresses: Customer (as referrer), appears_in: 1 query parameter}
+  entities_in_spec_only:
+    - name: Batch
+      key: batchId
+      description: >-
+        Asynchronous bulk job created by the eight /batch/* ingestion
+        operations, polled via GET /batches/{batchId}/status and cancellable
+        via POST /batches/{batchId}/stop. Present in the API surface but absent
+        from the searched entity list above.
+  entities_absent_from_spec:
+    - name: RedemptionOption
+      detail: >-
+        Read via the redemption configuration endpoint; created, updated and
+        deleted only through the MCP server / dashboard, never through the
+        public v4.0 REST API. See mcp/gameball-tool-crosswalk.yml.

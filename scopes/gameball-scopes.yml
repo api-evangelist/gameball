@@ -1,0 +1,50 @@
+generated: '2026-08-13'
+method: probed
+source: https://mcp.gameball.co/.well-known/oauth-authorization-server
+checked: '2026-08-13'
+applies_to: Gameball MCP Server (https://mcp.gameball.co/mcp)
+not_applicable_to: >-
+  The Gameball REST API v4.0 does NOT use OAuth. It authenticates with the
+  APIKey / SecretKey headers and declares no oauth2 securityScheme in
+  openapi/gameball-openapi.json, so it has no scope model at all. See
+  authentication/gameball-authentication.yml.
+authorization_server:
+  issuer: https://mcp.gameball.co/
+  authorization_endpoint: https://mcp.gameball.co/authorize
+  token_endpoint: https://mcp.gameball.co/token
+  registration_endpoint: https://mcp.gameball.co/register
+  revocation_endpoint: https://mcp.gameball.co/revoke
+  grant_types_supported: [authorization_code, refresh_token]
+  response_types_supported: [code]
+  code_challenge_methods_supported: [S256]
+  token_endpoint_auth_methods_supported: [client_secret_post, none]
+  dynamic_client_registration: true
+protected_resource:
+  resource: https://mcp.gameball.co/
+  resource_name: Gameball MCP
+  authorization_servers: [https://mcp.gameball.co/]
+scope_count: 1
+scopes:
+  - name: mcp
+    description: >-
+      The single scope advertised in scopes_supported by both the RFC 8414
+      authorization-server metadata and the RFC 9728 protected-resource
+      metadata. Gameball publishes no finer-grained scope model — one scope
+      grants access to the whole 54-tool MCP surface, which includes destructive
+      operations (delete_reward_campaign, delete_redemption_option,
+      delete_custom_earning_rule, deduct_customer_points).
+    source: https://mcp.gameball.co/.well-known/oauth-authorization-server
+finding: >-
+  A single coarse scope with no read/write or per-resource split. An agent
+  granted "mcp" can read customer data and also delete campaigns and deduct
+  customer points. There is no documented way for a client to request a
+  narrower grant.
+evidence:
+  - url: https://mcp.gameball.co/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://mcp.gameball.co/.well-known/oauth-protected-resource
+    http_status: 200
+docs: null
+docs_note: >-
+  No scopes/permissions reference page was found on docs.gameball.co; the scope
+  model is only discoverable from the two well-known metadata documents.

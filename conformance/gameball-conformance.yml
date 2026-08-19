@@ -1,8 +1,12 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: derived
 source: >-
-  Derived from Gameball API reference (auth, errors, rate-limiting, webhooks)
-  at https://docs.gameball.co/api-reference — no OpenAPI in repo.
+  Derived from the published Gameball OpenAPI
+  (openapi/gameball-openapi.json, harvested from
+  https://docs.gameball.co/api-reference/openapi.json), the MCP OAuth metadata
+  at https://mcp.gameball.co/.well-known/*, the A2A agent card at
+  https://docs.gameball.co/.well-known/agent-card.json, and the Gameball API
+  reference at https://docs.gameball.co/api-reference.
 standards:
   - id: rest
     conforms: true
@@ -10,9 +14,84 @@ standards:
   - id: rfc9457-problem-details
     conforms: false
     evidence: Errors use a custom Gameball error object (code/type/message/documentationUrl/requestId), not application/problem+json.
+  - id: openapi
+    conforms: true
+    evidence: >-
+      Publishes a valid OpenAPI 3.1.0 document at
+      https://docs.gameball.co/api-reference/openapi.json — 71 paths, 78
+      operations, info.title "Gameball API", info.version 4.0.0, servers[]
+      https://api.gameball.co. Caveats: 42 of 78 operations carry no
+      operationId, 43 carry no summary, the document declares no tags[], and
+      three Mintlify starter-template operations (/plants) ship in it.
+      See overlays/gameball-openapi-overlay.yaml.
   - id: oauth2
+    conforms: partial
+    evidence: >-
+      The REST API uses no OAuth — it is APIKey/SecretKey header auth. The MCP
+      server DOES: https://mcp.gameball.co publishes RFC 8414
+      authorization-server metadata (authorization_code + refresh_token, PKCE
+      S256, one scope "mcp") and answers tools/list with HTTP 401 plus a
+      WWW-Authenticate bearer challenge. Two different surfaces, two different
+      answers.
+  - id: rfc8414-oauth-metadata
+    conforms: true
+    evidence: >-
+      https://mcp.gameball.co/.well-known/oauth-authorization-server returns 200
+      with a complete authorization-server metadata document.
+  - id: rfc9728-protected-resource-metadata
+    conforms: true
+    evidence: >-
+      https://mcp.gameball.co/.well-known/oauth-protected-resource returns 200
+      with resource, authorization_servers, scopes_supported and resource_name.
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: >-
+      The MCP authorization server advertises registration_endpoint
+      https://mcp.gameball.co/register.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Official remote MCP server at https://mcp.gameball.co/mcp (54 tools,
+      OAuth-gated) plus an anonymous documentation MCP server at
+      https://docs.gameball.co/mcp (3 tools, tools/list returned 200).
+  - id: a2a
+    conforms: true
+    evidence: >-
+      A2A agent card served at
+      https://docs.gameball.co/.well-known/agent-card.json (HTTP 200,
+      application/json). Graded conformant — capabilities is an object,
+      protocolVersion is present ("0.3"), skills is an array. Describes the
+      documentation agent rather than the REST API.
+      See a2a/gameball-a2a.yml.
+  - id: agent-skills
+    conforms: true
+    evidence: >-
+      Provider-authored Agent Skill published at
+      https://docs.gameball.co/.well-known/agent-skills/gameball/skill.md
+      (HTTP 200, text/markdown, 13,304 bytes) with name/description
+      frontmatter. Saved verbatim to skills/gameball-skill.md.
+  - id: llms-txt
+    conforms: true
+    evidence: >-
+      https://docs.gameball.co/llms.txt returns 200 (27,448 bytes) and
+      https://docs.gameball.co/llms-full.txt returns 200 (2.29 MB).
+  - id: rfc9116-security-txt
     conforms: false
-    evidence: Authentication is API-key header based (APIKey + SecretKey); no OAuth 2.0 flow.
+    evidence: >-
+      No /.well-known/security.txt on gameball.co, www.gameball.co,
+      api.gameball.co, docs.gameball.co, developer.gameball.co or
+      mcp.gameball.co — all 404 (app.gameball.co answers 200 with an SPA shell
+      for every path, which is not a document).
+      See well-known/gameball-well-known.yml.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation header contract is documented; version changes
+      are announced only in the API Updates changelog stream.
+  - id: dnssec
+    conforms: false
+    evidence: gameball.co has no DNSSEC and publishes no CAA records.
+      See security/gameball-domain-security.yml.
   - id: oidc
     conforms: false
   - id: webhooks-signed
@@ -29,4 +108,13 @@ standards:
     evidence: No published compliance/certification program located at enrichment time.
   - id: soc2
     conforms: false
-    evidence: No published trust center or SOC 2 attestation located at enrichment time.
+    evidence: >-
+      No published trust center or SOC 2 attestation. Re-probed 2026-08-13 with
+      probe-security-programs.py: vdp=none, trust=none. No bug bounty program
+      on HackerOne, Bugcrowd or Intigriti and no security/trust page found.
+  - id: gdpr
+    conforms: unknown
+    evidence: >-
+      A privacy policy is published at
+      https://www.gameball.co/privacy-policy, but no named certification,
+      attestation or DPA program page was located.

@@ -1,0 +1,125 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/gameball-openapi.json
+docs: https://docs.gameball.co/api-reference/overview/status-error-codes
+complements: errors/gameball-error-codes.yml
+format: gameball-error-object
+rfc9457: false
+rfc9457_detail: >-
+  Gameball does not implement RFC 9457 Problem Details. No operation in the
+  published specification declares an application/problem+json response; every
+  declared response body is application/json carrying the Gameball error object
+  (code / type / message / documentationUrl / requestId).
+coverage_finding: >-
+  This is the derived view of what the OPENAPI declares, and it is much thinner
+  than what the DOCS publish. Across 78 operations the spec declares only 20
+  error responses (7x400, 6x401, 4x404, 2x500, 1x422), concentrated on a handful
+  of paths — 58 operations declare no failure response at all. Of the 20
+  declared, 18 carry no schema, so a generator can produce no error type from
+  them. Only two error bodies are typed: one $ref to components.schemas.Error
+  and one inline object. The authoritative catalog of 60+ application error
+  codes lives in the documentation, captured in errors/gameball-error-codes.yml.
+envelope:
+  content_type: application/json
+  fields:
+    - name: code
+      type: integer
+      description: Gameball application error code (e.g. 3003).
+      example: 3003
+    - name: type
+      type: string
+      description: Error class (e.g. AUTHENTICATION_ERROR, PAYLOAD_ERROR).
+      example: PAYLOAD_ERROR
+    - name: message
+      type: string
+      description: Human-readable explanation.
+      example: >-
+        invalid campaignid value. the campaign id must be a positive integer.
+    - name: documentationUrl
+      type: string
+      description: Link to the relevant documentation for this error.
+    - name: requestId
+      type: string
+      description: Identifier for tracing the failed request with support.
+observed_live:
+  - url: https://api.gameball.co/api/v4.0/openapi.json
+    http_status: 401
+    body: >-
+      {"code": 1000, "type": "AUTHENTICATION_ERROR", "message": "Unauthorized
+      access. Please authenticate to proceed."}
+    note: >-
+      Probed unauthenticated on 2026-08-13. Confirms the envelope shape and
+      confirms application code 1000 maps to HTTP 401.
+problem_types:
+  - status: 400
+    title: Bad Request
+    declared_on_operations: 7
+    schema: >-
+      Untyped on 6 of 7 operations. Typed once, on
+      POST /api/v4.0/integrations/transactions/manual, via
+      $ref components.schemas.Error.
+    application_codes: [2000, 3000, 3001, 3002, 3016, 4000, 4500]
+    remediation: >-
+      Inspect the code field against errors/gameball-error-codes.yml. The 2xxx
+      class is request errors and the 3xxx class is payload errors; both are
+      caller-fixable and must not be retried unchanged.
+  - status: 401
+    title: Unauthorized
+    declared_on_operations: 6
+    schema: untyped in the specification
+    application_codes: [1000, 1001, 1002]
+    remediation: >-
+      Confirm the APIKey header is present and correct, and that SecretKey is
+      also sent if the operation is sensitive or the account has High Security
+      Mode enabled. Never retry — this is a credential fault.
+  - status: 404
+    title: Not Found
+    declared_on_operations: 4
+    schema: untyped in the specification
+    application_codes: [4004, 7000, 7003, 9002, 9005, 9006, 3017]
+    remediation: >-
+      The addressed customer, transaction, hold reference or event does not
+      exist. Distinguish "never existed" from "not yet created" before
+      retrying — creating the customer first is usually the fix.
+  - status: 422
+    title: Unprocessable Entity
+    declared_on_operations: 1
+    schema: >-
+      Typed inline on
+      GET /api/v4.0/integrations/customers/{customerId}/reward-campaigns-progress
+      as an object of code / type / message.
+    application_codes: [3003, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 6000, 6001, 6002, 7001, 7002, 7004, 7005, 7006, 9000, 9001, 9003, 9004, 9007, 9008]
+    remediation: >-
+      The largest and most operationally important class, and the one the spec
+      most under-declares. Codes 9003 (duplicate transaction timestamp) and
+      9004 (duplicate transaction ID) are the IDEMPOTENCY signal — on a retried
+      write they mean the original write succeeded, and must be treated as
+      success, not as failure. Code 9008 (insufficient balance points) is a
+      business outcome, not a fault.
+  - status: 429
+    title: Too Many Requests
+    declared_on_operations: 0
+    schema: not declared
+    remediation: >-
+      NOT DECLARED ANYWHERE IN THE SPECIFICATION, but documented as the
+      throttling response at
+      https://docs.gameball.co/api-reference/overview/rate-limiting. Back off
+      and retry. Gameball publishes no X-RateLimit-* or Retry-After response
+      headers, so the client must implement its own backoff.
+      See rate-limits/gameball-rate-limits.yml.
+  - status: 500
+    title: Internal Server Error
+    declared_on_operations: 2
+    schema: untyped in the specification
+    application_codes: [5000, 5003]
+    remediation: >-
+      Retry with backoff. For transaction writes the retry is safe because
+      Gameball de-duplicates on the caller-supplied transaction id — a
+      duplicate comes back as 9004 rather than double-awarding points.
+gaps:
+  - operations_with_no_error_response: 58
+  - declared_error_responses_without_schema: 18
+  - status_codes_missing_from_spec: [403, 409, 415, 423, 429, 503]
+  - detail: >-
+      The documentation catalog maps application codes onto 403, 415, 423 and
+      503 as well, none of which appear anywhere in the published OpenAPI.

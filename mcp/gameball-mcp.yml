@@ -1,79 +1,143 @@
-generated: '2026-07-19'
-method: searched
+generated: '2026-08-13'
+method: probed
 status: published
-source: https://github.com/gameballers/gameball-mcp-codex
+source: https://mcp.gameball.co/.well-known/oauth-protected-resource
 server:
   name: gameball-mcp
   vendor: Gameball
+  endpoint: https://mcp.gameball.co/mcp
+  resource_name: Gameball MCP
   repo: https://github.com/Gameball-Engineering/gameball-mcp
   codex_repo: https://github.com/gameballers/gameball-mcp-codex
   transport: http
-  notes: >-
-    Official Gameball MCP server. Per-tool documentation ("codex" entries) is
-    published in the public gameball-mcp-codex repository and served on demand at
-    codex://tools/<tool_name>. The server implementation repo
-    (Gameball-Engineering/gameball-mcp) is private. Tool list below is enumerated
-    verbatim from the codex repository (one markdown file per registered tool).
+  notes: Official Gameball MCP server. Per-tool documentation ("codex" entries) is published in the public
+    gameball-mcp-codex repository and served on demand at codex://tools/<tool_name>. The server implementation
+    repo (Gameball-Engineering/gameball-mcp) is private. Tool list below is enumerated verbatim from the
+    codex repository (one markdown file per registered tool).
 tools:
-  # Customers
-  - name: get_customers
-  - name: get_customers_count
-  - name: get_customer_details
-  - name: get_customer_attributes
-  - name: add_customer_points
-  - name: deduct_customer_points
-  - name: assign_customer_tags
-  - name: remove_customer_tags
-  - name: get_tags
-  # Earning rules & configuration
-  - name: get_earning_config
-  - name: update_earning_config
-  - name: get_earning_rules
-  - name: update_earning_rules
-  - name: create_custom_earning_rule
-  - name: get_custom_earning_rules
-  - name: update_custom_earning_rule
-  - name: delete_custom_earning_rule
-  # Redemption
-  - name: create_redemption_option
-  - name: get_redemption_option
-  - name: get_redemption_options
-  - name: update_redemption_option
-  - name: delete_redemption_option
-  - name: toggle_redemption_option_activation
-  # Reward campaigns
-  - name: create_event_campaign
-  - name: create_date_campaign
-  - name: create_calendar_campaign
-  - name: create_game_campaign
-  - name: get_reward_campaign
-  - name: get_reward_campaigns
-  - name: get_reward_campaigns_count
-  - name: get_reward_campaigns_stats
-  - name: get_reward_campaign_customers
-  - name: get_reward_campaign_customers_count
-  - name: update_reward_campaign
-  - name: toggle_reward_campaign_activation
-  - name: delete_reward_campaign
-  - name: get_campaign_template
-  # Missions & newsletters
-  - name: create_mission
-  - name: create_newsletter
-  # Tiers
-  - name: get_tiers
-  - name: get_tier_details
-  # Program & widget
-  - name: get_program_activation
-  - name: toggle_program_activation
-  - name: get_widget_settings
-  - name: update_widget_settings
-  - name: update_widget_style
-  - name: update_widget_sorting
-  - name: get_supported_languages
-  - name: update_supported_languages
-  # Analytics & reference data
-  - name: get_analytics_chart
-  - name: get_events
-  - name: get_collections
-  - name: get_icons
-  - name: get_merchants
+- name: get_customers
+- name: get_customers_count
+- name: get_customer_details
+- name: get_customer_attributes
+- name: add_customer_points
+- name: deduct_customer_points
+- name: assign_customer_tags
+- name: remove_customer_tags
+- name: get_tags
+- name: get_earning_config
+- name: update_earning_config
+- name: get_earning_rules
+- name: update_earning_rules
+- name: create_custom_earning_rule
+- name: get_custom_earning_rules
+- name: update_custom_earning_rule
+- name: delete_custom_earning_rule
+- name: create_redemption_option
+- name: get_redemption_option
+- name: get_redemption_options
+- name: update_redemption_option
+- name: delete_redemption_option
+- name: toggle_redemption_option_activation
+- name: create_event_campaign
+- name: create_date_campaign
+- name: create_calendar_campaign
+- name: create_game_campaign
+- name: get_reward_campaign
+- name: get_reward_campaigns
+- name: get_reward_campaigns_count
+- name: get_reward_campaigns_stats
+- name: get_reward_campaign_customers
+- name: get_reward_campaign_customers_count
+- name: update_reward_campaign
+- name: toggle_reward_campaign_activation
+- name: delete_reward_campaign
+- name: get_campaign_template
+- name: create_mission
+- name: create_newsletter
+- name: get_tiers
+- name: get_tier_details
+- name: get_program_activation
+- name: toggle_program_activation
+- name: get_widget_settings
+- name: update_widget_settings
+- name: update_widget_style
+- name: update_widget_sorting
+- name: get_supported_languages
+- name: update_supported_languages
+- name: get_analytics_chart
+- name: get_events
+- name: get_collections
+- name: get_icons
+- name: get_merchants
+deployment:
+  mode: remote
+  endpoint: https://mcp.gameball.co/mcp
+  auth: oauth
+  verified: probed
+  tools: 54
+  checked: '2026-08-13'
+  source: >-
+    POST tools/list to https://mcp.gameball.co/mcp returned HTTP 401 with
+    WWW-Authenticate: Bearer resource_metadata="https://mcp.gameball.co/.well-known/oauth-protected-resource",
+    and both RFC 8414 / RFC 9728 metadata documents returned HTTP 200.
+  evidence:
+    - url: https://mcp.gameball.co/mcp
+      method: POST
+      body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+      http_status: 401
+      response: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Unauthorized"},"id":null}'
+      www_authenticate: >-
+        Bearer resource_metadata="https://mcp.gameball.co/.well-known/oauth-protected-resource"
+    - url: https://mcp.gameball.co/.well-known/oauth-protected-resource
+      http_status: 200
+    - url: https://mcp.gameball.co/.well-known/oauth-authorization-server
+      http_status: 200
+  no_stdio_package: >-
+    No npx/pip installable Gameball MCP package was found on npm, PyPI or the
+    public GitHub org. The server implementation repo
+    (Gameball-Engineering/gameball-mcp) is private. This is a remote-only agent
+    surface.
+oauth:
+  authorization_server: https://mcp.gameball.co/
+  authorization_endpoint: https://mcp.gameball.co/authorize
+  token_endpoint: https://mcp.gameball.co/token
+  registration_endpoint: https://mcp.gameball.co/register
+  revocation_endpoint: https://mcp.gameball.co/revoke
+  grant_types: [authorization_code, refresh_token]
+  code_challenge_methods: [S256]
+  scopes: [mcp]
+  dynamic_client_registration: true
+  metadata_files:
+    - well-known/gameball-oauth-authorization-server.json
+    - well-known/gameball-oauth-protected-resource.json
+  cross_ref: scopes/gameball-scopes.yml
+tool_schemas:
+  available: false
+  detail: >-
+    The live tools/list response is OAuth-gated, so machine-readable
+    inputSchemas were not retrievable anonymously. The 54 tool NAMES below are
+    enumerated verbatim from the public gameball-mcp-codex repository (one
+    markdown file per registered tool, confirmed 2026-08-13 against the repo
+    git tree). Full input schemas require authenticated introspection.
+additional_servers:
+  - name: gameball-docs-mcp
+    endpoint: https://docs.gameball.co/mcp
+    vendor: Gameball (Mintlify-hosted documentation MCP)
+    mode: remote
+    auth: none
+    verified: probed
+    http_status: 200
+    checked: '2026-08-13'
+    detail: >-
+      A second, anonymous MCP server fronting the Gameball documentation site.
+      tools/list returned 200 with live schemas. This is a docs-search surface,
+      not the loyalty API.
+    tools:
+      - name: search_gameball_docs
+        title: Search documentation
+        input: [query, version]
+      - name: query_docs_filesystem_gameball_docs
+        input: [command]
+      - name: submit_feedback
+        title: Submit documentation feedback
+        input: [path, feedback]

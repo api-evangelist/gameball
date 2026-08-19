@@ -1,0 +1,176 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTPS probes of every Gameball host named in apis.yml and openapi/ servers[]
+checked: '2026-08-13'
+summary: >-
+  Gameball serves real /.well-known/ documents on two hosts. The MCP host
+  (mcp.gameball.co) publishes both RFC 8414 OAuth authorization-server metadata
+  and RFC 9728 OAuth protected-resource metadata for its remote MCP server. The
+  documentation host (docs.gameball.co, aliased as developer.gameball.co)
+  publishes an A2A agent card. The marketing site, the API host and the app host
+  serve nothing — app.gameball.co returns a 200 SPA shell for every path, which
+  is recorded here as a miss, not a hit.
+hosts:
+  - host: mcp.gameball.co
+    paths:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: well-known/gameball-oauth-authorization-server.json
+        document: true
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        content_type: application/json
+        file: well-known/gameball-oauth-protected-resource.json
+        document: true
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+  - host: docs.gameball.co
+    paths:
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: application/json
+        file: a2a/gameball-agent-card.json
+        document: true
+      - path: /.well-known/agent-skills/gameball/skill.md
+        status: 200
+        content_type: text/markdown
+        file: skills/gameball-skill.md
+        document: true
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent.json
+        status: 404
+        document: false
+  - host: developer.gameball.co
+    note: alias of docs.gameball.co; serves a byte-identical agent card
+    paths:
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: application/json
+        document: true
+        duplicate_of: docs.gameball.co
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+  - host: gameball.co
+    paths:
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+      - path: /.well-known/agent.json
+        status: 404
+        document: false
+  - host: www.gameball.co
+    paths:
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+  - host: api.gameball.co
+    paths:
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+  - host: app.gameball.co
+    note: >-
+      FALSE POSITIVE HOST. Every probed path returned HTTP 200 with the same
+      15,494-byte text/html single-page-application shell, including paths that
+      cannot exist. No document was served. All entries below are misses.
+    paths:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: text/html
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: text/html
+        document: false
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: text/html
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        content_type: text/html
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        document: false
+security_txt:
+  served: false
+  detail: >-
+    No /.well-known/security.txt on any Gameball host. No RFC 9116 disclosure
+    contact is published.

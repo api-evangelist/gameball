@@ -1,0 +1,315 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived by binding the 54 tool names published in
+  https://github.com/gameballers/gameball-mcp-codex against the 78 operations in
+  openapi/gameball-openapi.json (Gameball REST API v4.0, fetched from
+  https://docs.gameball.co/api-reference/openapi.json).
+surfaces:
+  openapi:
+    file: openapi/gameball-openapi.json
+    server: https://api.gameball.co
+    operations: 78
+    gated: false
+    note: >-
+      Specification is publicly readable; calling the API requires APIKey /
+      SecretKey headers.
+  mcp:
+    url: https://mcp.gameball.co/mcp
+    tools: 54
+    gated: true
+    note: >-
+      tools/list is OAuth-gated (HTTP 401). Tool NAMES are verbatim from the
+      public codex repo; live inputSchemas were not retrievable anonymously, so
+      every binding below is by name and documented semantics, not by comparing
+      machine-readable schemas.
+  graphql:
+    present: false
+confidence_policy: >-
+  high = tool name and REST operation describe the same resource and the same
+  verb, and the REST operation exists in the public v4.0 spec. medium = same
+  resource, differing shape (list vs single, or a config write the public spec
+  exposes only partially). low = plausible semantic overlap only. Everything
+  else is listed under mcp_only.
+crosswalk:
+  - tool: get_customer_details
+    category: customers
+    rest: [getCustomerDetails]
+    binding: GET /api/v4.0/integrations/customers/{customerId}/details
+    confidence: high
+  - tool: get_customers
+    category: customers
+    rest: [getCustomer]
+    binding: GET /api/v4.0/integrations/customers/{customerId}
+    confidence: medium
+    note: >-
+      The public v4.0 spec exposes single-customer retrieval by id, not a
+      list/search collection. The MCP tool is a dashboard-scoped listing.
+  - tool: get_customers_count
+    category: customers
+    rest: []
+    binding: none
+    confidence: low
+    note: >-
+      No customer-count operation in the public spec. Closest analogues are
+      getCustomerReferralsCount / getCustomerActivitiesCount, which count
+      sub-resources of one customer, not the customer base.
+  - tool: get_customer_attributes
+    category: customers
+    rest: [getCustomerDetails]
+    binding: GET /api/v4.0/integrations/customers/{customerId}/details
+    confidence: medium
+    note: Customer attributes are returned as part of the customer detail payload.
+  - tool: add_customer_points
+    category: transactions
+    rest: []
+    binding: POST /api/v4.0/integrations/transactions/manual
+    confidence: high
+    note: >-
+      The manual-transaction operation carries no operationId in the published
+      spec, so it is bound by method+path. It is the credit half of the manual
+      points ledger write.
+  - tool: deduct_customer_points
+    category: transactions
+    rest: []
+    binding: POST /api/v4.0/integrations/transactions/manual
+    confidence: high
+    note: >-
+      Same operation as add_customer_points, with a negative/deduct amount.
+      Operation carries no operationId in the published spec.
+  - tool: assign_customer_tags
+    category: customers
+    rest: [attachCustomerTags]
+    binding: POST /api/v4.0/integrations/customers/{customerId}/tags
+    confidence: high
+  - tool: remove_customer_tags
+    category: customers
+    rest: [removeCustomerTags, removeCustomerTag]
+    binding: >-
+      DELETE /api/v4.0/integrations/customers/{customerId}/tags and
+      DELETE /api/v4.0/integrations/customers/{customerId}/tags/{tag}
+    confidence: high
+  - tool: get_tiers
+    category: configuration
+    rest: [getTiersConfigurations]
+    binding: GET /api/v4.0/integrations/configurations/tiers
+    confidence: high
+  - tool: get_tier_details
+    category: configuration
+    rest: [getTiersConfigurations]
+    binding: GET /api/v4.0/integrations/configurations/tiers
+    confidence: medium
+    note: The public spec returns the full tier configuration set, not a single tier.
+  - tool: get_reward_campaigns
+    category: campaigns
+    rest: [getCampaignsConfigurations]
+    binding: GET /api/v4.0/integrations/configurations/reward-campaigns
+    confidence: high
+  - tool: get_reward_campaign
+    category: campaigns
+    rest: [getCampaignsConfigurations]
+    binding: GET /api/v4.0/integrations/configurations/reward-campaigns
+    confidence: medium
+    note: Public spec exposes the campaign list; single-campaign read is dashboard-only.
+  - tool: get_earning_config
+    category: configuration
+    rest: []
+    binding: GET /api/v4.0/integrations/configurations/rewards/cashback
+    confidence: medium
+    note: >-
+      Public cashback/earning configuration read. Operation carries no
+      operationId. A legacy alias exists at
+      GET /api/v4.0/integrations/configurations/cashback.
+  - tool: get_redemption_options
+    category: configuration
+    rest: []
+    binding: GET /api/v4.0/integrations/configurations/rewards/redemption
+    confidence: medium
+    note: >-
+      Public redemption configuration read (no operationId). Legacy alias at
+      GET /api/v4.0/integrations/configurations/redemption.
+  - tool: get_redemption_option
+    category: configuration
+    rest: []
+    binding: GET /api/v4.0/integrations/configurations/rewards/redemption
+    confidence: low
+    note: Public spec has no single-redemption-option read.
+  - tool: get_widget_settings
+    category: widget
+    rest: []
+    binding: GET /api/v4.0/integrations/configurations/widget
+    confidence: high
+    note: Operation carries no operationId in the published spec.
+  - tool: get_events
+    category: events
+    rest: [sendEvents]
+    binding: POST /api/v4.0/integrations/events
+    confidence: low
+    note: >-
+      The public spec only SENDS events; there is no event-catalog read
+      operation. The MCP tool reads the account's configured event catalog.
+  - tool: get_tags
+    category: customers
+    rest: []
+    binding: none
+    confidence: low
+    note: >-
+      Public spec attaches and removes customer tags but publishes no
+      account-level tag catalog read.
+mcp_only:
+  - tool: update_earning_config
+    reason: Dashboard configuration write; no public v4.0 write operation for earning configuration.
+  - tool: get_earning_rules
+    reason: Earning-rule catalog is dashboard-only in v4.0.
+  - tool: update_earning_rules
+    reason: Dashboard configuration write.
+  - tool: create_custom_earning_rule
+    reason: Dashboard configuration write.
+  - tool: get_custom_earning_rules
+    reason: Dashboard configuration read; not published in v4.0.
+  - tool: update_custom_earning_rule
+    reason: Dashboard configuration write.
+  - tool: delete_custom_earning_rule
+    reason: Dashboard configuration write.
+  - tool: create_redemption_option
+    reason: Dashboard configuration write.
+  - tool: update_redemption_option
+    reason: Dashboard configuration write.
+  - tool: delete_redemption_option
+    reason: Dashboard configuration write.
+  - tool: toggle_redemption_option_activation
+    reason: Dashboard configuration write.
+  - tool: create_event_campaign
+    reason: Campaign authoring; v4.0 exposes campaign configuration read-only.
+  - tool: create_date_campaign
+    reason: Campaign authoring.
+  - tool: create_calendar_campaign
+    reason: Campaign authoring.
+  - tool: create_game_campaign
+    reason: Campaign authoring (spin-the-wheel / scratch & win / stamps).
+  - tool: get_reward_campaigns_count
+    reason: Dashboard analytics; no public count operation.
+  - tool: get_reward_campaigns_stats
+    reason: Dashboard analytics.
+  - tool: get_reward_campaign_customers
+    reason: Dashboard analytics.
+  - tool: get_reward_campaign_customers_count
+    reason: Dashboard analytics.
+  - tool: update_reward_campaign
+    reason: Campaign authoring.
+  - tool: toggle_reward_campaign_activation
+    reason: Campaign authoring.
+  - tool: delete_reward_campaign
+    reason: Campaign authoring.
+  - tool: get_campaign_template
+    reason: Dashboard template catalog.
+  - tool: create_mission
+    reason: Campaign authoring.
+  - tool: create_newsletter
+    reason: Communication-campaign authoring; not in the integrations REST surface.
+  - tool: get_program_activation
+    reason: Dashboard program state; not published in v4.0.
+  - tool: toggle_program_activation
+    reason: Dashboard program state write.
+  - tool: update_widget_settings
+    reason: Widget configuration write; v4.0 widget configuration is read-only.
+  - tool: update_widget_style
+    reason: Widget configuration write.
+  - tool: update_widget_sorting
+    reason: Widget configuration write.
+  - tool: get_supported_languages
+    reason: Dashboard localization read.
+  - tool: update_supported_languages
+    reason: Dashboard localization write.
+  - tool: get_analytics_chart
+    reason: Dashboard analytics; no public analytics operation.
+  - tool: get_collections
+    reason: Product-collection catalog sourced from the connected commerce platform.
+  - tool: get_icons
+    reason: Dashboard asset catalog.
+  - tool: get_merchants
+    reason: Account/merchant administration; not part of the integrations API.
+rest_only:
+  - group: transactions
+    operations:
+      - POST /api/v4.0/integrations/transactions/redeem
+      - POST /api/v4.0/integrations/transactions/cashback
+      - POST /api/v4.0/integrations/transactions/refund
+      - POST /api/v4.0/integrations/transactions/hold
+      - GET /api/v4.0/integrations/transactions/hold/{holdReferenceId}
+      - DELETE /api/v4.0/integrations/transactions/hold/{holdReferenceId}
+      - GET /api/v4.0/integrations/transactions
+      - GET /api/v4.0/integrations/transactions/customer-view
+      - GET /api/v4.0/integrations/transactions/count
+      - PUT /api/v4.0/integrations/transactions/{transactionId}/activate
+      - POST /api/v4.0/integrations/transactions/otp
+  - group: orders
+    operations: [trackOrder, calculateOrderCashback, previewOrderRewards, getOrderTransactions]
+  - group: payments
+    operations:
+      - POST /api/v4.0/integrations/payments
+      - calculatePaymentCashback
+  - group: coupons
+    operations:
+      - POST /api/v4.0/integrations/coupons/predefined
+      - POST /api/v4.0/integrations/coupons/{code}/validate
+      - POST /api/v4.0/integrations/coupons/validate
+      - POST /api/v4.0/integrations/coupons/burn
+      - DELETE /api/v4.0/integrations/coupons/{lockReference}
+      - POST /api/v4.0/integrations/coupons/automatic
+      - getCustomerCoupons
+  - group: batch
+    operations:
+      - POST /api/v4.0/integrations/batch/customers
+      - POST /api/v4.0/integrations/batch/orders
+      - batchOrderTransactions
+      - POST /api/v4.0/integrations/batch/balance-inquiry
+      - POST /api/v4.0/integrations/batch/balance-adjustment
+      - POST /api/v4.0/integrations/batch/cashback
+      - POST /api/v4.0/integrations/batch/redeem
+      - POST /api/v4.0/integrations/batch/events
+      - GET /api/v4.0/integrations/batches/{batchId}/status
+      - POST /api/v4.0/integrations/batches/{batchId}/stop
+  - group: customer-progress
+    operations:
+      - getCustomerBalance
+      - getCustomerTierProgress
+      - getCustomerCampaignsProgress
+      - getCustomerReferrals
+      - getCustomerReferralsCount
+      - getCustomerActivities
+      - getCustomerActivitiesCount
+      - getCustomerAutomationCampaigns
+      - getCustomerStampsProgress
+      - getCustomerDailyStreakProgress
+      - listCustomerNotifications
+      - getCustomerNotificationsCount
+      - markNotificationsRead
+  - group: identity-and-referrals
+    operations: [createCustomer, deleteCustomer, updateCustomerActivation, getCustomerHash, achieveSocialChallenge, validateReferrerCode]
+  - group: misc
+    operations:
+      - GET /api/v4.0/integrations/leaderboard
+      - previewEventRewards
+      - PUT /api/v4.0/integrations/configurations/rewards/coupons
+      - PUT /api/v4.0/integrations/configurations/coupon
+      - GET /api/v4.0/integrations/configurations/coupon
+coverage:
+  mcp_tools: 54
+  rest_operations: 78
+  tools_bound_to_rest: 16
+  tools_with_no_public_rest: 38
+  rest_operations_with_no_tool: 62
+  high_confidence_bindings: 7
+  medium_confidence_bindings: 6
+  low_confidence_bindings: 5
+finding: >-
+  The Gameball MCP server and the Gameball v4.0 REST API are largely DISJOINT
+  surfaces. The REST API is a server-to-server integration surface (orders,
+  payments, transactions, coupons, batch ingestion, customer progress). The MCP
+  server is an operator/dashboard surface (authoring campaigns, editing earning
+  rules and redemption options, widget styling, analytics). Only about a third
+  of the MCP tools have any public REST equivalent, and roughly four fifths of
+  the REST operations have no tool at all — notably the entire transactions,
+  orders, coupons and batch surface, which is the part an integration agent
+  would most need.

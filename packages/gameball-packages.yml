@@ -1,6 +1,26 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://github.com/gameballers
+registries_checked:
+  - registry.npmjs.org
+  - pypi.org
+  - rubygems.org
+  - repo.packagist.org
+  - api.nuget.org
+  - pub.dev
+  - search.maven.org
+  - trunk.cocoapods.org
+checked: '2026-08-13'
+currency_finding: >-
+  Every first-party SERVER SDK is stale relative to the API it wraps. The
+  current documented API is v4.0 (openapi/gameball-openapi.json, info.version
+  4.0.0). The newest server SDK release on any package registry is the .NET
+  package at 3.0.0 (2022-02-09); Node.js is at 0.1.7 (2020-09-30) and Python at
+  1.0.0 (2020-08-25). No server SDK has shipped a release in over four years,
+  and none carries a v4 major version. The MOBILE client SDKs are the opposite
+  case — Flutter 3.2.1 shipped 2026-08-06 and React Native 3.1.2 shipped
+  2026-04-08 — so the divergence is between the server integration SDKs and the
+  in-app widget SDKs, not across the whole SDK program.
 packages:
   - language: javascript
     registry: npm
@@ -9,6 +29,11 @@ packages:
     install: npm install gameball
     repo: https://github.com/gameballers/gameball-node
     official: true
+    version: 0.1.7
+    published: '2020-09-30'
+    note: >-
+      Server SDK. Last release 2020-09-30, nearly six years stale and still on a
+      0.x version against API v4.0. Source repo last pushed 2020-08-26.
   - language: python
     registry: pypi
     name: gameball
@@ -16,6 +41,9 @@ packages:
     install: pip install gameball
     repo: https://github.com/gameballers/gameball-python
     official: true
+    version: 1.0.0
+    published: '2020-08-25'
+    note: Server SDK. Last release 2020-08-25; source repo last pushed 2022-02-07.
   - language: php
     registry: packagist
     name: gameball/gameball-php
@@ -23,6 +51,9 @@ packages:
     install: composer require gameball/gameball-php
     repo: https://github.com/gameballers/gameball-php
     official: true
+    version: v3.0.0
+    published: '2022-01-24'
+    note: Server SDK. Last release 2022-01-24, tracking API v3.x.
   - language: ruby
     registry: rubygems
     name: gameball
@@ -30,13 +61,23 @@ packages:
     install: gem install gameball
     repo: https://github.com/gameballers/gameball-ruby
     official: true
+    version: 3.1.5
+    published: '2022-01-16'
+    downloads: 13586
+    license: MIT
+    note: Server SDK. Last release 2022-01-16, tracking API v3.x.
   - language: csharp
     registry: nuget
-    name: gameball
+    name: Gameball
     url: https://www.nuget.org/packages/gameball
-    install: dotnet add package gameball
+    install: dotnet add package Gameball
     repo: https://github.com/gameballers/gameball-dotnet
     official: true
+    version: 3.0.0
+    published: '2022-02-09'
+    note: >-
+      Server SDK, and the newest server SDK release on any registry. Tracks API
+      v3.x; source repo last pushed 2021-03-08.
   - language: swift
     registry: github
     name: gameball-ios
@@ -44,31 +85,75 @@ packages:
     install: "SwiftPM / CocoaPods: pod 'Gameball'"
     repo: https://github.com/gameballers/gameball-ios
     official: true
-    note: Mobile client SDK (widget/engagement) rather than server SDK.
+    version: 3.2.2
+    published: null
+    note: >-
+      Mobile client SDK (widget/engagement). Latest git tag is 3.2.2; repo last
+      pushed 2026-07-09. published is null because this SDK is distributed from
+      the git repository — the CocoaPods trunk API returns "No pod found with
+      the specified name" for GameBall, so there is no registry metadata
+      endpoint carrying a release date.
+  - language: kotlin
+    registry: github
+    name: gb-mobile-android
+    url: https://github.com/gameballers/gb-mobile-android
+    install: "Gradle (JitPack): implementation 'com.github.gameballers:gb-mobile-android:3.2.1'"
+    repo: https://github.com/gameballers/gb-mobile-android
+    official: true
+    version: 3.2.1
+    published: null
+    note: >-
+      Current Android client SDK, superseding the archived-in-practice
+      gameball-android repo (last tag 2.9.1, last pushed 2020-05-02). Latest git
+      tag 3.2.1; repo last pushed 2026-07-09. published is null because Maven
+      Central has no co.gameball group (numFound 0) and distribution is via
+      JitPack from git tags, which publishes no dated release metadata.
+  - language: dart
+    registry: pub.dev
+    name: gameball_sdk
+    url: https://pub.dev/packages/gameball_sdk
+    install: flutter pub add gameball_sdk
+    repo: https://github.com/gameballers/gameball-flutter
+    official: true
+    version: 3.2.1
+    published: '2026-08-06'
+    note: Mobile client SDK. Most recently released Gameball package on any registry.
+  - language: typescript
+    registry: npm
+    name: react-native-gameball
+    url: https://www.npmjs.com/package/react-native-gameball
+    install: npm install react-native-gameball
+    repo: https://github.com/gameballers/gameball-react-native
+    official: true
+    version: 3.1.2
+    published: '2026-04-08'
+    note: >-
+      Mobile client SDK. Published under the unscoped name
+      react-native-gameball; the previously recorded install string
+      "@gameball/react-native" does not resolve on npm (404).
+deprecated:
   - language: kotlin
     registry: github
     name: gameball-android
     url: https://github.com/gameballers/gameball-android
-    install: "Gradle: implementation 'com.gameball:gameball'"
-    repo: https://github.com/gameballers/gameball-android
-    official: true
-    note: Mobile client SDK.
-  - language: dart
-    registry: github
-    name: gameball-flutter
-    url: https://github.com/gameballers/gameball-flutter
-    install: "flutter pub add gameball_sdk"
-    repo: https://github.com/gameballers/gameball-flutter
-    official: true
-    note: Mobile client SDK.
-  - language: typescript
-    registry: github
-    name: gameball-react-native
-    url: https://github.com/gameballers/gameball-react-native
-    install: "npm install @gameball/react-native"
-    repo: https://github.com/gameballers/gameball-react-native
-    official: true
-    note: Mobile client SDK.
+    version: 2.9.1
+    published: null
+    note: >-
+      Superseded by gb-mobile-android. Repo last pushed 2020-05-02. Not archived
+      on GitHub, but no longer the SDK the installation guides point at.
+third_party_unofficial:
+  - registry: npm
+    name: "@activepieces/piece-gameball"
+    version: 0.1.6
+    published: '2026-08-04'
+    official: false
+    note: Activepieces automation connector, not published by Gameball.
+  - registry: npm
+    name: "@taskmagic/piece-gameball"
+    version: 10.0.1
+    published: '2024-07-11'
+    official: false
+    note: TaskMagic connector, not published by Gameball.
 plugins:
   - platform: shopify
     name: Gameball for Shopify
@@ -78,3 +163,11 @@ plugins:
     name: Gameball Magento Plugin
     url: https://github.com/gameballers/magento-plugin
     official: true
+    note: Repo last pushed 2020-10-26.
+  - platform: salla
+    name: Gameball for Salla
+    url: https://www.gameball.co/pricing
+    official: true
+    note: >-
+      Salla marketplace listing is referenced from the pricing page; a dedicated
+      Salla pricing page was not resolvable at enrichment time.

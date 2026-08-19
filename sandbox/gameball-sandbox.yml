@@ -1,0 +1,99 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.gameball.co/product-documentation/integrate-gameball/other-integration-notes/test-and-live-data
+docs:
+  - https://docs.gameball.co/product-documentation/integrate-gameball/other-integration-notes/test-and-live-data
+  - https://docs.gameball.co/api-reference/overview/authentication
+checked: '2026-08-13'
+http_status: 200
+model: dual-key
+summary: >-
+  Gameball ships a test/live split on the SAME account and the SAME hosts. There
+  is no separate sandbox base URL — https://api.gameball.co/api/v4.0 serves both.
+  Which environment a request lands in is decided entirely by WHICH API KEY you
+  send. Configuration (tiers, campaigns, earning rules) is shared across both;
+  data (customers, transactions, achievements, analytics) is separated.
+separate_host: false
+separate_host_detail: >-
+  No sandbox.gameball.co, no api-sandbox host, no /test path prefix. The mode is
+  carried in the credential, not the URL.
+keys:
+  - mode: test
+    name: Test API Key
+    prefix: gb_test_
+    prefix_source: >-
+      Published verbatim in the Android and iOS SDK integration guides as
+      "gb_test_your-key" / "gb_test_xxxxxxxxx" placeholders.
+    where: Gameball Dashboard → Settings → Admin Settings → Account Integration
+    use_for: staging / UAT / development builds
+  - mode: live
+    name: Live API Key
+    prefix: gb_live_
+    prefix_source: >-
+      Published verbatim in the same SDK guides as "gb_live_your-key" /
+      "gb_live_xxxxxxxxx" placeholders.
+    where: Gameball Dashboard → Settings → Admin Settings → Account Integration
+    use_for: production
+secret_key:
+  note: >-
+    The SecretKey (points-transactions key) is documented as a single account
+    key; the documentation does not state whether it is also split per
+    environment. Verify against your own dashboard before assuming.
+separated_between_modes:
+  - Analytics — tracked separately per environment
+  - Customers list — separate customer records per environment
+  - Game plan achievements — independent per environment
+  - Customer points transactions — separate transaction history per environment
+shared_between_modes:
+  - Tiers
+  - Reward campaigns
+  - Earning and redemption configuration
+  - detail: >-
+      "Your designed and configured experience will be the same using both API
+      Keys (tiers, campaigns, etc)." A configuration change made while testing
+      therefore also changes production behaviour. This is the sharpest edge in
+      Gameball's sandbox model and it is easy to miss.
+switching:
+  dashboard: Settings → Admin Settings → General → Test Data section
+  detail: The dashboard has a toggle to view test data instead of live data.
+key_rotation:
+  supported: true
+  detail: >-
+    Both API and Secret keys can be rotated from the dashboard without breaking
+    existing platform connections, for periodic credential rotation and after a
+    suspected exposure.
+  source: https://docs.gameball.co/api-reference/overview/authentication
+high_security_mode:
+  supported: true
+  default: disabled
+  detail: >-
+    When enabled in Integration settings, every operation that previously
+    accepted APIKey alone also requires SecretKey — so an exposed API key alone
+    cannot be used. Applies to test and live alike.
+mobile_sdk_pattern:
+  detail: >-
+    Both the Android and iOS guides show the intended pattern verbatim: select
+    the key on the build flag (BuildConfig.DEBUG on Android, #if DEBUG on
+    iOS) so a debug build can never reach live data.
+  warning_published: >-
+    "Always use test keys in development. Never commit live API keys to version
+    control."
+not_published:
+  test_cards: >-
+    None. Gameball is not a payment processor — it reads order and payment
+    amounts submitted by the merchant and awards points against them, so there
+    are no test card numbers, test bank accounts or hosted test tokens.
+  test_clocks: >-
+    None. Gameball publishes no time-simulation or clock-advance tooling, which
+    matters because tier expiry, streaks and time-based campaigns are all
+    date-driven and can only be exercised by waiting.
+  fixtures_or_triggers: >-
+    None. No fixture generator and no event-trigger tool. Test data is produced
+    by calling the API with the test key.
+  data_reset:
+    available: true
+    detail: >-
+      Not a sandbox fixture tool, but the dashboard offers a "clear all
+      per-customer activity while keeping customer profiles" operation useful
+      for a program relaunch or handing over a test environment, and a
+      permanent delete-all across both live and test.

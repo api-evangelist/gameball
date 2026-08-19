@@ -1,0 +1,2107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gameball API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create or update a customer profile in Gameball using a unique customerId. Serving as a consistent identity, this customerId allows you to track a customer's entire journey."
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve essential customer information from Gameball using a unique customerId. Returns general customer info (no personal data) with the public key."
+        },
+        {
+          "info": {
+            "name": "Delete Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a customer profile and associated data from the system."
+        },
+        {
+          "info": {
+            "name": "Get Customer Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/details",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve comprehensive customer information including personally identifiable information (PII)."
+        },
+        {
+          "info": {
+            "name": "Get Customer Coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/coupons",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve customer's available coupons with detailed information on each coupon's type, status, and usage."
+        },
+        {
+          "info": {
+            "name": "Achieve Social Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/social-challenges",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Mark a social campaign as achieved for a customer and grant the configured reward from your backend. This is the server-to-server equivalent of the in-widget social action for Social Activities campaigns."
+        },
+        {
+          "info": {
+            "name": "Get Customer Hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/hash",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a hash for an existing customer based on their unique customerId."
+        },
+        {
+          "info": {
+            "name": "Validate Referrer Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/referrals/validate",
+            "params": [
+              {
+                "name": "referrerCode",
+                "value": "",
+                "type": "query",
+                "description": "The referral code to validate"
+              },
+              {
+                "name": "forCustomerId",
+                "value": "",
+                "type": "query",
+                "description": "Customer ID to prevent self-referral"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate whether a provided referral code is valid and eligible for use during customer signup."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The API call tracks new payments, specifically tailored for fintech solutions. It captures key payment details, ensuring accurate tracking of customer transactions.\n\nThis API triggers the **\"Payment Processed\"** event, allowing you to automate follow-up actions such as initiating workflows, sending notifications, or rewarding customers with badges.\n\nThe event includes all properties provided in the payload."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/redeem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/redeem",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API enables customers to redeem loyalty points as a payment method in Gameball, allowing them to use points in place of monetary value during transactions. By providing details such as customerId and amount, this endpoint facilitates point-based redemptions within the purchase process."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/cashback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API awards loyalty points to customers in Gameball through a cashback program based on the amount."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/refund",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API processes refunds or cancellations of cashback and points redemption transactions in Gameball. By providing a reverseTransactionId, Gameball identifies the related cashback or redemption transaction and adjusts the customer's points balance accordingly to reflect the refunded or canceled transaction."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/hold",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/hold",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API holds loyalty points for a specified duration, reserving them until a redemption request is made through Order or Redeem. If no redemption occurs within the hold period, the points are released. The default hold time is 10 minutes, adjustable in the Gameball dashboard, with a maximum of 15 days and a minimum of 1 minute."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/transactions/hold/{holdReferenceId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/hold/:holdReferenceId",
+            "params": [
+              {
+                "name": "holdReferenceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the hold transaction, used to retrieve the details of the specific hold."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the details of a specific hold in Gameball using holdReferenceId. It returns information on the amount of loyalty points held, their monetary value, the hold's status (active, used, or expired), and the time remaining until expiration, supporting effective management and tracking of held points."
+        },
+        {
+          "info": {
+            "name": "DELETE /api/v4.0/integrations/transactions/hold/{holdReferenceId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/hold/:holdReferenceId",
+            "params": [
+              {
+                "name": "holdReferenceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the hold transaction, used to release the held points or amount."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API cancels a specific hold on loyalty points in Gameball using the provided holdReferenceId. It releases the held points back into the customer's account, enabling flexibility in point management."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions",
+            "params": [
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Direction of the transaction: + (Accumulation - points or rewards added to the customer), - (Deduction - points or rewards removed from the customer)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Represents the current status of the transaction. Possible values are: Active (The transaction is fully completed, and any points or rewards have been successfully added or redeemed), Pending (Points or rewards from the transaction are pending during the return window period), Blocked (The transaction has been flagged and blocked due to suspected fraud or other security concerns), Expired (The points or rewards earned in this transaction have expired and are no longer available for redemption or use)."
+              },
+              {
+                "name": "startAfter",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the page will start after which transaction id. Defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of transactions to be returned per page. Defaults to 50, with a maximum limit of 200 transactions per page."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. This is used to filter the transactions of the specified customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a paged list of transactions from Gameball, allowing for optional filtering. Each transaction record includes details such as type, direction, points, amount, transaction time, and balance changes, providing a comprehensive view of customer activity."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/manual",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/manual",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API allows for the manual addition or deduction of points for a customer in Gameball. It provides flexibility in managing loyalty points, enabling adjustments based on specific needs or circumstances."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/transactions/customer-view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/customer-view",
+            "params": [
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Direction of the transaction: + (Accumulation - points or rewards added to the customer), - (Deduction - points or rewards removed from the customer)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Represents the current status of the transaction. Possible values are: Active (The transaction is fully completed, and any points or rewards have been successfully added or redeemed), Pending (Points or rewards from the transaction are pending during the return window period), Blocked (The transaction has been flagged and blocked due to suspected fraud or other security concerns), Expired (The points or rewards earned in this transaction have expired and are no longer available for redemption or use)."
+              },
+              {
+                "name": "startAfter",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the page will start after which transaction id. Defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of transactions to be returned per page. Defaults to 50, with a maximum limit of 200 transactions per page."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. This is used to filter the transactions of the specified customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a paged list of transactions from Gameball, with support for optional filtering. It provides the same comprehensive transaction data as the previous version — including type, direction, points, amount, transaction time, and balance changes — but with an important enhancement: Each transaction now includes associated customer details, such as: Customer Name, Customer Email, Customer Deletion Status. This allows for better traceability and visibility into who performed each tran"
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/transactions/count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/count",
+            "params": [
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Direction of the transaction: + (Accumulation - points or rewards added to the customer), - (Deduction - points or rewards removed from the customer)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Represents the current status of the transaction. Possible values are: Active (The transaction is fully completed, and any points or rewards have been successfully added or redeemed), Pending (Points or rewards from the transaction are pending during the return window period), Blocked (The transaction has been flagged and blocked due to suspected fraud or other security concerns), Expired (The points or rewards earned in this transaction have expired and are no longer available for redemption or use)."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. This is used to filter the transactions of the specified customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the total count of transactions from Gameball, allowing for optional filtering. It provides the number of transactions matching the specified criteria without returning detailed transaction records."
+        },
+        {
+          "info": {
+            "name": "PUT /api/v4.0/integrations/transactions/{transactionId}/activate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/:transactionId/activate",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The transaction id on your system which you want to activate."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API is used to immediately activate loyalty points that are currently in a pending state, bypassing the configured return window duration. This endpoint overrides that duration and activates the points immediately, making them available for use by the customer without waiting for the pending return window duration to elapse. This API is especially useful for scenarios where the client determines that the order is confirmed and the points can be safely activated ahead of schedule. Note: Once"
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/transactions/otp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/transactions/otp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The API call generates a new one-time password (OTP) for redeeming or holding loyalty points and sends it via SMS. This service ensuring that only authorized transactions can be completed with the provided OTP. This API is effective only if SMS & OTP are enabled in your Gameball account."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/coupons/predefined",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/predefined",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a coupon based on predefined redemption rules."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/coupons/{code}/validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/:code/validate",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "The coupon code you want to validate."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API validates a single coupon identified by {code} and checks its eligibility for use by a customer. It also supports a locking feature, where setting the lock flag to True reserves the coupon by creating a lock reference. This ensures the coupon cannot be used by others during the lock session, preventing conflicts or double usage. By default, the lock flag is False, allowing only validation without reserving the coupon."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/coupons/validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API validates a list of coupons and checks their eligibility for use by a customer. It also supports a locking feature, where setting the lock flag to True reserves eligible coupons by creating hold references. This ensures that locked coupons cannot be used by others during the lock session, preventing conflicts or double usage. By default, the lock flag is False, allowing only validation without reserving the coupons."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/coupons/burn",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/burn",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API processes the use of one or more coupons associated with a customer in Gameball. By providing customer details and a list of coupons, this endpoint marks the coupons as redeemed, completing the transaction. Optionally, a lockReference can be included to burn previously locked coupons."
+        },
+        {
+          "info": {
+            "name": "DELETE /api/v4.0/integrations/coupons/{lockReference}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/:lockReference",
+            "params": [
+              {
+                "name": "lockReference",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the previously locked coupons to be available for others to use again or for another session."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API releases the lock on coupons identified by the provided {lockReference} in Gameball. Once released, the coupons become available for use again, offering flexibility in managing coupon availability and redemption."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/coupons/automatic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/coupons/automatic",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Apply predefined automatic coupons based on specific promotional criteria."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/rewards/cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/rewards/cashback",
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve cashback configuration settings for the loyalty program."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/rewards/redemption",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/rewards/redemption",
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve point redemption configuration settings for the loyalty program."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/rewards/coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/rewards/coupons",
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve coupon system configuration settings for the loyalty program."
+        },
+        {
+          "info": {
+            "name": "PUT /api/v4.0/integrations/configurations/rewards/coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/rewards/coupons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update coupon system configuration settings for the loyalty program."
+        },
+        {
+          "info": {
+            "name": "Campaigns Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/reward-campaigns",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer. If provided, the API filters and returns only the campaigns that can be achieved by this customer."
+              },
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for a product collection. If provided, the API returns the transactional campaigns applicable to the specified collection."
+              },
+              {
+                "name": "productSku",
+                "value": "",
+                "type": "query",
+                "description": "The SKU (Stock Keeping Unit) of a product. If provided, the API returns the transactional campaigns applicable to the specified product."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The API retrieves your reward campaign configurations, including both event-based and transactional campaigns. If the customerId, productSku, or collectionId query parameters are provided, the response will include the reward campaigns that are applicable for the specified customer or product."
+        },
+        {
+          "info": {
+            "name": "Tiers Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/tiers",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call retrieves the tiers configuration, including the benefits and rewards associated with each tier."
+        },
+        {
+          "info": {
+            "name": "Referrals Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/referrals",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the referral configuration, including customer and friend rewards, as well as metadata related to the events that trigger referral rewards."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/widget",
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve styling settings, including colors and other visual elements for the Gameball widget."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/leaderboard",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The start date of the leaderboard range. If not provided, the leaderboard shows all-time data."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end date of the leaderboard range. If not provided, the leaderboard shows all-time data."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. It is used to get the rank of this customer in the leaderboard."
+              },
+              {
+                "name": "rewardCampaignId",
+                "value": "",
+                "type": "query",
+                "description": "Filter leaderboard results based on a specific reward campaign."
+              },
+              {
+                "name": "customerTag",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by customers who are tagged with a specific tag."
+              },
+              {
+                "name": "rewardCampaignTag",
+                "value": "",
+                "type": "query",
+                "description": "Filter leaderboard results by reward campaign tags."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the leaderboard rankings of customers within your loyalty program in Gameball, either for a specific date range or for all time. Results are ordered from the highest to the lowest rank, displaying each customer's rank, progress, and tier details."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/cashback",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be database ID, random string, email or anything that uniquely identifies the customer. If provided, the response will return the cashback rules specific to this customer's tier, reflecting any special configurations or bonuses this customer is eligible for based on their tier cashback rules."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call retrieves your cashback configurations, providing essential details about how cashback rewards are structured and managed in Gameball. If the customerId is provided, the API will return any special cashback rules associated with the customer's tier, including potential bonuses or customized reward factors specific to that customer."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/redemption",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/redemption",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. If provided, the API will return redemption configurations that match the customer based on various criteria, such as RFM, tiers, segments and specific customer attributes. This approach ensures that the redemption options are personalized and relevant to each customer's unique profile and engagement history."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the configurations and rules associated with how customers can redeem points for discounts, coupons, or other rewards."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/configurations/coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/coupon",
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call retrieves your coupon configurations, including details about how coupons are structured, authenticated, and mapped within Gameball."
+        },
+        {
+          "info": {
+            "name": "PUT /api/v4.0/integrations/configurations/coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gameball.co/api/v4.0/integrations/configurations/coupon",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API call updates your coupon configurations, allowing you to modify details about how coupons are structured, authenticated, and mapped within Gameball."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create or update multiple customer profiles in a single API call for bulk user imports and mass profile updates."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Register multiple orders for single or multiple customers in a single API call for efficient order management and tracking."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/balance-inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/balance-inquiry",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve customer loyalty balances for multiple customers in a single API call for efficient balance management."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/balance-adjustment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/balance-adjustment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adjust customer loyalty balances for multiple customers in a single API call for efficient balance management."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/cashback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Award loyalty points to customers through cashback program for multiple customers in a single API call."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/redeem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/redeem",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enable customers to redeem loyalty points as a payment method for multiple customers in a single API call."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batch/events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Track multiple user actions or multiple actions for a single user in a single API call for efficient event tracking and analytics."
+        },
+        {
+          "info": {
+            "name": "GET /api/v4.0/integrations/batches/{batchId}/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batches/:batchId/status",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the batch operation"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Monitor batch job status and results for ongoing batch operations."
+        },
+        {
+          "info": {
+            "name": "POST /api/v4.0/integrations/batches/{batchId}/stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batches/:batchId/stop",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the batch operation"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stop ongoing batch operations when needed."
+        },
+        {
+          "info": {
+            "name": "DELETE /api/v4.0/integrations/orders/{orderId}/transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/orders/:orderId/transactions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique customer identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a customer by customerId."
+        },
+        {
+          "info": {
+            "name": "Get Customer Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/balance",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated expansions: tier,referrals"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a customer's current points balance within Gameball, including redeemable points and their monetary equivalent. It provides detailed balance information, such as total, available, and pending points, along with upcoming expirations.\n\n**Security:** Requires both `apikey` and `secretkey` headers."
+        },
+        {
+          "info": {
+            "name": "Get Customer Tier Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/tier-progress",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated expansions: tier,referrals"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API provides an overview of a customer's current tier and progression within Gameball's loyalty program. By retrieving the customer's current tier, progress level, and next tier details, this endpoint offers a clear view of their advancement within the tier structure."
+        },
+        {
+          "info": {
+            "name": "Get Customer Campaigns Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/reward-campaigns-progress",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "campaignType",
+                "value": "",
+                "type": "query",
+                "description": "Filter campaigns by type. Use `reward` to return only reward-type campaigns (points multipliers, missions, spending milestones, streaks, etc.), or `game` for game-type campaigns (Spin the Wheel, Slot Machine, Quiz, Scratch & Win, Match Cards, etc.). Omit to return all campaigns. Any other value results in a validation error."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "Filter the response to a single campaign by its ID. When provided, the response array contains at most one item: the matching campaign's progress, or an empty array if the campaign does not exist or is not available to this customer. Must be a positive integer. Use the campaign ID returned in rewardsCampaignId or rewardCampaignConfiguration.id. Can be combined with campaignType, in which case both filters apply."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a customer's progress within Gameball's reward campaigns, providing insights into their achievements and current status in each campaign. By accessing completion percentages and unlock statuses, you can track how customers are engaging with various reward opportunities."
+        },
+        {
+          "info": {
+            "name": "Get Customer Referrals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/referrals",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "startAfter",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the page will start after which Gameball customer id. Defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of friends to return per page. Defaults to 50, with a maximum limit of 200 transactions per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a list of customers referred by a specified customer in Gameball, including each referral's join date and current status within the referral program."
+        },
+        {
+          "info": {
+            "name": "Get Customer Referrals Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/referrals/count",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the total count of customers referred by a specified customer in Gameball, providing the number of completed and pending referrals."
+        },
+        {
+          "info": {
+            "name": "Get Customer Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/activities",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "startAfter",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the page will start after which activity id. Defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of activities to return per page. Defaults to 50, with a maximum limit of 200 transactions per page."
+              },
+              {
+                "name": "activityType",
+                "value": "",
+                "type": "query",
+                "description": "Filters activities by a specific type, such as: TierUpgraded (Indicates that the customer has been upgraded to a new tier), TierDowngraded (Indicates that the customer has been downgraded to a lower tier), TierMigration (Represents the migration of the customer's tier), CampaignRewarded (Signifies that the customer received a reward from a campaign), SuccessfulAction (Denotes successful progress by the customer in a campaign), Referral (Indicates that the customer referred a friend), Referred (The referee received a reward for being referred by the customer), ReferralBonusReward (Represents a bonus reward given for a referral), PaymentReward (Signifies that the customer received a cashback reward), Refund (Points were refunded back to the customer), Redemption (Points were redeemed by the customer), Cancel (A cashback transaction was canceled), Expiry (Indicates that points have expired), Migration (Represents a migration activity that occurred), Lifetime (Refers to activities related to lifetime coupons), Automation (Activity performed by an automation campaign)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves a log of customer activities within Gameball, identified by customerId. The logs detail various actions, such as tier changes, campaign rewards, referrals, redemptions, and more. Specific activity types can be filtered, including events like TierUpgraded, CampaignRewarded, ReferralBonusReward, and PaymentReward, providing comprehensive visibility into each customer's engagement history."
+        },
+        {
+          "info": {
+            "name": "Get Customer Activities Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/activities/count",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "activityType",
+                "value": "",
+                "type": "query",
+                "description": "Filters activities by a specific type, such as: TierUpgraded (Indicates that the customer has been upgraded to a new tier), TierDowngraded (Indicates that the customer has been downgraded to a lower tier), TierMigration (Represents the migration of the customer's tier), CampaignRewarded (Signifies that the customer received a reward from a campaign), SuccessfulAction (Denotes successful progress by the customer in a campaign), Referral (Indicates that the customer referred a friend), Referred (The referee received a reward for being referred by the customer), ReferralBonusReward (Represents a bonus reward given for a referral), PaymentReward (Signifies that the customer received a cashback reward), Refund (Points were refunded back to the customer), Redemption (Points were redeemed by the customer), Cancel (A cashback transaction was canceled), Expiry (Indicates that points have expired), Migration (Represents a migration activity that occurred), Lifetime (Refers to activities related to lifetime coupons), Automation (Activity performed by an automation campaign)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the total count of customer activities within Gameball, identified by customerId. It allows for filtering by specific activity types, such as TierUpgraded, CampaignRewarded, ReferralBonusReward, and PaymentReward, providing the number of activities matching the specified criteria without returning detailed activity logs."
+        },
+        {
+          "info": {
+            "name": "Get Customer Automation Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/automation",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "campaignType",
+                "value": "",
+                "type": "query",
+                "description": "Filters automation steps by a specific type, such as: mission (return steps for mission-based campaigns, default), all (return all automation steps and details)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the available automation campaigns for the customer, identified by customerId. The response includes details of campaigns currently active and applicable to the customer, such as onboarding journeys, engagement triggers, or milestone-based campaigns. Specific campaign types can be filtered, including campaigns like Welcome Campaigns, Ramadan Campaign, and Custom Automations, offering a comprehensive view of personalized campaigns available for the customer."
+        },
+        {
+          "info": {
+            "name": "Get Customer Stamps Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/stamps/:challengeId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "challengeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Stamps campaign to retrieve progress for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the progress of a specific customer within a particular Stamps campaign in Gameball. It returns how many steps the customer has completed, how many times they've earned the campaign reward, and whether they are eligible to continue."
+        },
+        {
+          "info": {
+            "name": "Get Customer Daily Streak Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/streaks/:campaignId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the daily streak campaign to retrieve progress for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the progress of a specific customer within a particular daily streak campaign in Gameball. It returns the current and highest streak counts, ongoing reward details, badge milestones, and the next milestone to unlock."
+        },
+        {
+          "info": {
+            "name": "Attach Customer Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/tags",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API allows you to add tags to a customer profile in Gameball, identified by `customerId`. Attaching tags enables categorization of customer profiles, supporting organized management and targeted engagement based on specific attributes."
+        },
+        {
+          "info": {
+            "name": "Remove Customer Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/tags",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API removes specified tags from a customer profile in Gameball, identified by `customerId`. Removing tags allows for updating customer categorization, ensuring profiles remain relevant to current engagement and marketing needs."
+        },
+        {
+          "info": {
+            "name": "removeCustomerTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/tags/:tag",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a tag from a customer."
+        },
+        {
+          "info": {
+            "name": "Get Customer Notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/notifications",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              },
+              {
+                "name": "startAfter",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the page will start after which notification id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of notifications to return per page"
+              },
+              {
+                "name": "isRead",
+                "value": "",
+                "type": "query",
+                "description": "Filter notifications based on their read status"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language in which notifications will be retrieved"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paged list of notifications for a specific customer in Gameball, including details such as title, message content, read status, and timestamp."
+        },
+        {
+          "info": {
+            "name": "Get Customer Notifications Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/notifications/count",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the customer"
+              },
+              {
+                "name": "isRead",
+                "value": "",
+                "type": "query",
+                "description": "Filter notifications based on their read status"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language in which notifications will be retrieved"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the total count of notifications for a specific customer in Gameball, providing the number of notifications matching the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Mark Customer Notifications as Read",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/notifications/read",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Mark specific notifications as read for a customer in Gameball by providing notification IDs."
+        },
+        {
+          "info": {
+            "name": "Send Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send events to capture customer actions, enabling targeted rewards and engagement."
+        },
+        {
+          "info": {
+            "name": "GET /plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/plants",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all plants from the system that the user has access to"
+        },
+        {
+          "info": {
+            "name": "POST /plants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/plants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new plant in the store"
+        },
+        {
+          "info": {
+            "name": "DELETE /plants/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gameball.co/plants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of plant to delete"
+              }
+            ]
+          },
+          "docs": "Deletes a single plant based on the ID supplied"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Customer Activation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.gameball.co/api/v4.0/integrations/customers/:customerId/activate",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "cust-12345",
+                "type": "path",
+                "description": "The customer's unique external identifier in your system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set a customer's loyalty program participation state (active/inactive). This mirrors the include/exclude toggle in the Gameball dashboard.\n\nThe endpoint is idempotent: opting out an already opted-out customer (or opting in an already opted-in customer) produces no side effects. `stateChanged` indicates whether the state actually changed.\n\nWhen a customer is opted out (`isActive: false`): no points are earned from events or purchases, no rewards or coupons are generated, and the customer is exclu"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate Payment Cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/payments/cashback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API calculates the cashback points to be rewarded for a specific payment in Gameball, based on provided payment details. It considers configured cashback rules and customer eligibility.\n\n**Security:** Requires `apiKey` header.\n\n**Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball's channel merging feature helps unify customer profiles. By including the customer's mobile number or email (based on your merging "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Order Transactions Batch Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/batch/orders/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the full transaction history (payments, rewards, refunds) for up to 1,000 orders in a single call. The job runs asynchronously — the endpoint returns a `jobId` immediately. Poll the batch status endpoint to retrieve results.\n\n**Security:** Requires `apiKey` and `secretKey` headers (secret key required on v4.1; on v4.0 required when High Security Mode is enabled)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Track Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The API call is used to track a new order and is specifically designed for e-commerce solutions. It helps capture essential order details, enabling better tracking of customer purchases and order management.\n\n**Security:** Requires both `apikey` and `secretkey` headers.\n\n**Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball's channel merging feature helps unify customer profiles. By including the customer's mobile "
+        },
+        {
+          "info": {
+            "name": "Calculate Order Cashback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/orders/cashback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API calculates the cashback points to be rewarded for a specific order in Gameball, based on provided order details. It considers configured cashback rules and customer eligibility.\n\n**Security:** Requires `apiKey` header.\n\n**Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball's channel merging feature helps unify customer profiles. By including the customer's mobile number or email (based on your merging conf"
+        },
+        {
+          "info": {
+            "name": "Preview Order Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/orders/reward-preview",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Preview everything an order would earn before checkout: the order cashback quote (identical calculation to Calculate Order Cashback) plus a preview of the event-based campaigns the order would trigger (evaluated as the same `place_order` event a real order submission fires).\n\nThis is a read-only quote — no points are awarded, no coupons are generated, nothing appears in the customer activity history, and campaign budgets or frequency limits are not consumed.\n\n**Security:** Requires `apiKey` head"
+        },
+        {
+          "info": {
+            "name": "Order Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gameball.co/api/v4.0/integrations/orders/:orderId/transactions",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "ORD12345",
+                "type": "path",
+                "description": "Unique identifier for the order, which is case-sensitive. It is used to reference and retrieve the order's transactions accurately."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API retrieves the transactional details for a specified order in Gameball, identified by `orderId`. It includes information on rewards, refunds, and equivalent points, giving a detailed view of the financial activities associated with the order.\n\n**Security:** Requires both `apikey` and `secretkey` headers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Preview Event Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gameball.co/api/v4.0/integrations/events/reward-preview",
+            "headers": [
+              {
+                "name": "lang",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "apikey",
+              "value": "{{apikey}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the points and coupon rewards a customer would earn if the given event(s) fired now. Intended for custom events (the same events you send to Send Events). For orders, use Preview Order Rewards instead.\n\nThis is a read-only quote — no points are awarded, no coupons are generated, nothing appears in the customer activity history, and campaign budgets or frequency limits are not consumed.\n\nUnlike the live events endpoint, the preview never creates the customer — unknown or inactive customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,4 +1,4 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -8,6 +8,17 @@ hosts:
   cert_expires: Oct 14 01:19:34 2026 GMT
   hsts: true
   hsts_max_age: 0
+- host: docs.gameball.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 10 16:39:15 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: api.gameball.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 26 06:16:41 2026 GMT
+  hsts: null
 domains:
 - domain: gameball.co
   dnssec: false
