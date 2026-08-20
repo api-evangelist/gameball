@@ -48,6 +48,16 @@ tags:
 - Retention
 - Referrals
 - Marketing
+- E-Commerce
+tags_raw:
+- Company
+- Loyalty
+- Rewards
+- Gamification
+- Customer Engagement
+- Retention
+- Referrals
+- Marketing
 - E-commerce
 apis:
 - name: Gameball REST API
