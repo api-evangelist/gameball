@@ -153,6 +153,8 @@ apis:
   humanURL: https://docs.gameball.co/api-reference/introduction
   baseURL: https://api.gameball.co/api/v4.0
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -205,6 +207,8 @@ apis:
   humanURL: https://docs.gameball.co/api-reference/introduction
   baseURL: https://api.gameball.co/api/v4.0
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -231,6 +235,8 @@ apis:
   humanURL: https://docs.gameball.co/api-reference/introduction
   baseURL: https://api.gameball.co/api/v4.0
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
