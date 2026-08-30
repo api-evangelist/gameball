@@ -1,0 +1,980 @@
+openapi: 3.2.0
+info:
+  title: Gameball Orders API
+  description: Gameball REST API v4.0 - Complete API reference for integrating loyalty, gamification, and customer engagement features
+  version: 4.0.0
+servers:
+- url: https://api.gameball.co
+security:
+- bearerAuth: []
+tags:
+- name: Orders
+paths:
+  /api/v4.0/integrations/orders:
+    post:
+      summary: Track Order
+      description: 'The API call is used to track a new order and is specifically designed for e-commerce solutions. It helps capture essential order details, enabling better tracking of customer purchases and order management.
+
+
+        **Security:** Requires both `apikey` and `secretkey` headers.
+
+
+        **Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball''s channel merging feature helps unify customer profiles. By including the customer''s mobile number or email (based on your merging configuration) with each request, Gameball will combine activities into a single profile.'
+      operationId: trackOrder
+      tags:
+      - Orders
+      security:
+      - apiKey: []
+        secretKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - orderId
+              - orderDate
+              - totalPaid
+              properties:
+                customerId:
+                  type: string
+                  description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer.
+                  example: cust_123456789
+                email:
+                  type: string
+                  description: Customer's email address. **Note:** This is required if your account uses email-based channel merging.
+                  example: john.doe@example.com
+                mobile:
+                  type: string
+                  description: Customer's mobile number. **Note:** This is required if your account uses mobile-based channel merging.
+                  example: '+1234567890'
+                orderId:
+                  type: string
+                  description: Unique identifier for the order on your system. This ID is case-sensitive.
+                  example: ORD12345
+                orderDate:
+                  type: string
+                  format: date-time
+                  description: Timestamp of when the order was placed. Must be in UTC (ISO 8601 format), e.g. `2024-10-16T08:13:29.290Z`.
+                  example: '2024-10-16T08:13:29.290Z'
+                totalPaid:
+                  type: number
+                  description: The actual amount paid by the customer for the order, accounting for any discounts or coupons applied. Unlike `totalPrice`, which reflects the original cost of the order, `totalPaid` represents the final amount the customer paid at checkout after all adjustments. This value is used for reward calculations in Gameball to determine the points or benefits earned from the order. **Example:** A customer purchases items worth $120, including taxes and shipping. If a $20 coupon is applied, the `totalPaid` becomes $100, reflecting the discounted amount the customer paid.
+                  example: 250.75
+                totalPrice:
+                  type: number
+                  description: The total cost of the order, including all item prices, shipping, taxes, and tips. This value does not account for any discounts or coupons applied and is not used for calculations in Gameball; it is solely saved as historical data linked to the order. Must be a positive value. **Example:** A customer purchases items worth $120, including taxes and shipping. Even if a $20 coupon is applied, the totalPrice remains $120 as it represents the original cost of the order before any discounts are applied.
+                  example: 300
+                totalDiscount:
+                  type: number
+                  description: Total discount applied to the order.
+                  example: 50
+                totalShipping:
+                  type: number
+                  description: Total shipping cost associated with the order.
+                  example: 10
+                totalTax:
+                  type: number
+                  description: Total tax amount for the order.
+                  example: 15
+                lineItems:
+                  type: array
+                  description: An array containing details about each product in the order. If not provided, the calculation will only consider the total order values.
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Unique identifier for the product or service being purchased.
+                        example: PROD98765
+                      quantity:
+                        type: number
+                        description: Number of units purchased for this product or service.
+                        example: 2
+                      price:
+                        type: number
+                        description: The original price of a single product before any tax or discount is applied. This reflects the cost of one unit of the item, not the total for multiple quantities in an order. **Example:** If the original price of a product is $50 and a customer buys two units, the price for each item would still be recorded as $50, regardless of quantity.
+                        example: 100
+                      sku:
+                        type: string
+                        description: Stock Keeping Unit (SKU) for the product.
+                        example: SKU98765
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Tags associated with the product for categorization or promotional purposes.
+                        example:
+                        - electronics
+                        - smartphone
+                      category:
+                        type: array
+                        items:
+                          type: string
+                        description: Product category, such as fashion or electronics. It can include one or multiple categories.
+                        example:
+                        - mobile phones
+                      weight:
+                        type: number
+                        description: Weight of the product.
+                        example: 0.5
+                      vendor:
+                        type: string
+                        description: Vendor or manufacturer of the product.
+                        example: TechVendor
+                      collection:
+                        type: array
+                        items:
+                          type: string
+                        description: Collection ID(s) to which the product belongs. It can include one or multiple collections.
+                        example:
+                        - latest gadgets
+                      title:
+                        type: string
+                        description: Product title or name.
+                        example: Smartphone XYZ
+                      taxes:
+                        type: number
+                        description: The total amount of taxes applied to the line item, expressed in the shop's currency. This amount must be positive and reflects the total taxes based on the quantity of the item.
+                        example: 7.5
+                      discount:
+                        type: number
+                        description: The total discount applied to this line item, expressed as a positive value. This amount should reflect the total discounts based on the quantity of the item.
+                        example: 25
+                      extra:
+                        type: object
+                        additionalProperties: true
+                        description: Key-value pairs containing any extra information about the product, such as size, color, or other custom attributes. The values must be of type string or number.
+                        example:
+                          subClass: SUBCLASS123
+                redemption:
+                  type: object
+                  description: Redemption details for the order, including points held for redemption.
+                  properties:
+                    pointsHoldReference:
+                      type: string
+                      description: Reference from the Hold Points API for redeeming held points. For more details on how hold references are generated and utilized, refer to the Transactions section.
+                      example: HOLD123
+                    couponsLockReference:
+                      type: string
+                      description: The lock reference for the coupon is a unique identifier used to 'lock' a coupon for a specific customer or order. This prevents the coupon from being used by others or on multiple transactions. For more details on how to generate and use lock references, refer to the Coupons section.
+                      example: LOCK123
+                    couponCodes:
+                      type: array
+                      items:
+                        type: string
+                      description: A list of coupon codes that were applied to the order. Each code in the array represents a different discount or promotional coupon used during the checkout process. Coupon codes must be locked before they can be used for redemption.
+                      example:
+                      - DISCOUNT10
+                extra:
+                  type: object
+                  additionalProperties: true
+                  description: Key-value pairs containing any extra information about the order. The values must be of type string or number. **Example:** If your business offers gift options, you might want to include a personalized gift message with the order. Additionally, specific delivery instructions can be recorded to ensure smooth delivery and provide a personalized experience.
+                  example:
+                    paymentMethod: CREDIT CARD
+                merchant:
+                  type: object
+                  description: This object contains details about the specific merchant involved in the transaction, which is particularly important for businesses managing multiple merchants or branches under the same Gameball account. This object can provide identifying information about both the main merchant and any associated branch where the transaction took place.
+                  properties:
+                    uniqueId:
+                      type: string
+                      description: Unique identifier for the merchant.
+                      example: MERCH001
+                    name:
+                      type: string
+                      description: Name of the merchant.
+                      example: TechGadgetStore
+                    branch:
+                      type: object
+                      description: Branch information where the order took place.
+                      properties:
+                        uniqueId:
+                          type: string
+                          description: Unique identifier for the branch where the order took place.
+                          example: BRANCH001
+                        name:
+                          type: string
+                          description: Name of the branch where the order took place.
+                          example: Downtown Branch
+                guest:
+                  type: boolean
+                  description: Indicates whether the customer is a guest (not signed up). Set this to `true` for guest users; otherwise, they are treated as registered customers by default.
+                  default: false
+                  example: false
+                channel:
+                  type: string
+                  enum:
+                  - mobile
+                  - pos
+                  - web
+                  - callcenter
+                  description: The channel through which the order was placed helps track the origin of the order, particularly useful for systems that support multiple sales or communication channels. By identifying the channel, you can gain valuable insights into customer behavior, optimize channel-specific strategies, and ensure efficient handling of orders across platforms. **Possible values:** `mobile` - The order was placed through your mobile application. `pos` - The order was placed in person using a Point of Sale (POS) system, such as at a physical store or outlet. `web` - The order was placed through your website. `callcenter` - The order was placed over the phone by contacting a customer service representative or a call center.
+                  example: pos
+                cartId:
+                  type: string
+                  description: Identifier for the shopping cart associated with the order.
+                  example: CART98765
+                cashbackConfigurations:
+                  type: object
+                  description: This object contains configurations related to the cashback settings.
+                  properties:
+                    returnWindow:
+                      type: integer
+                      description: The number of days the cashback will stay in a **pending** state, typically aligning with the return window in e-commerce to account for potential order cancellations or refunds. The value should be between **0 and 7,300 days (20 years)**.
+                      minimum: 0
+                      maximum: 7300
+                      example: 7
+      responses:
+        '200':
+          description: Order tracked successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customerId:
+                    type: string
+                    description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer.
+                    example: cust_123456789
+                  redeemedPoints:
+                    type: number
+                    description: Points redeemed by the customer for this order, if applicable. **Example:** If a customer has accumulated 500 points and decides to redeem 100 points for a discount on their current order, the `redeemedPoints` value for that transaction will be 100. This helps track how many points were used in the transaction and what benefits were applied to the order based on the customer's redeemed points.
+                    example: 1000
+                  rewardedPoints:
+                    type: number
+                    description: The total number of points rewarded to the customer for making this order. These points are typically awarded based on your configured cashback rewards. **Example:** If the store rewards 10 points for every $1 spent, and a customer places an order worth $50, the **rewardedPoints** for this order would be 500 points.
+                    example: 101
+                  lineItems:
+                    type: array
+                    description: Details about each product or service in the order, including points rewarded.
+                    items:
+                      type: object
+                      properties:
+                        productId:
+                          type: string
+                          description: Unique identifier for the product or service.
+                          example: PROD98765
+                        quantity:
+                          type: number
+                          description: Number of units purchased for this product or service.
+                          example: 2
+                        decimalPoints:
+                          type: number
+                          description: Fractional points rewarded for this line item.
+                          example: 91.25
+                        points:
+                          type: number
+                          description: Any points rewarded for this line item.
+                          example: 91
+                        score:
+                          type: number
+                          description: Any score awarded for the line item, if applicable.
+                          example: 0
+  /api/v4.0/integrations/orders/cashback:
+    post:
+      summary: Calculate Order Cashback
+      description: 'This API calculates the cashback points to be rewarded for a specific order in Gameball, based on provided order details. It considers configured cashback rules and customer eligibility.
+
+
+        **Security:** Requires `apiKey` header.
+
+
+        **Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball''s channel merging feature helps unify customer profiles. By including the customer''s mobile number or email (based on your merging configuration) with each request, Gameball will combine activities into a single profile.
+
+
+        **Important:** This API calculates the expected cashback points but does not perform any actual reward or action for the customer.'
+      operationId: calculateOrderCashback
+      tags:
+      - Orders
+      security:
+      - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - totalPaid
+              - totalDiscount
+              - totalShipping
+              properties:
+                customerId:
+                  type: string
+                  description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. If provided, the cashback calculation will consider the customer's tier. Special tier-based configurations, such as enhanced point accrual rates, may affect the points calculation.
+                  example: cust_12345abc
+                email:
+                  type: string
+                  description: Customer's email address. **Note:** This is required if your account uses email-based channel merging.
+                  example: john.doe@example.com
+                mobile:
+                  type: string
+                  description: Customer's mobile number. **Note:** This is required if your account uses mobile-based channel merging.
+                  example: '+1234567890'
+                totalPaid:
+                  type: number
+                  description: The actual amount paid by the customer for the order, accounting for any discounts or coupons applied. Unlike `totalPrice`, which reflects the original cost of the order, `totalPaid` represents the final amount the customer paid at checkout after all adjustments. This value is used for reward calculations in Gameball to determine the points or benefits earned from the order. **Example:** A customer purchases items worth $120, including taxes and shipping. If a $20 coupon is applied, the `totalPaid` becomes $100, reflecting the discounted amount the customer paid. This is the value used to calculate any points or rewards earned from the order.
+                  example: 350
+                totalPrice:
+                  type: number
+                  description: The total cost of the order, including all item prices, shipping, taxes, and tips. This value does not account for any discounts or coupons applied and is not used for calculations in Gameball; it is solely saved as historical data linked to the order. Must be a positive value. **Example:** A customer purchases items worth $120, including taxes and shipping. Even if a $20 coupon is applied, the totalPrice remains $120 as it represents the original cost of the order before any discounts are applied.
+                  example: 350
+                totalDiscount:
+                  type: number
+                  description: Total discount applied to the order. Must be positive.
+                  minimum: 0
+                  example: 0
+                totalShipping:
+                  type: number
+                  description: Total shipping cost for the order.
+                  example: 0
+                lineItems:
+                  type: array
+                  description: An array containing details about each product in the order. If not provided, the calculation will only consider the total order values.
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Unique identifier for the product or service being purchased.
+                        example: '875511'
+                      quantity:
+                        type: number
+                        description: Number of units purchased for this product or service.
+                        example: 1
+                      price:
+                        type: number
+                        description: The original price of a single product before any tax or discount is applied. This reflects the cost of one unit of the item, not the total for multiple quantities in an order. **Example:** If the original price of a product is $50 and a customer buys two units, the price for each item would still be recorded as $50, regardless of quantity.
+                        example: 150
+                      sku:
+                        type: string
+                        description: Stock Keeping Unit (SKU) for the product.
+                        example: sku123
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Tags associated with the product for categorization or promotional purposes.
+                      category:
+                        type: array
+                        items:
+                          type: string
+                        description: 'Product category, such as fashion or electronics. It can include one or multiple categories. Example: ["natural", "cosmetics"]'
+                      weight:
+                        type: number
+                        description: Weight of the product.
+                      vendor:
+                        type: string
+                        description: Vendor or manufacturer of the product.
+                      collection:
+                        type: array
+                        items:
+                          type: string
+                        description: 'Collection ID(s) to which the product belongs. It can include one or multiple collections. Example: ["14313", "4343"]'
+                        example:
+                        - '123'
+                      title:
+                        type: string
+                        description: Product title or name.
+                      taxes:
+                        type: number
+                        description: The total amount of taxes applied to the line item, expressed in the shop's currency. This amount must be positive and reflects the total taxes based on the quantity of the item.
+                        example: 0
+                      discount:
+                        type: number
+                        description: The total discount applied to this line item, expressed as a positive value. This amount should reflect the total discounts based on the quantity of the item.
+                        example: 0
+                      extra:
+                        type: object
+                        additionalProperties: true
+                        description: Key-value pairs containing any extra information about the product, such as size, color, or other custom attributes. The values must be of type string or number.
+                merchant:
+                  type: object
+                  description: This object contains details about the specific merchant involved in the transaction, which is particularly important for businesses managing multiple merchants or branches under the same Gameball account. This object can provide identifying information about both the main merchant and any associated branch where the transaction took place.
+                  properties:
+                    uniqueId:
+                      type: string
+                      description: Unique identifier for the merchant.
+                      example: MERCH001
+                    name:
+                      type: string
+                      description: Name of the merchant.
+                      example: TechGadgetStore
+                    branch:
+                      type: object
+                      description: Branch information where the order took place.
+                      properties:
+                        uniqueId:
+                          type: string
+                          description: Unique identifier for the branch where the order took place.
+                          example: BRANCH001
+                        name:
+                          type: string
+                          description: Name of the branch where the order took place.
+                          example: Downtown Branch
+      responses:
+        '200':
+          description: Cashback calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalPoints:
+                    type: number
+                    description: Total points expected to be earned from the entire order.
+                    example: 19000
+                  totalScore:
+                    type: number
+                    description: Total score expected to be earned from the entire order.
+                    example: 0
+                  lineItems:
+                    type: array
+                    description: An array of individual line items and their cashback calculation details.
+                    items:
+                      type: object
+                      properties:
+                        productId:
+                          type: string
+                          description: Unique identifier for the product.
+                          example: '875511'
+                        quantity:
+                          type: number
+                          description: The quantity of the product purchased.
+                          example: 1
+                        totalDecimalPoints:
+                          type: number
+                          description: The total decimal points earned for this line item, including any campaign impact.
+                          example: 15000.0
+                        totalPoints:
+                          type: number
+                          description: The total points earned for this line item, including any campaign impact. **Example:** If the base points for a product are 50 and a campaign adds 150 points, the totalPoints would be 200.
+                          example: 15000
+                        totalScore:
+                          type: number
+                          description: The total score earned for this line item. This value is separate from point and is based on your cashback rewards configuration.
+                          example: 0
+                        rewardWalletFactor:
+                          type: number
+                          description: The multiplier applied to the product price to calculate the base points earned for this line item. This factor represents how many points are earned per unit of currency spent on the product. **Example:** If the store rewards 10 points for every $1 spent, the rewardWalletFactor would be 10.
+                          example: 20.0
+                        campaignId:
+                          type:
+                          - integer
+                          - 'null'
+                          description: The unique identifier for the active transactional campaign that affects the cashback reward for purchasing this line item. If no campaign is applicable, this field will be null.
+                          example: 2149
+                        campaignName:
+                          type:
+                          - string
+                          - 'null'
+                          description: The name of the active transactional campaign that affects the cashback reward for purchasing this line item. If no campaign is applicable, this field will be null. **Example:** If a store is running a "Double Points Weekend" campaign, the campaignName could be "Double Points Weekend."
+                          example: 5x Points Campaign
+                        campaignEndDate:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                          description: The end date of the active campaign affecting the line item. This is the date when the campaign will no longer influence points or rewards.
+                          example: '2024-11-01T08:39:00'
+                        campaignImpactWalletFactor:
+                          type: number
+                          description: The multiplier applied by the campaign to the base points calculation. This factor adjusts the final points earned for the line item based on the campaign's impact. Present only if a campaign is applicable. **Example:** If the campaign offers 3x points, the campaignImpactWalletFactor would be 3, multiplying the regular points earned by three.
+                          example: 5.0
+                        campaignImpactPoints:
+                          type: number
+                          description: The total number of points given for this line item due to the campaign's impact. This value reflects the additional points earned from the campaign. **Example:** If the base points for an item are 100 and the campaign offers 5x points, the campaignImpactPoints would be 400 (totaling 500 points with the base points included).
+                          example: 12000.0
+  /api/v4.0/integrations/orders/reward-preview:
+    post:
+      summary: Preview Order Rewards
+      description: 'Preview everything an order would earn before checkout: the order cashback quote (identical calculation to Calculate Order Cashback) plus a preview of the event-based campaigns the order would trigger (evaluated as the same `place_order` event a real order submission fires).
+
+
+        This is a read-only quote — no points are awarded, no coupons are generated, nothing appears in the customer activity history, and campaign budgets or frequency limits are not consumed.
+
+
+        **Security:** Requires `apiKey` header. `secretKey` is required on v4.1; on v4.0 required when High Security Mode is enabled.
+
+
+        **Localization:** Send the optional `lang` header to localize `eventRewards.campaigns[].campaignName`. Cashback `campaignName` values use the campaign''s internal name and are not affected by `lang`.'
+      operationId: previewOrderRewards
+      tags:
+      - Orders
+      security:
+      - apiKey: []
+      parameters:
+      - name: lang
+        in: header
+        description: Language code for localized campaign names in `eventRewards.campaigns[]` (e.g., `en`, `ar`, `fr`). If omitted or not configured in your account, the response falls back to your account's default language.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - totalPaid
+              properties:
+                customerId:
+                  type: string
+                  maxLength: 100
+                  description: The customer's unique ID. The cashback part works without it (quote for a new customer); the campaigns part requires an existing customer — see `customerFound`.
+                  example: '1214'
+                email:
+                  type: string
+                  description: Used only to help locate the customer (channel merge).
+                mobile:
+                  type: string
+                  description: Used only to help locate the customer (channel merge).
+                totalPaid:
+                  type: number
+                  minimum: 0
+                  description: Amount actually paid.
+                  example: 90
+                totalPrice:
+                  type: number
+                  minimum: 0
+                  description: Order total before discounts.
+                  example: 100
+                totalDiscount:
+                  type: number
+                  minimum: 0
+                  description: Total discount applied.
+                  example: 10
+                totalShipping:
+                  type: number
+                  minimum: 0
+                  description: Shipping total.
+                totalTax:
+                  type: number
+                  minimum: 0
+                  description: Tax total.
+                lineItems:
+                  type: array
+                  description: Order line items.
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Product identifier.
+                        example: P-100
+                      sku:
+                        type: string
+                        description: Product SKU.
+                        example: SKU-100
+                      title:
+                        type: string
+                        description: Product title.
+                        example: Running Shoes
+                      quantity:
+                        type: number
+                        minimum: 0
+                        description: Quantity purchased.
+                        example: 1
+                      price:
+                        type: number
+                        minimum: 0
+                        description: Unit price.
+                        example: 100
+                      discount:
+                        type: number
+                        minimum: 0
+                        description: Line discount total (must not exceed the gross line total).
+                        example: 10
+                      taxes:
+                        type: number
+                        minimum: 0
+                        description: Line taxes.
+                      weight:
+                        type: number
+                        minimum: 0
+                        description: Item weight.
+                      vendor:
+                        type: string
+                        description: Vendor/supplier name.
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Product tags — usable in campaign conditions.
+                      category:
+                        type: array
+                        items:
+                          type: string
+                        description: Product categories — usable in campaign conditions.
+                        example:
+                        - shoes
+                      collection:
+                        type: array
+                        items:
+                          type: string
+                        description: Product collections — usable in campaign conditions.
+                      extra:
+                        type: object
+                        additionalProperties: true
+                        description: Custom line-item attributes.
+                merchant:
+                  type: object
+                  description: Merchant/branch info for multi-merchant setups.
+                  properties:
+                    uniqueId:
+                      type: string
+                    name:
+                      type: string
+                    branch:
+                      type: object
+                      properties:
+                        uniqueId:
+                          type: string
+                        name:
+                          type: string
+                channel:
+                  type: string
+                  description: Order channel (e.g. `web`, `pos`, `mobile`).
+                  example: web
+                extra:
+                  type: object
+                  additionalProperties: true
+                  description: Custom key/value attributes — usable in campaign conditions.
+            examples:
+              sample:
+                summary: Sample request
+                value:
+                  customerId: '1214'
+                  totalPaid: 90
+                  totalPrice: 100
+                  totalDiscount: 10
+                  channel: web
+                  lineItems:
+                  - productId: P-100
+                    sku: SKU-100
+                    title: Running Shoes
+                    quantity: 1
+                    price: 100
+                    discount: 10
+                    category:
+                    - shoes
+      responses:
+        '200':
+          description: Order reward preview calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRewardPreviewResponse'
+              examples:
+                sample:
+                  value:
+                    customerId: '1214'
+                    customerFound: true
+                    totalPoints: 270
+                    totalCoupons: 1
+                    cashback:
+                      totalPoints: 120
+                      totalScore: 120
+                      lineItems:
+                      - productId: P-100
+                        quantity: 1
+                        totalPoints: 120
+                        totalScore: 120
+                        totalDecimalPoints: 120.0
+                        rewardWalletFactor: 1.2
+                        campaignId: 3101
+                        campaignName: Double Points Week
+                        campaignEndDate: '2026-08-15T23:59:59Z'
+                        campaignImpactPoints: 60.0
+                        campaignImpactWalletFactor: 0.6
+                    eventRewards:
+                      eventName: place_order
+                      valid: true
+                      invalidReason: null
+                      totalPoints: 150
+                      campaigns:
+                      - campaignId: 2655
+                        campaignName: First Order Bonus
+                        campaignEndDate: null
+                        eligible: true
+                        reason: Rewarded
+                        rewardType: Points
+                        rewardPoints: 150
+                        couponType: null
+                        couponValue: null
+                        points: 150
+                        timesAchieved: 1
+                        progress: null
+                      - campaignId: 2656
+                        campaignName: Order Coupon Gift
+                        campaignEndDate: null
+                        eligible: true
+                        reason: NonPointsReward
+                        rewardType: Coupon
+                        rewardPoints: null
+                        couponType: Percentage
+                        couponValue: 10
+                        points: 0
+                        timesAchieved: 1
+                        progress: null
+        '400':
+          description: Missing or invalid payload (e.g. negative amounts, discount exceeding a line's total).
+        '401':
+          description: Missing or invalid API key or secret key.
+  /api/v4.0/integrations/orders/{orderId}/transactions:
+    get:
+      summary: Order Transactions
+      description: 'This API retrieves the transactional details for a specified order in Gameball, identified by `orderId`. It includes information on rewards, refunds, and equivalent points, giving a detailed view of the financial activities associated with the order.
+
+
+        **Security:** Requires both `apikey` and `secretkey` headers.'
+      operationId: getOrderTransactions
+      tags:
+      - Orders
+      security:
+      - apiKey: []
+        secretKey: []
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the order, which is case-sensitive. It is used to reference and retrieve the order's transactions accurately.
+        example: ORD12345
+      responses:
+        '200':
+          description: Order transactions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    description: List of transactions associated with the order. **Example:** If a customer places an order and redeems points, the transactions array will contain both the cashback reward transaction and the redemption transaction.
+                    items:
+                      type: object
+                      properties:
+                        transactionDate:
+                          type: string
+                          format: date-time
+                          description: The date and time when the transaction occurred.
+                          example: '2024-10-16T08:13:29.29'
+                        gameballTransactionId:
+                          type: integer
+                          description: Unique identifier for the transaction in the Gameball system.
+                          example: 11034754
+                        transactionType:
+                          type: string
+                          description: 'Type of transaction. Possible values include: **AchievementReward** - Captured when a customer reaches a VIP tier, participates in a reward campaign, or makes a referral. **PaymentReward** - Recorded for rewarding a customer with points for every placed order. **Payment** - Recorded when a customer makes a payment for an order. **Refund** - Captured when points redeemed from a refunded order are returned to the customer. **PartialRefund** - Captured when a partial refund is processed, returning a portion of redeemed points to the customer. **Redemption** - Recorded whenever a customer redeems their points for rewards. **Expiry** - Captured when a customer''s points expire, indicating a reduction in their total points. **Cancel** - Recorded when a customer cancels an order, leading to the deduction of rewarded points. **Migration** - Captured during updates or migrations of customer data via a CSV file, reflecting added or deducted points. **ManualAccumulation** - Recorded for points that are manually added to a customer''s balance. **DiscountCode** - Captured when a customer creates a coupon code. **ManualDeduction** - Recorded for points manually removed from a customer''s balance. **ManualReward** - Similar to AchievementReward, but specifically for manually awarding achievements to a customer.'
+                          enum:
+                          - AchievementReward
+                          - PaymentReward
+                          - Payment
+                          - Refund
+                          - PartialRefund
+                          - Redemption
+                          - Expiry
+                          - Cancel
+                          - Migration
+                          - ManualAccumulation
+                          - DiscountCode
+                          - ManualDeduction
+                          - ManualReward
+                          example: PaymentReward
+                        amount:
+                          type: number
+                          description: The monetary value involved in the transaction.
+                          example: 250.75
+                        transactionId:
+                          type: string
+                          description: A unique identifier for a transaction in your system (e.g., order number or invoice number). This ID can be used to reverse, cancel, or refund any reward or redemption transactions in Gameball.
+                          example: ORD12345
+                        equivalentPoints:
+                          type: number
+                          description: The points equivalent to the monetary value of the transaction.
+                          example: 192.0
+                  count:
+                    type: integer
+                    description: Total number of transactions associated with the order.
+                    example: 1
+components:
+  schemas:
+    RewardPreviewCampaign:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          description: Campaign identifier.
+        campaignName:
+          type: string
+          description: Campaign display name, translated for the `lang` header (falls back to your account's default language, then to the campaign's internal name).
+        campaignEndDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Campaign end date — use it for urgency messaging. `null` for open-ended campaigns.
+        eligible:
+          type: boolean
+          description: '`true` when the event would progress or achieve this campaign now; `false` only when the campaign is linked to the event but the sent metadata satisfied none of its conditions.'
+        reason:
+          type: string
+          enum:
+          - Rewarded
+          - ProgressOnly
+          - NoMatchingConditions
+          - NonPointsReward
+          description: Outcome of evaluating this campaign for the previewed event.
+        rewardType:
+          type: string
+          enum:
+          - Points
+          - Coupon
+          description: What this campaign's reward is.
+        rewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: The campaign's configured points reward (its offer), shown regardless of outcome. `null` when the reward is a coupon.
+        couponType:
+          type:
+          - string
+          - 'null'
+          description: Coupon kind when the reward is a coupon (e.g. `Fixed`, `Percentage`, `FreeShipping`). Machine-readable — no real code is generated by a preview.
+        couponValue:
+          type:
+          - number
+          - 'null'
+          description: The coupon's configured value (amount or percentage, per `couponType`).
+        points:
+          type: integer
+          description: Points the customer would actually earn now from this campaign (already multiplied by `timesAchieved`). `0` for progress-only and coupon outcomes.
+        timesAchieved:
+          type: integer
+          description: How many times this single event would achieve the campaign (can exceed 1 for accumulative campaigns; `0` when it only advances progress).
+        progress:
+          oneOf:
+          - $ref: '#/components/schemas/RewardPreviewProgress'
+          - type: 'null'
+    RewardPreviewEventResult:
+      type: object
+      properties:
+        eventName:
+          type: string
+          description: The event name as sent.
+        valid:
+          type: boolean
+          description: '`false` when the event itself could not be evaluated (see `invalidReason`). Other events in the same request still return results.'
+        invalidReason:
+          type:
+          - string
+          - 'null'
+          description: 'Set when `valid` is `false`: `EventNotFound`, `InvalidMetadata: ...`, or `PreviewFailed`.'
+        totalPoints:
+          type: integer
+          description: Points this event would earn now, across all its campaigns.
+        campaigns:
+          type: array
+          description: Per-campaign breakdown. Empty when the event matches no campaign — that is still a success with 0 points. Campaigns the customer can no longer win are omitted.
+          items:
+            $ref: '#/components/schemas/RewardPreviewCampaign'
+    RewardPreviewProgress:
+      type: object
+      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
+      properties:
+        currentPercentage:
+          type: number
+          description: Completion % (0–100) before this event.
+        wouldBePercentage:
+          type: number
+          description: Completion % (0–100, capped) after this event fires.
+        completionRewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
+        completionRewardType:
+          type: string
+          description: '`Points` or `Coupon`.'
+    OrderRewardPreviewResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Echo of the request.
+        customerFound:
+          type: boolean
+          description: '`false` when the customer does not exist or is inactive. The cashback quote is still returned; `eventRewards` is `null` (campaign eligibility can''t be evaluated without an existing customer).'
+        totalPoints:
+          type: integer
+          description: 'Grand total: cashback points + points from event campaigns the order would achieve now.'
+        totalCoupons:
+          type: integer
+          description: Number of coupons the order's event campaigns would grant (one per achievement of a coupon-reward campaign).
+        cashback:
+          type: object
+          description: 'The cashback quote — same shape as the Calculate Order Cashback response. Note: `campaignName` here is the campaign''s internal name and is not affected by the `lang` header.'
+          properties:
+            totalPoints:
+              type: number
+              description: Total cashback points expected from the order.
+            totalScore:
+              type: number
+              description: Total score expected from the order.
+            lineItems:
+              type: array
+              items:
+                type: object
+                properties:
+                  productId:
+                    type: string
+                  quantity:
+                    type: number
+                  totalPoints:
+                    type: number
+                  totalScore:
+                    type: number
+                  totalDecimalPoints:
+                    type: number
+                  rewardWalletFactor:
+                    type: number
+                  campaignId:
+                    type:
+                    - integer
+                    - 'null'
+                  campaignName:
+                    type:
+                    - string
+                    - 'null'
+                    description: Internal campaign name (not localized by `lang`).
+                  campaignEndDate:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  campaignImpactPoints:
+                    type: number
+                  campaignImpactWalletFactor:
+                    type: number
+        eventRewards:
+          oneOf:
+          - $ref: '#/components/schemas/RewardPreviewEventResult'
+          - type: 'null'
+          description: The `place_order` event preview — exactly one entry with the same shape as an `events[]` entry of Preview Event Rewards.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: apikey
+    secretKey:
+      type: apiKey
+      in: header
+      name: secretkey
+    bearerAuth:
+      type: http
+      scheme: bearer

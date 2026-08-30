@@ -1,0 +1,63 @@
+openapi: 3.2.0
+info:
+  title: Gameball API
+  description: Gameball REST API v4.0 - Complete API reference for integrating loyalty, gamification, and customer engagement features
+  version: 4.0.0
+servers:
+- url: https://api.gameball.co
+security:
+- bearerAuth: []
+tags:
+- name: Gameball API
+paths: {}
+webhooks:
+  /plant/webhook:
+    post:
+      description: Information about a new plant added to the store
+      requestBody:
+        description: Plant added to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPlant'
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully
+      tags:
+      - Gameball API
+components:
+  schemas:
+    Plant:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          description: The name of the plant
+          type: string
+        tag:
+          description: Tag to specify the type
+          type: string
+    NewPlant:
+      allOf:
+      - $ref: '#/components/schemas/Plant'
+      - required:
+        - id
+        type: object
+        properties:
+          id:
+            description: Identification number of the plant
+            type: integer
+            format: int64
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: apikey
+    secretKey:
+      type: apiKey
+      in: header
+      name: secretkey
+    bearerAuth:
+      type: http
+      scheme: bearer

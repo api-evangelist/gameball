@@ -1,0 +1,236 @@
+openapi: 3.2.0
+info:
+  title: Gameball Payments API
+  description: Gameball REST API v4.0 - Complete API reference for integrating loyalty, gamification, and customer engagement features
+  version: 4.0.0
+servers:
+- url: https://api.gameball.co
+security:
+- bearerAuth: []
+tags:
+- name: Payments
+paths:
+  /api/v4.0/integrations/payments/cashback:
+    post:
+      summary: Calculate Payment Cashback
+      description: 'This API calculates the cashback points to be rewarded for a specific payment in Gameball, based on provided payment details. It considers configured cashback rules and customer eligibility.
+
+
+        **Security:** Requires `apiKey` header.
+
+
+        **Channel Merging Available:** If your system uses different customer IDs across multiple channels (e.g., online and offline), Gameball''s channel merging feature helps unify customer profiles. By including the customer''s mobile number or email (based on your merging configuration) with each request, Gameball will combine activities into a single profile.
+
+
+        **Important:** This API calculates the expected cashback points but does not perform any actual reward or action for the customer.'
+      operationId: calculatePaymentCashback
+      tags:
+      - Payments
+      security:
+      - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                  description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email or anything that uniquely identifies the customer. If provided, the cashback calculation will consider the customer's tier. Special tier-based configurations, such as enhanced point accrual rates, may affect the points calculation.
+                  example: cust456
+                email:
+                  type: string
+                  description: Customer's email address. **Note:** This is required if your account uses email-based channel merging.
+                  example: john.doe@example.com
+                mobile:
+                  type: string
+                  description: Customer's mobile number. **Note:** This is required if your account uses mobile-based channel merging.
+                  example: '+1234567890'
+                totalPaid:
+                  type: number
+                  description: The actual amount paid by the customer for the payment, accounting for any discounts or coupons applied. Unlike `totalAmount`, which reflects the original cost of the payment, `totalPaid` represents the final amount the customer paid after all adjustments. This value is used for reward calculations in Gameball to determine the points or benefits earned from the payment. **Example:** A customer makes a bill payment for their electricity bill of $120, including taxes and processing fees. If a $20 coupon is applied, the `totalPaid` becomes $100, reflecting the discounted amount the customer paid.
+                  example: 100
+                totalAmount:
+                  type: number
+                  description: The total cost of the payment, including all item prices, processing fees, and taxes. This value does not account for any discounts or coupons applied and is not used for calculations in Gameball; it is solely saved as historical data linked to the payment. Must be a positive value.
+                  example: 120
+                totalDiscount:
+                  type: number
+                  description: Total discount applied to the payment. Must be positive.
+                  minimum: 0
+                  example: 20
+                totalProcessingFees:
+                  type: number
+                  description: Total processing fees associated with the payment.
+                  example: 10
+                totalTax:
+                  type: number
+                  description: Total tax amount for the payment.
+                  example: 10
+                paymentDetails:
+                  type: array
+                  description: An array containing details about each service in the payment. If not provided, the calculation will only consider the total payment values.
+                  items:
+                    type: object
+                    properties:
+                      serviceId:
+                        type: string
+                        description: Unique identifier for the service.
+                        example: s_1234
+                      serviceName:
+                        type: string
+                        description: Service title or name.
+                        example: Vodafone Topup
+                      serviceProvider:
+                        type: string
+                        description: Company or entity that provides the service being paid for.
+                        example: Vodafone
+                      amount:
+                        type: number
+                        description: The original amount of a single service before any tax or discount is applied.
+                        example: 100
+                      tax:
+                        type: number
+                        description: The total amount of taxes applied to the service. Must be positive.
+                        example: 10
+                      discount:
+                        type: number
+                        description: The total discount applied to this service, expressed as a positive value.
+                        example: 20
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Tags associated with the service for categorization or promotional purposes.
+                        example:
+                        - Telecom
+                        - Topup
+                      category:
+                        type: array
+                        items:
+                          type: string
+                        description: Service category. It can include one or multiple categories.
+                        example:
+                        - Telecom Topup
+                      extra:
+                        type: object
+                        additionalProperties: true
+                        description: Key-value pairs containing any extra information about the service. The values must be of type string or number.
+                        example: {}
+                merchant:
+                  type: object
+                  description: Details about the specific merchant involved in the payment, particularly useful for businesses managing multiple merchants or branches under the same Gameball account.
+                  properties:
+                    uniqueId:
+                      type: string
+                      description: Unique identifier for the merchant.
+                      example: MERCH001
+                    name:
+                      type: string
+                      description: Name of the merchant.
+                      example: TechGadgetStore
+                    branch:
+                      type: object
+                      description: Branch information where the payment took place.
+                      properties:
+                        uniqueId:
+                          type: string
+                          description: Unique identifier for the branch.
+                          example: BRANCH001
+                        name:
+                          type: string
+                          description: Name of the branch.
+                          example: Downtown Branch
+      responses:
+        '200':
+          description: Cashback calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalPoints:
+                    type: number
+                    description: Total points expected to be earned from the entire payment.
+                    example: 19000
+                  totalScore:
+                    type: number
+                    description: Total score expected to be earned from the entire payment.
+                    example: 0
+                  paymentDetails:
+                    type: array
+                    description: An array of individual payment services and their cashback calculation details.
+                    items:
+                      type: object
+                      properties:
+                        serviceId:
+                          type: string
+                          description: Unique identifier for the service.
+                          example: s_1234
+                        quantity:
+                          type: number
+                          description: The quantity of the service.
+                          example: 1
+                        totalDecimalPoints:
+                          type: number
+                          description: The total decimal points earned for this service, including any campaign impact.
+                          example: 15000.0
+                        totalPoints:
+                          type: number
+                          description: The total points earned for this service, including any campaign impact. **Example:** If the base points for a service are 50 and a campaign adds 150 points, the totalPoints would be 200.
+                          example: 15000
+                        totalScore:
+                          type: number
+                          description: The total score earned for this service. This value is separate from points and is based on your cashback rewards configuration.
+                          example: 0
+                        rewardWalletFactor:
+                          type: number
+                          description: The multiplier applied to the service amount to calculate the base points earned. This factor represents how many points are earned per unit of currency spent. **Example:** If the account rewards 10 points for every $1 spent, the rewardWalletFactor would be 10.
+                          example: 20.0
+                        campaignId:
+                          type:
+                          - integer
+                          - 'null'
+                          description: The unique identifier for the active transactional campaign that affects the cashback reward for this service. If no campaign is applicable, this field will be null.
+                          example: 2149
+                        campaignName:
+                          type:
+                          - string
+                          - 'null'
+                          description: The name of the active transactional campaign that affects the cashback reward for this service. If no campaign is applicable, this field will be null.
+                          example: 5x Points Campaign
+                        campaignEndDate:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                          description: The end date of the active campaign affecting this service. This is the date when the campaign will no longer influence points or rewards.
+                          example: '2024-11-01T08:39:00'
+                        campaignImpactWalletFactor:
+                          type: number
+                          description: The multiplier applied by the campaign to the base points calculation. **Example:** If the campaign offers 3x points, the campaignImpactWalletFactor would be 3.
+                          example: 5.0
+                        campaignImpactPoints:
+                          type: number
+                          description: The total number of additional points given for this service due to the campaign's impact. **Example:** If the base points for a service are 100 and the campaign offers 5x points, the campaignImpactPoints would be 400.
+                          example: 12000.0
+        '400':
+          description: Invalid request payload
+        '401':
+          description: Authentication failed
+        '500':
+          description: Internal server error
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: apikey
+    secretKey:
+      type: apiKey
+      in: header
+      name: secretkey
+    bearerAuth:
+      type: http
+      scheme: bearer

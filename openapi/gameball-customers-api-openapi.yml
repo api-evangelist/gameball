@@ -1,0 +1,117 @@
+openapi: 3.2.0
+info:
+  title: Gameball Customers API
+  description: Gameball REST API v4.0 - Complete API reference for integrating loyalty, gamification, and customer engagement features
+  version: 4.0.0
+servers:
+- url: https://api.gameball.co
+security:
+- bearerAuth: []
+tags:
+- name: Customers
+paths:
+  /api/v4.0/integrations/customers/{customerId}/activate:
+    put:
+      summary: Update Customer Activation
+      description: 'Set a customer''s loyalty program participation state (active/inactive). This mirrors the include/exclude toggle in the Gameball dashboard.
+
+
+        The endpoint is idempotent: opting out an already opted-out customer (or opting in an already opted-in customer) produces no side effects. `stateChanged` indicates whether the state actually changed.
+
+
+        When a customer is opted out (`isActive: false`): no points are earned from events or purchases, no rewards or coupons are generated, and the customer is excluded from all campaign eligibility. Prior activity is not undone.
+
+
+        **Security:** Requires `apiKey` header. `secretKey` is required on v4.1; on v4.0 required when High Security Mode is enabled.
+
+
+        **Requires an existing customer.** Unknown customers return `404 Not Found`.'
+      operationId: updateCustomerActivation
+      tags:
+      - Customers
+      security:
+      - apiKey: []
+        secretKey: []
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 100
+        description: The customer's unique external identifier in your system.
+        example: cust-12345
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - isActive
+              properties:
+                isActive:
+                  type: boolean
+                  description: Set to `true` to opt the customer in (Include); set to `false` to opt the customer out (Exclude).
+                  example: false
+            examples:
+              optOut:
+                summary: Opt customer out
+                value:
+                  isActive: false
+              optIn:
+                summary: Opt customer in
+                value:
+                  isActive: true
+      responses:
+        '200':
+          description: Customer activation state updated (or already in the requested state)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customerId:
+                    type: string
+                    description: Echo of the customer ID from the request.
+                    example: cust-12345
+                  isActive:
+                    type: boolean
+                    description: The customer's activation state after this request.
+                    example: false
+                  stateChanged:
+                    type: boolean
+                    description: '`true` if the state was different before this request and changed as a result; `false` if the customer was already in the target state (idempotent no-op).'
+                    example: true
+              examples:
+                changed:
+                  summary: State changed
+                  value:
+                    customerId: cust-12345
+                    isActive: false
+                    stateChanged: true
+                idempotent:
+                  summary: Already in target state
+                  value:
+                    customerId: cust-12345
+                    isActive: false
+                    stateChanged: false
+        '400':
+          description: Missing or invalid request payload (e.g. missing `isActive`), or a concurrent request for this customer is in progress.
+        '401':
+          description: Missing, invalid, or expired API key; or invalid secret key (when required).
+        '404':
+          description: Customer does not exist in your Gameball account, or customer ID is malformed.
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: apikey
+    secretKey:
+      type: apiKey
+      in: header
+      name: secretkey
+    bearerAuth:
+      type: http
+      scheme: bearer

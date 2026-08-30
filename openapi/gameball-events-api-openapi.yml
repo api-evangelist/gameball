@@ -1,0 +1,253 @@
+openapi: 3.2.0
+info:
+  title: Gameball Events API
+  description: Gameball REST API v4.0 - Complete API reference for integrating loyalty, gamification, and customer engagement features
+  version: 4.0.0
+servers:
+- url: https://api.gameball.co
+security:
+- bearerAuth: []
+tags:
+- name: Events
+paths:
+  /api/v4.0/integrations/events/reward-preview:
+    post:
+      summary: Preview Event Rewards
+      description: 'Returns the points and coupon rewards a customer would earn if the given event(s) fired now. Intended for custom events (the same events you send to Send Events). For orders, use Preview Order Rewards instead.
+
+
+        This is a read-only quote — no points are awarded, no coupons are generated, nothing appears in the customer activity history, and campaign budgets or frequency limits are not consumed.
+
+
+        Unlike the live events endpoint, the preview never creates the customer — unknown or inactive customers return an error.
+
+
+        **Security:** Requires `apiKey` header. `secretKey` is required on v4.1; on v4.0 required when High Security Mode is enabled.
+
+
+        **Localization:** Send the optional `lang` header to localize `campaigns[].campaignName`.'
+      operationId: previewEventRewards
+      tags:
+      - Events
+      security:
+      - apiKey: []
+      parameters:
+      - name: lang
+        in: header
+        description: Language code for localized campaign names in `campaigns[]` (e.g., `en`, `ar`, `fr`). If omitted or not configured in your account, the response falls back to your account's default language.
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              - events
+              properties:
+                customerId:
+                  type: string
+                  maxLength: 100
+                  description: The customer's unique ID in your system. Must be an existing, active customer.
+                  example: '1214'
+                email:
+                  type: string
+                  description: Used only to help locate the customer (channel merge).
+                mobile:
+                  type: string
+                  description: Used only to help locate the customer (channel merge).
+                events:
+                  type: object
+                  description: 'One entry per event to preview: the key is the event name, the value is that event''s metadata object (or `{}` / `null` if none).'
+                  additionalProperties:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: true
+                  example:
+                    add_review:
+                      rating: 5
+            examples:
+              sample:
+                summary: Sample request
+                value:
+                  customerId: '1214'
+                  events:
+                    add_review:
+                      rating: 5
+      responses:
+        '200':
+          description: Event reward preview calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRewardPreviewResponse'
+              examples:
+                sample:
+                  value:
+                    customerId: '1214'
+                    totalPoints: 150
+                    events:
+                    - eventName: add_review
+                      valid: true
+                      invalidReason: null
+                      totalPoints: 150
+                      campaigns:
+                      - campaignId: 2655
+                        campaignName: Review & Earn
+                        campaignEndDate: '2026-08-31T23:59:59Z'
+                        eligible: true
+                        reason: Rewarded
+                        rewardType: Points
+                        rewardPoints: 150
+                        couponType: null
+                        couponValue: null
+                        points: 150
+                        timesAchieved: 1
+                        progress: null
+                      - campaignId: 2656
+                        campaignName: Review Coupon
+                        campaignEndDate: null
+                        eligible: true
+                        reason: NonPointsReward
+                        rewardType: Coupon
+                        rewardPoints: null
+                        couponType: Percentage
+                        couponValue: 10
+                        points: 0
+                        timesAchieved: 1
+                        progress: null
+        '400':
+          description: Missing or invalid payload, missing `customerId` or `events`, or a key/value exceeding the maximum string length.
+        '401':
+          description: Missing or invalid API key or secret key.
+        '404':
+          description: The customer does not exist. Inactive or excluded customers also fail.
+components:
+  schemas:
+    RewardPreviewCampaign:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          description: Campaign identifier.
+        campaignName:
+          type: string
+          description: Campaign display name, translated for the `lang` header (falls back to your account's default language, then to the campaign's internal name).
+        campaignEndDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Campaign end date — use it for urgency messaging. `null` for open-ended campaigns.
+        eligible:
+          type: boolean
+          description: '`true` when the event would progress or achieve this campaign now; `false` only when the campaign is linked to the event but the sent metadata satisfied none of its conditions.'
+        reason:
+          type: string
+          enum:
+          - Rewarded
+          - ProgressOnly
+          - NoMatchingConditions
+          - NonPointsReward
+          description: Outcome of evaluating this campaign for the previewed event.
+        rewardType:
+          type: string
+          enum:
+          - Points
+          - Coupon
+          description: What this campaign's reward is.
+        rewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: The campaign's configured points reward (its offer), shown regardless of outcome. `null` when the reward is a coupon.
+        couponType:
+          type:
+          - string
+          - 'null'
+          description: Coupon kind when the reward is a coupon (e.g. `Fixed`, `Percentage`, `FreeShipping`). Machine-readable — no real code is generated by a preview.
+        couponValue:
+          type:
+          - number
+          - 'null'
+          description: The coupon's configured value (amount or percentage, per `couponType`).
+        points:
+          type: integer
+          description: Points the customer would actually earn now from this campaign (already multiplied by `timesAchieved`). `0` for progress-only and coupon outcomes.
+        timesAchieved:
+          type: integer
+          description: How many times this single event would achieve the campaign (can exceed 1 for accumulative campaigns; `0` when it only advances progress).
+        progress:
+          oneOf:
+          - $ref: '#/components/schemas/RewardPreviewProgress'
+          - type: 'null'
+    RewardPreviewEventResult:
+      type: object
+      properties:
+        eventName:
+          type: string
+          description: The event name as sent.
+        valid:
+          type: boolean
+          description: '`false` when the event itself could not be evaluated (see `invalidReason`). Other events in the same request still return results.'
+        invalidReason:
+          type:
+          - string
+          - 'null'
+          description: 'Set when `valid` is `false`: `EventNotFound`, `InvalidMetadata: ...`, or `PreviewFailed`.'
+        totalPoints:
+          type: integer
+          description: Points this event would earn now, across all its campaigns.
+        campaigns:
+          type: array
+          description: Per-campaign breakdown. Empty when the event matches no campaign — that is still a success with 0 points. Campaigns the customer can no longer win are omitted.
+          items:
+            $ref: '#/components/schemas/RewardPreviewCampaign'
+    RewardPreviewProgress:
+      type: object
+      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
+      properties:
+        currentPercentage:
+          type: number
+          description: Completion % (0–100) before this event.
+        wouldBePercentage:
+          type: number
+          description: Completion % (0–100, capped) after this event fires.
+        completionRewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
+        completionRewardType:
+          type: string
+          description: '`Points` or `Coupon`.'
+    EventRewardPreviewResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Echo of the request.
+        totalPoints:
+          type: integer
+          description: Sum of points across all previewed events.
+        events:
+          type: array
+          description: One independent result per event sent, in request order.
+          items:
+            $ref: '#/components/schemas/RewardPreviewEventResult'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: apikey
+    secretKey:
+      type: apiKey
+      in: header
+      name: secretkey
+    bearerAuth:
+      type: http
+      scheme: bearer
