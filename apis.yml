@@ -401,6 +401,8 @@ common:
   url: https://docs.gameball.co/changelog/updates
 - type: HelpCenter
   url: https://help.gameball.co
+- type: Contact
+  url: mailto:support@gameball.co
 x-enrichment:
   date: '2026-08-13'
   status: enriched
