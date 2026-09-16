@@ -1,21 +1,16 @@
 aid: gameball
 name: Gameball
-description: >-
-  Gameball is a customer loyalty and gamification platform that helps consumer
-  brands turn one-time buyers into repeat customers through points, VIP tiers,
-  referrals, cashback, coupons, reward campaigns and gamified experiences (spin
-  the wheel, scratch & win, missions, stamps) plus email/SMS/push communication
-  and automation campaigns. It exposes a RESTful API (base
-  https://api.gameball.co/api/{version}) secured with APIKey and SecretKey
-  headers — v4.1 "Secure Integration Mode" is the documented current release,
-  though the only OpenAPI Gameball publishes is v4.0. Alongside it are server
-  SDKs for Node.js, Python, PHP, Ruby and .NET, actively-maintained mobile
-  client SDKs for iOS, Android, Flutter and React Native, an embeddable web
-  widget, signed webhooks, asynchronous batch ingestion, a test/live dual-key
-  sandbox, an official OAuth-gated remote MCP server at https://mcp.gameball.co
-  exposing 54 dashboard tools, a published A2A agent card and a
-  provider-authored Agent Skill. Gameball is trusted by 3,000+ brands across
-  70+ countries and is a 500 Global portfolio company.
+description: Gameball is a customer loyalty and gamification platform that helps consumer brands turn
+  one-time buyers into repeat customers through points, VIP tiers, referrals, cashback, coupons, reward
+  campaigns and gamified experiences (spin the wheel, scratch & win, missions, stamps) plus email/SMS/push
+  communication and automation campaigns. It exposes a RESTful API (base https://api.gameball.co/api/{version})
+  secured with APIKey and SecretKey headers — v4.1 "Secure Integration Mode" is the documented current
+  release, though the only OpenAPI Gameball publishes is v4.0. Alongside it are server SDKs for Node.js,
+  Python, PHP, Ruby and .NET, actively-maintained mobile client SDKs for iOS, Android, Flutter and React
+  Native, an embeddable web widget, signed webhooks, asynchronous batch ingestion, a test/live dual-key
+  sandbox, an official OAuth-gated remote MCP server at https://mcp.gameball.co exposing 54 dashboard
+  tools, a published A2A agent card and a provider-authored Agent Skill. Gameball is trusted by 3,000+
+  brands across 70+ countries and is a 500 Global portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/gameball/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -50,7 +45,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-13'
+modified: '2026-09-16'
 image: https://cdn.prod.website-files.com/6908b0d43805904c24a1139a/6909d1a17d9fb50ab471f71f_logo.svg
 tags:
 - Company
@@ -74,8 +69,7 @@ tags_raw:
 - E-commerce
 apis:
 - name: Gameball MCP Server
-  description: >-
-    Official remote Model Context Protocol server exposing 54 tools over the Gameball merchant/dashboard
+  description: Official remote Model Context Protocol server exposing 54 tools over the Gameball merchant/dashboard
     surface — customer lookup and points adjustment, tag management, earning configuration and custom
     earning rules, redemption options, reward-campaign authoring (event, date, calendar, game, mission),
     tier and program state, widget settings and localization, and analytics. OAuth 2.0 with PKCE and dynamic
@@ -176,7 +170,7 @@ apis:
   - type: Sandbox
     url: sandbox/gameball-sandbox.yml
 - aid: gameball:gameball-gameball-api-api
-  name: Gameball Gameball API
+  name: Gameball API
   description: The Gameball API API from Gameball — 0 operation(s) for gameball api.
   humanURL: https://docs.gameball.co/api-reference/introduction
   baseURL: https://api.gameball.co/api/v4.0
