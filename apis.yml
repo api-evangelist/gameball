@@ -366,7 +366,7 @@ common:
 - type: DomainSecurity
   url: security/gameball-domain-security.yml
 - type: OpenAPI
-  url: openapi/gameball-openapi.json
+  url: openapi/_original/gameball-openapi.json
 - type: Overlay
   url: overlays/gameball-openapi-overlay.yaml
 - type: AgentCard
