@@ -128,6 +128,28 @@ paths:
           description: The customer does not exist. Inactive or excluded customers also fail.
 components:
   schemas:
+    RewardPreviewEventResult:
+      type: object
+      properties:
+        eventName:
+          type: string
+          description: The event name as sent.
+        valid:
+          type: boolean
+          description: '`false` when the event itself could not be evaluated (see `invalidReason`). Other events in the same request still return results.'
+        invalidReason:
+          type:
+          - string
+          - 'null'
+          description: 'Set when `valid` is `false`: `EventNotFound`, `InvalidMetadata: ...`, or `PreviewFailed`.'
+        totalPoints:
+          type: integer
+          description: Points this event would earn now, across all its campaigns.
+        campaigns:
+          type: array
+          description: Per-campaign breakdown. Empty when the event matches no campaign — that is still a success with 0 points. Campaigns the customer can no longer win are omitted.
+          items:
+            $ref: '#/components/schemas/RewardPreviewCampaign'
     RewardPreviewCampaign:
       type: object
       properties:
@@ -185,28 +207,20 @@ components:
           oneOf:
           - $ref: '#/components/schemas/RewardPreviewProgress'
           - type: 'null'
-    RewardPreviewEventResult:
+    EventRewardPreviewResponse:
       type: object
       properties:
-        eventName:
+        customerId:
           type: string
-          description: The event name as sent.
-        valid:
-          type: boolean
-          description: '`false` when the event itself could not be evaluated (see `invalidReason`). Other events in the same request still return results.'
-        invalidReason:
-          type:
-          - string
-          - 'null'
-          description: 'Set when `valid` is `false`: `EventNotFound`, `InvalidMetadata: ...`, or `PreviewFailed`.'
+          description: Echo of the request.
         totalPoints:
           type: integer
-          description: Points this event would earn now, across all its campaigns.
-        campaigns:
+          description: Sum of points across all previewed events.
+        events:
           type: array
-          description: Per-campaign breakdown. Empty when the event matches no campaign — that is still a success with 0 points. Campaigns the customer can no longer win are omitted.
+          description: One independent result per event sent, in request order.
           items:
-            $ref: '#/components/schemas/RewardPreviewCampaign'
+            $ref: '#/components/schemas/RewardPreviewEventResult'
     RewardPreviewProgress:
       type: object
       description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
@@ -225,20 +239,6 @@ components:
         completionRewardType:
           type: string
           description: '`Points` or `Coupon`.'
-    EventRewardPreviewResponse:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: Echo of the request.
-        totalPoints:
-          type: integer
-          description: Sum of points across all previewed events.
-        events:
-          type: array
-          description: One independent result per event sent, in request order.
-          items:
-            $ref: '#/components/schemas/RewardPreviewEventResult'
   securitySchemes:
     apiKey:
       type: apiKey

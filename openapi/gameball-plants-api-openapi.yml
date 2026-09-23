@@ -31,6 +31,10 @@ paths:
                   $ref: '#/components/schemas/Plant'
       tags:
       - Plants
+      summary: Get plants
+      x-summary-source: derived
+      operationId: getPlants
+      x-operation-id-source: derived
     post:
       description: Creates a new plant in the store
       requestBody:
@@ -49,6 +53,10 @@ paths:
                 $ref: '#/components/schemas/Plant'
       tags:
       - Plants
+      summary: Create plants
+      x-summary-source: derived
+      operationId: postPlants
+      x-operation-id-source: derived
   /plants/{id}:
     delete:
       description: Deletes a single plant based on the ID supplied
@@ -63,19 +71,12 @@ paths:
       responses: {}
       tags:
       - Plants
+      summary: Delete plants by id
+      x-summary-source: derived
+      operationId: deletePlantsById
+      x-operation-id-source: derived
 components:
   schemas:
-    Plant:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          description: The name of the plant
-          type: string
-        tag:
-          description: Tag to specify the type
-          type: string
     NewPlant:
       allOf:
       - $ref: '#/components/schemas/Plant'
@@ -87,6 +88,17 @@ components:
             description: Identification number of the plant
             type: integer
             format: int64
+    Plant:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          description: The name of the plant
+          type: string
+        tag:
+          description: Tag to specify the type
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey
