@@ -19,17 +19,20 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - gameballers/gameball-mcp-codex
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -57,6 +60,8 @@ tags:
 - Referrals
 - Marketing
 - E-Commerce
+- A2A
+- Loyalty & Incentives
 tags_raw:
 - Company
 - Loyalty
@@ -67,6 +72,8 @@ tags_raw:
 - Referrals
 - Marketing
 - E-commerce
+- A2A
+- Loyalty & Incentives
 apis:
 - name: Gameball MCP Server
   description: Official remote Model Context Protocol server exposing 54 tools over the Gameball merchant/dashboard
@@ -402,3 +409,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 19
   pass: local-v1
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.gameball.co/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404
