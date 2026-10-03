@@ -29,17 +29,6 @@ webhooks:
       x-summary-source: derived
 components:
   schemas:
-    NewPlant:
-      allOf:
-      - $ref: '#/components/schemas/Plant'
-      - required:
-        - id
-        type: object
-        properties:
-          id:
-            description: Identification number of the plant
-            type: integer
-            format: int64
     Plant:
       required:
       - name
@@ -51,6 +40,17 @@ components:
         tag:
           description: Tag to specify the type
           type: string
+    NewPlant:
+      allOf:
+      - $ref: '#/components/schemas/Plant'
+      - required:
+        - id
+        type: object
+        properties:
+          id:
+            description: Identification number of the plant
+            type: integer
+            format: int64
   securitySchemes:
     apiKey:
       type: apiKey
