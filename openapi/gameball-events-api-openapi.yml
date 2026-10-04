@@ -128,38 +128,6 @@ paths:
           description: The customer does not exist. Inactive or excluded customers also fail.
 components:
   schemas:
-    RewardPreviewProgress:
-      type: object
-      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
-      properties:
-        currentPercentage:
-          type: number
-          description: Completion % (0–100) before this event.
-        wouldBePercentage:
-          type: number
-          description: Completion % (0–100, capped) after this event fires.
-        completionRewardPoints:
-          type:
-          - integer
-          - 'null'
-          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
-        completionRewardType:
-          type: string
-          description: '`Points` or `Coupon`.'
-    EventRewardPreviewResponse:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: Echo of the request.
-        totalPoints:
-          type: integer
-          description: Sum of points across all previewed events.
-        events:
-          type: array
-          description: One independent result per event sent, in request order.
-          items:
-            $ref: '#/components/schemas/RewardPreviewEventResult'
     RewardPreviewCampaign:
       type: object
       properties:
@@ -217,6 +185,38 @@ components:
           oneOf:
           - $ref: '#/components/schemas/RewardPreviewProgress'
           - type: 'null'
+    RewardPreviewProgress:
+      type: object
+      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
+      properties:
+        currentPercentage:
+          type: number
+          description: Completion % (0–100) before this event.
+        wouldBePercentage:
+          type: number
+          description: Completion % (0–100, capped) after this event fires.
+        completionRewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
+        completionRewardType:
+          type: string
+          description: '`Points` or `Coupon`.'
+    EventRewardPreviewResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Echo of the request.
+        totalPoints:
+          type: integer
+          description: Sum of points across all previewed events.
+        events:
+          type: array
+          description: One independent result per event sent, in request order.
+          items:
+            $ref: '#/components/schemas/RewardPreviewEventResult'
     RewardPreviewEventResult:
       type: object
       properties:

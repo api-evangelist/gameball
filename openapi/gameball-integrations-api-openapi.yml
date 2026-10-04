@@ -4254,1128 +4254,6 @@ paths:
       - Integrations
 components:
   schemas:
-    CustomerCampaignsProgressResponse:
-      type: array
-      items:
-        type: object
-        properties:
-          rewardsCampaignName:
-            type: string
-            description: The name of the rewards campaign.
-          rewardsCampaignId:
-            type: number
-            description: The unique ID of the rewards campaign.
-          isUnlocked:
-            type: boolean
-            description: Indicates if the customer has unlocked the campaign.
-          highScoreAmount:
-            type:
-            - number
-            - 'null'
-            description: The highest score achieved by the customer. This value is applicable only in the context of a high score rewards campaign.
-          currentStreak:
-            type:
-            - number
-            - 'null'
-            description: The current number of consecutive days the customer has visited the website. This value is applicable only in the context of a streak (daily visit) rewards campaign.
-          highestStreak:
-            type:
-            - number
-            - 'null'
-            description: The maximum number of consecutive days the customer has visited the website. This value is also applicable only in the context of a streak (daily visit) rewards campaign.
-          completionPercentage:
-            type: number
-            description: The percentage of the campaign the customer has completed. For example, in a second-order campaign where the customer must make 2 orders, if they have only placed 1 order, the completion percentage will be 50%.
-          achievedCount:
-            type: number
-            description: The number of times the customer has achieved the campaign.
-          canAchieve:
-            type: boolean
-            description: A flag that determines whether the customer is currently eligible to participate in and achieve this reward campaign. It provides a quick indication of the customer's ability to meet the campaign's conditions based on their current status.
-          rewardCampaignConfiguration:
-            type: object
-            description: Comprehensive description of the reward campaign configuration.
-            properties:
-              id:
-                type: number
-                description: Unique identifier for the reward campaign.
-              name:
-                type: string
-                description: Name of the reward campaign.
-              description:
-                type:
-                - string
-                - 'null'
-                description: A brief description of the reward campaign.
-              isRepeatable:
-                type: boolean
-                description: 'Indicates whether the campaign can be earned multiple times. Example: If set to true, a customer can earn the campaign reward each time they meet the criteria, and if set to false, the campaign can only be earned once per customer.'
-              maxAchievement:
-                type: number
-                description: 'Specifies the maximum number of times the campaign can be earned if the value of isRepeatable is true. If the value is -1, it means the campaign can be earned indefinitely. Example: A value of 3 means the customer can earn the campaign reward up to three times before it is no longer available.'
-              type:
-                type: string
-                description: 'The type of the campaign. Possible values: SignUp (Reward is given when a user signs up), SocialMedia (Reward is linked to social media activity), ScheduledChallenge (A time-based challenge that gives rewards), Spin The Wheel (Rewards are given based on a spin-the-wheel game), EventBased (Reward is given based on specific customer events), HighScore (Reward is given based on achieving high scores in a campaign), Birthday (Reward is given for birthday-related activity).'
-              visibility:
-                type: string
-                description: 'The visibility status of the campaign. Possible values: AlwaysVisible (The campaign is always visible on the widget), NotVisible (The campaign is not visible to the customer on the widget), VisibleIfEarned (The campaign becomes visible once the customer earns it on the widget).'
-              icon:
-                type:
-                - string
-                - 'null'
-                description: The URL of the campaign's icon image. This icon visually represents the campaign and can be used in marketing materials or on the platform.
-              redirectionButtonText:
-                type:
-                - string
-                - 'null'
-                description: 'The text displayed on the redirection button within the reward campaign page on the widget. Example: "Claim Your Reward" would prompt customers to take action.'
-              redirectionButtonLink:
-                type:
-                - string
-                - 'null'
-                description: 'The URL that the redirection button points to. When customers click the button, they will be redirected to this link. It should lead to a relevant page that provides more information or facilitates the reward redemption process. Example: "https://yourwebsite.com/rewards" directs customers to a page where they can view their rewards.'
-              widgetDetailsParameter:
-                type:
-                - string
-                - 'null'
-                description: 'This value is used with the openDetails parameter to open the widget for a specific campaign. The value is generated based on the campaign type and campaign ID. You could always use this parameter to trigger the widget on a specific page that you want. This parameter is only required if you are drawing your own UI but still want to display the UI of specific campaigns through the widget. In mobile apps, you can programmatically control the Gameball widget using our SDKs by passing the openDetails parameter with the appropriate value to navigate to different sections. Examples: details_reward_campaign_{reward_campaign_id} (Opens a standard reward campaign), details_wheel_{reward_campaign_id} (Opens a specific wheel campaign), details_scratch_{reward_campaign_id} (Opens a scratch card campaign), details_match_{reward_campaign_id} (Opens a match game campaign).'
-              activation:
-                type:
-                - object
-                - 'null'
-                properties:
-                  startDate:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    description: 'The date and time when the campaign becomes active. This value determines when customers can begin to earn or win rewards associated with the campaign. Example: "2024-11-01T00:00:00" indicates that the campaign starts on November 1, 2024.'
-                  endDate:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    description: 'The date and time when the campaign ends. After this date, customers will no longer be able to earn this campaign. Example: "2024-11-30T23:59:59" indicates that the campaign ends on November 30, 2024, at 11:59 PM.'
-              rewards:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    rankReward:
-                      type: number
-                      description: The score rewarded for achieving this reward campaign.
-                    walletReward:
-                      type: number
-                      description: 'The number of points the customer will earn upon achieving this reward campaign. Example: If you have set up a "First Order" campaign where a customer earns 200 points as a reward for placing their first order, the walletReward value would be 200.'
-                    walletRewardFactor:
-                      type:
-                      - number
-                      - 'null'
-                      description: 'The multiplier applied to the points a customer earns based on the amount they spend during this campaign. This factor is used in transactional campaigns, such as points multipliers. Example: In a "Double Points" campaign, the walletRewardFactor would be set to 2, meaning the customer will earn twice the normal amount of points for their purchases during the campaign.'
-                    couponReward:
-                      type:
-                      - object
-                      - 'null'
-                      properties:
-                        couponType:
-                          type:
-                          - string
-                          - 'null'
-                          description: 'The type of coupon applied. Possible values include: free_shipping, percentage_discount, fixed_discount, fixed_rate_discount, free_product, custom.'
-                        discountValue:
-                          type:
-                          - number
-                          - 'null'
-                          description: The value of the discount provided by the coupon in case the coupon type is fixed_discount, percentage_discount or fixed_rate_discount.
-                        product:
-                          type:
-                          - object
-                          - 'null'
-                          properties:
-                            productId:
-                              type:
-                              - string
-                              - 'null'
-                            productName:
-                              type:
-                              - string
-                              - 'null'
-                            variantId:
-                              type:
-                              - string
-                              - 'null'
-                            variantName:
-                              type:
-                              - string
-                              - 'null'
-                            productDisplayName:
-                              type:
-                              - string
-                              - 'null'
-                        collections:
-                          type:
-                          - array
-                          - 'null'
-                          description: A list of collection IDs that the coupon can be applied to.
-                          items:
-                            type: object
-                            properties:
-                              collectionId:
-                                type:
-                                - string
-                                - 'null'
-                                description: The unique identifier for the collection.
-                              collectionName:
-                                type:
-                                - string
-                                - 'null'
-                                description: The name for the collection.
-                        group:
-                          type:
-                          - object
-                          - 'null'
-                          properties:
-                            handle:
-                              type:
-                              - string
-                              - 'null'
-                              description: A unique identifier used to reference the coupon group in the system.
-                            title:
-                              type:
-                              - string
-                              - 'null'
-                              description: The title of the coupon group.
-                            url:
-                              type:
-                              - string
-                              - 'null'
-                              description: The URL for the coupon group.
-                            iconPath:
-                              type:
-                              - string
-                              - 'null'
-                              description: The path to the icon of the coupon group.
-                            description:
-                              type:
-                              - string
-                              - 'null'
-                              description: A description of the coupon group.
-                            maxPerCustomer:
-                              type:
-                              - number
-                              - 'null'
-                              description: 'The maximum number of times a customer can use the coupon. Example: 5 indicates that each customer can redeem this coupon up to 5 times.'
-                            startDate:
-                              type:
-                              - string
-                              - 'null'
-                              format: date-time
-                              description: The date when the coupons within this coupon group will become active and valid for redemption.
-                            expiryDate:
-                              type:
-                              - string
-                              - 'null'
-                              format: date-time
-                              description: The date when the coupons within this coupon group will expire and no longer be valid for redemption.
-                            isAvailable:
-                              type:
-                              - boolean
-                              - 'null'
-                              description: Indicates whether the coupon group is currently available.
-                            isActive:
-                              type:
-                              - boolean
-                              - 'null'
-                              description: Indicates whether the coupon group is currently active.
-                        options:
-                          type:
-                          - object
-                          - 'null'
-                          properties:
-                            name:
-                              type:
-                              - string
-                              - 'null'
-                              description: The name of the reward rule configured on the dashboard based on required language.
-                            expiryAfter:
-                              type:
-                              - number
-                              - 'null'
-                              description: 'The number of days after creation that the coupon will expire. Example: If a coupon expires after 14 days, the customer must use it within that period to receive the discount.'
-                            usageLimit:
-                              type:
-                              - number
-                              - 'null'
-                              description: 'The maximum number of times a single coupon can be used. Example: If a coupon has a usage limit of 5, it can be redeemed up to 5 times before it becomes invalid.'
-                            capping:
-                              type:
-                              - number
-                              - 'null'
-                              description: 'The maximum discount value a coupon can provide, regardless of the order amount. Example: If a coupon offers 20% off with a capping of $50, the discount will not exceed $50, even if 20% of the order total is higher.'
-                            minOrderValue:
-                              type:
-                              - number
-                              - 'null'
-                              description: 'The minimum order amount required to apply the coupon. Example: If a coupon has a minimum order value of $100, the customer must spend at least $100 to use the discount.'
-                            codePrefix:
-                              type:
-                              - string
-                              - 'null'
-                              description: 'The prefix that will be added to the beginning of the generated coupon code. Example: If the prefix is "SUMMER", the generated coupon codes might look like "SUMMER12345" or "SUMMERDISCOUNT".'
-                            redeemInstructions:
-                              type:
-                              - string
-                              - 'null'
-                              description: 'The instructions on how the customer can redeem the coupon. Example: "Enter the coupon code at checkout to apply the discount."'
-    CustomerActionStreakProgressResponse:
-      type: object
-      properties:
-        numberOfCompletedSteps:
-          type: number
-          description: The number of steps completed by the customer in the current challenge cycle
-        numberOfTimesEarned:
-          type: number
-          description: The total number of times the customer has successfully completed the challenge
-        canAchieveAgain:
-          type: boolean
-          description: Whether the customer is currently eligible to continue the challenge
-        remainingTries:
-          type: number
-          description: The number of remaining allowed completions within the current time interval
-        challengeEndDate:
-          type: string
-          description: The end date of the challenge in the client's local timezone
-        rewardName:
-          type: string
-          description: The name of the reward as defined in the client's configured language
-        couponName:
-          type: string
-          description: The name or value of the discount coupon assigned
-    CustomerCouponsResponse:
-      type: object
-      properties:
-        coupons:
-          type: array
-          description: List of coupon objects associated with the customer
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the coupon
-              code:
-                type: string
-                description: The coupon code that the customer will use
-              value:
-                type: number
-                description: The monetary value or percentage value of the coupon
-              type:
-                type: string
-                description: Type of the coupon
-                enum:
-                - Free Shipping
-                - Fixed Rate Discount
-                - Percentage
-                - Free Product
-                - Custom
-                - Percentage-based Fees Discount
-                - Percentage-based Cashback
-              target:
-                type: string
-                description: How the coupon is associated with the customer
-                enum:
-                - Online
-                - POS
-                - Permanent
-                - Reward
-                - Automation
-              currency:
-                type: string
-                description: Currency code if the coupon has a fixed monetary value
-              startDate:
-                type: string
-                format: date-time
-                description: The date and time when the coupon becomes valid
-              expiryDate:
-                type: string
-                format: date-time
-                description: The date and time when the coupon will expire
-              isExpired:
-                type: boolean
-                description: Indicates if the coupon has expired
-              isActive:
-                type: boolean
-                description: Status of the coupon, whether it is active or not
-              usageLimit:
-                type: number
-                description: The total number of times the coupon can be used
-              limitPerCustomer:
-                type: number
-                description: The number of times a single customer can use the coupon
-              usedCount:
-                type: number
-                description: Number of times the coupon has been used
-              customerUsedCount:
-                type: number
-                description: Number of times the coupon has been used by this customer
-              isAvailableToUse:
-                type: boolean
-                description: Flag determining whether coupon can be used by customer at given time
-              iconPath:
-                type: string
-                description: Path or URL to the icon image for the coupon
-    CustomerResponse:
-      type: object
-      properties:
-        gameballId:
-          type: number
-          description: The customer's unique ID within the Gameball system
-        customerId:
-          type: string
-          description: Unique identifier for the customer
-        customerAttributes:
-          type: object
-          description: Customer attributes (minimized, excluding PII)
-          properties:
-            gender:
-              type: string
-              description: Customer's gender.
-            country:
-              type: string
-              description: Customer's country.
-            city:
-              type: string
-              description: Customer's city.
-            zip:
-              type: string
-              description: Customer's postal code.
-            custom:
-              type: object
-              additionalProperties: true
-              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
-            tags:
-              type: array
-              items:
-                type: string
-              description: Tags associated with the customer.
-            source:
-              type: string
-              description: Source of the customer registration.
-            utMs:
-              type: array
-              description: List of UTM attributes associated with the customer.
-            utms:
-              type: array
-              description: List of UTM attributes associated with the customer.
-            devices:
-              type: array
-              description: List of devices associated with the customer.
-            paymentMethods:
-              type: array
-              items:
-                type: string
-              description: List of payment methods used by the customer.
-            totalSpent:
-              type: number
-              description: Total amount spent by the customer.
-            lastOrderDate:
-              type: string
-              description: Date of the last order placed by the customer.
-            totalOrders:
-              type: number
-              description: Total number of orders placed by the customer.
-            manualDate:
-              type: string
-              description: Custom date for manual entries.
-        referralCode:
-          type: string
-          description: The referral code of the customer
-        referralLink:
-          type: string
-          description: The referral link generated for the customer
-        isReferred:
-          type: boolean
-          description: Boolean indicating if this customer was referred
-        dynamicReferralLink:
-          type: string
-          description: Dynamic referral link for mobile apps
-    TierConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the tier.
-        minProgress:
-          type: number
-          description: 'The minimum amount of progress a customer needs to reach this tier in the program. This represents the threshold that must be met for a customer to reach this tier. Example: if the minProgress is set to 2000, the customer must accumulate 2000 points, referrals, or completed orders (depending on the tiering method) to reach this tier. Possible Values: Total amount spent, Total points earned, Friends referred, Orders completed, Score. Example: If the progress value is 1500 and the tiering-up method is total points earned, this means the customer has earned a total of 1500 points toward their next tier.'
-        order:
-          type: number
-          description: This represents the numerical order of a tier. Higher numbers indicate higher tiers.
-        icon:
-          type: string
-          description: The URL for the icon associated with the tier. You can utilize this icon URL to display tier badges or indicators in your own custom interface, such as on customer profiles.
-        benefits:
-          type: array
-          description: It contains a list of rewards associated with the tier, each offering specific advantages to the customer. This array includes various types of benefits.
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                description: 'Indicates the type of benefit the customer will receive. The possible values are: Custom Benefits (Offers tailored and custom rewards to offer customization for specific customer preferences or behaviors), Lifetime Reward (A benefit that can be used once at any time during the customer''s lifetime with Gameball, as long as they remain in this tier), Loyalty Points Earning Custom Configuration (Enables customized settings for how customers earn loyalty points based on their spending amount), Entry Reward (A one-time reward granted to customers upon joining this tier).'
-              description:
-                type:
-                - string
-                - 'null'
-                description: Description of the custom benefit.
-              hyperLink:
-                type:
-                - string
-                - 'null'
-                description: Hyperlink associated with the custom benefit.
-              rankReward:
-                type: number
-                description: The score rewarded for the customer as a reward.
-              walletReward:
-                type: number
-                description: The number of points the customer will earn for this reward.
-              walletRewardFactor:
-                type:
-                - number
-                - 'null'
-                description: 'This is a multiplier factor that indicates how the customer on their tier will be rewarded for each unit of currency they spend. This is returned for the benefits of type Loyalty Points Earning Custom Configuration. Example: If a tier has a walletRewardFactor of 2, it means any customer on this tier will earn 2 loyalty points for every $1 they spend. Therefore, if the customer spends $100, they would receive 200 loyalty points as a reward.'
-              couponReward:
-                type:
-                - object
-                - 'null'
-                description: A coupon object that is awarded to the customer.
-                properties:
-                  couponType:
-                    type:
-                    - string
-                    - 'null'
-                    description: 'The type of coupon applied. Possible values include: free_shipping, percentage_discount, fixed_discount, fixed_rate_discount, free_product, custom.'
-                  discountValue:
-                    type:
-                    - number
-                    - 'null'
-                    description: The value of the discount provided by the coupon in case the coupon type is fixed_discount, percentage_discount or fixed_rate_discount.
-                  product:
-                    type:
-                    - object
-                    - 'null'
-                    properties:
-                      productId:
-                        type:
-                        - string
-                        - 'null'
-                        description: The unique identifier for the product.
-                      productName:
-                        type:
-                        - string
-                        - 'null'
-                        description: The name of the product.
-                      variantId:
-                        type:
-                        - string
-                        - 'null'
-                        description: The unique identifier for the product variant.
-                      variantName:
-                        type:
-                        - string
-                        - 'null'
-                        description: The name of the product variant.
-                      productDisplayName:
-                        type:
-                        - string
-                        - 'null'
-                        description: The display name associated with the product that configured on the dashboard based on required language.
-                  collections:
-                    type:
-                    - array
-                    - 'null'
-                    description: A list of collection IDs that the coupon can be applied to.
-                    items:
-                      type: object
-                      properties:
-                        collectionId:
-                          type:
-                          - string
-                          - 'null'
-                          description: The unique identifier for the collection.
-                        collectionName:
-                          type:
-                          - string
-                          - 'null'
-                          description: The name for the collection.
-                  group:
-                    type:
-                    - object
-                    - 'null'
-                    properties:
-                      handle:
-                        type:
-                        - string
-                        - 'null'
-                        description: A unique identifier used to reference the coupon group in the system.
-                      title:
-                        type:
-                        - string
-                        - 'null'
-                        description: The title of the coupon group.
-                      url:
-                        type:
-                        - string
-                        - 'null'
-                        description: The URL for the coupon group.
-                      iconPath:
-                        type:
-                        - string
-                        - 'null'
-                        description: The path to the icon of the coupon group.
-                      description:
-                        type:
-                        - string
-                        - 'null'
-                        description: A description of the coupon group.
-                      maxPerCustomer:
-                        type:
-                        - number
-                        - 'null'
-                        description: 'The maximum number of times a customer can use the coupon. Example: 5 indicates that each customer can redeem this coupon up to 5 times.'
-                      startDate:
-                        type:
-                        - string
-                        - 'null'
-                        format: date-time
-                        description: The date when the coupons within this coupon group will become active and valid for redemption.
-                      expiryDate:
-                        type:
-                        - string
-                        - 'null'
-                        format: date-time
-                        description: The date when the coupons within this coupon group will expire and no longer be valid for redemption.
-                      isAvailable:
-                        type:
-                        - boolean
-                        - 'null'
-                        description: Indicates whether the coupon group is currently available.
-                      isActive:
-                        type:
-                        - boolean
-                        - 'null'
-                        description: Indicates whether the coupon group is currently active.
-                  options:
-                    type:
-                    - object
-                    - 'null'
-                    properties:
-                      name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The name of the reward rule configured on the dashboard based on required language.
-                      expiryAfter:
-                        type:
-                        - number
-                        - 'null'
-                        description: 'The number of days after creation that the coupon will expire. Example: If a coupon expires after 14 days, the customer must use it within that period to receive the discount.'
-                      usageLimit:
-                        type:
-                        - number
-                        - 'null'
-                        description: 'The maximum number of times a single coupon can be used. Example: If a coupon has a usage limit of 5, it can be redeemed up to 5 times before it becomes invalid.'
-                      capping:
-                        type:
-                        - number
-                        - 'null'
-                        description: 'The maximum discount value a coupon can provide, regardless of the order amount. Example: If a coupon offers 20% off with a capping of $50, the discount will not exceed $50, even if 20% of the order total is higher.'
-                      minOrderValue:
-                        type:
-                        - number
-                        - 'null'
-                        description: 'The minimum order amount required to apply the coupon. Example: If a coupon has a minimum order value of $100, the customer must spend at least $100 to use the discount.'
-                      codePrefix:
-                        type:
-                        - string
-                        - 'null'
-                        description: 'The prefix that will be added to the beginning of the generated coupon code. Example: If the prefix is "SUMMER", the generated coupon codes might look like "SUMMER12345" or "SUMMERDISCOUNT".'
-                      redeemInstructions:
-                        type:
-                        - string
-                        - 'null'
-                        description: 'The instructions on how the customer can redeem the coupon. Example: "Enter the coupon code at checkout to apply the discount."'
-    Success:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Coupon:
-      type: object
-      properties:
-        code:
-          type: string
-          description: The generated coupon code that the customer will use.
-        type:
-          type: string
-          enum:
-          - shipping
-          - fixed
-          - percentage
-          - product
-          - percentage-fees
-          - fixed-cashback
-          - percentage-cashback
-          description: Type of the coupon, such as fixed amount, percentage discount, free shipping, cashback or product-specific coupon.
-        value:
-          type: number
-          description: The monetary value or percentage value of the coupon, depending on its type.
-        usageLimit:
-          type: number
-          description: The total number of times the coupon can be used across all customers.
-        limitPerCustomer:
-          type: number
-          description: The number of times a single customer can use the coupon.
-        startDate:
-          type: string
-          format: date-time
-          description: The date and time when the coupon becomes valid and can be used.
-        expiryDate:
-          type: string
-          format: date-time
-          description: The date and time when the coupon will expire and no longer be valid.
-        capping:
-          type: number
-          description: The maximum discount or value cap that the coupon can offer, even if the discount calculation exceeds this value.
-        minReward:
-          type: number
-          description: Specifies the minimum discount value a customer is guaranteed to receive when using a percentage-based discount coupon.
-        minOrderValue:
-          type: number
-          description: The minimum order value required for the coupon to be applied.
-        entitledProductIds:
-          type: array
-          items:
-            type: string
-          description: A list of product IDs that are eligible for the coupon.
-        entitledVariantIds:
-          type: array
-          items:
-            type: string
-          description: A list of product variant IDs that are eligible for the coupon.
-        entitledCollectionIds:
-          type: array
-          items:
-            type: string
-          description: A list of collection IDs that are eligible for the coupon.
-        entitledMerchantIds:
-          type: array
-          items:
-            type: string
-          description: A list of merchant external IDs that are eligible to redeem the coupon.
-        combinesWith:
-          type: object
-          properties:
-            orderDiscounts:
-              type: boolean
-              description: Indicates if the coupon can be combined with order-level discounts.
-            productDiscounts:
-              type: boolean
-              description: Indicates if the coupon can be combined with product-specific discounts.
-            shippingDiscounts:
-              type: boolean
-              description: Indicates if the coupon can be combined with shipping discounts.
-    CustomerReferralsResponse:
-      type: object
-      properties:
-        referredFriends:
-          type: array
-          description: A list of friends referred by the customer.
-          items:
-            type: object
-            properties:
-              customerId:
-                type: string
-                description: Unique identifier for the referred friend.
-              displayName:
-                type: string
-                description: Display name of the referred friend.
-              email:
-                type: string
-                description: Email address of the referred friend.
-              mobileNumber:
-                type: string
-                description: Mobile number of the referred friend.
-              joinDate:
-                type: string
-                description: The date when the referred friend joined.
-              status:
-                type: string
-                enum:
-                - Active
-                - Pending
-                description: 'The current status of the referral: Active (The referral was successfully completed. The referred friend has completed the required action (e.g., placing an order), and the referral is counted for the customer), Pending (The referred friend has used the customer''s referral link but has not yet completed the required action (e.g., signing up or making a purchase) for the referral to be considered complete).'
-        count:
-          type: number
-          description: The total number of friends on the current page.
-        hasMore:
-          type: boolean
-          description: Indicating whether there are additional friends to be fetched beyond the current page.
-    ReferralValidationResponse:
-      type: object
-      properties:
-        isValid:
-          type: boolean
-          description: Indicates whether the provided referral code is valid and eligible for use
-    CustomerNotifications:
-      type: object
-      properties:
-        notifications:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              title:
-                type: string
-              body:
-                type: string
-              isRead:
-                type: boolean
-              createdAt:
-                type: string
-                format: date-time
-        nextCursor:
-          type:
-          - string
-          - 'null'
-    MarkNotificationsReadRequest:
-      type: object
-      required:
-      - notificationIds
-      properties:
-        notificationIds:
-          type: array
-          items:
-            type: string
-    CustomerTierProgressResponse:
-      type: object
-      properties:
-        current:
-          $ref: '#/components/schemas/TierState'
-          description: The customer's current tier.
-        next:
-          $ref: '#/components/schemas/TierState'
-          description: The next tier the customer can reach.
-        progress:
-          type: number
-          description: 'The current progress of the customer toward the next tier, reflecting their activity and engagement within the program. This value is calculated based on the client''s chosen tiering-up method, indicating how close the customer is to advancing to a higher tier. Example: If the progress value is 1500 and the tiering-up method is total points earned, this means the customer has earned a total of 1500 points toward their next tier. Possible Values: Total amount spent, Total points earned, Friends referred, Orders completed, Score.'
-    CustomerTagsUpdateRequest:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: string
-          description: A comma-separated list of tags to apply or remove (e.g., 'gamer, highSpender').
-    CustomerDetailsResponse:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: Unique identifier for the customer
-        gameballId:
-          type: number
-          description: The customer's unique ID within the Gameball system
-        customerAttributes:
-          type: object
-          description: Complete customer attributes including PII
-          properties:
-            displayName:
-              type: string
-              description: Display name for the customer.
-            firstName:
-              type: string
-              description: Customer's first name.
-            lastName:
-              type: string
-              description: Customer's last name.
-            email:
-              type: string
-              description: Customer's email address.
-            gender:
-              type: string
-              description: Customer's gender.
-            mobile:
-              type: string
-              description: Customer's mobile number.
-            dateOfBirth:
-              type: string
-              description: Customer's date of birth.
-            joinDate:
-              type: string
-              description: Date the customer joined.
-            country:
-              type: string
-              description: Customer's country.
-            city:
-              type: string
-              description: Customer's city.
-            zip:
-              type: string
-              description: Customer's postal code.
-            preferredLanguage:
-              type: string
-              description: The customer's preferred language for communication and interactions. This is typically used to personalize notifications, messages, and other system interactions based on the customer's language preference.
-            tags:
-              type: array
-              items:
-                type: string
-              description: A list of tags or labels associated with the customer. These tags are used to categorize customers for personalized marketing campaigns, rewards, and tailored communications.
-            source:
-              type: string
-              description: Source of the customer registration.
-            utms:
-              type: array
-              description: List of UTM attributes associated with the customer.
-            utMs:
-              type: array
-              description: List of UTM attributes associated with the customer.
-            devices:
-              type: array
-              description: List of devices associated with the customer.
-            paymentMethods:
-              type: array
-              items:
-                type: string
-              description: List of payment methods used by the customer. This array may include various forms of payment, such as credit cards, PayPal, or other payment providers. Each payment method is represented as a string.
-            totalSpent:
-              type: number
-              description: Total amount spent by the customer.
-            lastOrderDate:
-              type: string
-              description: Date of the last order placed by the customer.
-            totalOrders:
-              type: number
-              description: Total number of orders placed by the customer.
-            avgOrderAmount:
-              type: number
-              description: Average amount spent per order by this customer.
-            channel:
-              type: string
-              description: Indicates the channel through which the customer was acquired or engaged. This is especially useful for systems that support multiple channels to track customer origin and interactions. Understanding the acquisition or engagement channel helps in tailoring marketing strategies, optimizing communication, and analyzing customer preferences.
-              enum:
-              - mobile
-              - pos
-              - web
-              - callcenter
-            custom:
-              type: object
-              additionalProperties: true
-              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
-            manualDate:
-              type: string
-              description: Custom date for manual entries.
-        referralCode:
-          type: string
-          description: The referral code of the customer
-        referralLink:
-          type: string
-          description: The referral link generated for the customer
-        isReferred:
-          type: boolean
-          description: Boolean indicating if this customer was referred
-        dynamicReferralLink:
-          type: string
-          description: Dynamic referral link for mobile apps
-    CustomerNotificationsCountResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: The total number of notifications available for the customer in Gameball system
-    CustomerActivitiesCountResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: The total number of activities available in Gameball system.
-    CustomerAutomationCampaignsResponse:
-      type: object
-      properties:
-        campaigns:
-          type: array
-          description: A list of campaigns containing automation workflows
-          items:
-            type: object
-            properties:
-              automation:
-                type: array
-                description: A list of automation workflows within a campaign
-                items:
-                  type: object
-                  properties:
-                    order:
-                      type: number
-                      description: The order in which this automation appears
-                    name:
-                      type: string
-                      description: The internal name of the automation workflow
-                    isUnlocked:
-                      type: boolean
-                      description: Whether this automation is unlocked
-                    completed:
-                      type: boolean
-                      description: Whether the automation has been fully completed
-                    steps:
-                      type:
-                      - array
-                      - 'null'
-                      description: List of steps involved in completing the automation.
-                      items:
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            description: The type of step, for example rewarding a badge or adding points.
-                          order:
-                            type: number
-                            description: The order of this step within the automation sequence.
-                          completed:
-                            type: boolean
-                            description: Whether this step has been completed or not.
-                          configuration:
-                            type:
-                            - object
-                            - 'null'
-                            description: Configuration details for the step, such as badge name & icon.
-                            additionalProperties: true
-                    completionPercentage:
-                      type: number
-                      description: Percentage of completion for the automation
-              automationCount:
-                type: number
-                description: Total number of automations available within this campaign
-        count:
-          type: number
-          description: The total number of automation campaigns available
-    CustomerHashResponse:
-      type: object
-      properties:
-        hash:
-          type: string
-          description: A unique, rotating identifier generated for each customer for secure verification
-    UpsertCustomerResponse:
-      type: object
-      properties:
-        gameballId:
-          type: number
-          description: The customer's unique ID within the Gameball system. This ID is used to store the customer in our database and is different from the customerId used in the dashboard.
-    UpsertCustomerRequest:
-      type: object
-      required:
-      - customerId
-      properties:
-        customerId:
-          type: string
-          description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer.
-        email:
-          type: string
-          description: Customer's email address. Required if your account uses email-based channel merging.
-        mobile:
-          type: string
-          description: Customer's mobile number. Required if your account uses mobile-based channel merging.
-        deviceToken:
-          type: string
-          description: Token used to identify the device.
-        osType:
-          type: string
-          description: Operating system type of the device.
-        customerAttributes:
-          type: object
-          description: Additional customer-specific attributes. Includes attributes such as the customer's name, contact details, and purchase history.
-          properties:
-            displayName:
-              type: string
-              description: Display name for the customer.
-            firstName:
-              type: string
-              description: Customer's first name.
-            lastName:
-              type: string
-              description: Customer's last name.
-            email:
-              type: string
-              description: Customer's email address.
-            gender:
-              type: string
-              description: Customer's gender.
-            mobile:
-              type: string
-              description: Customer's mobile number.
-            dateOfBirth:
-              type: string
-              description: Customer's date of birth.
-            joinDate:
-              type: string
-              description: Date the customer joined.
-            country:
-              type: string
-              description: Customer's country.
-            city:
-              type: string
-              description: Customer's city.
-            zip:
-              type: string
-              description: Customer's postal code.
-            preferredLanguage:
-              type: string
-              description: The customer's preferred language for communication and interactions. This is typically used to personalize notifications, messages, and other system interactions based on the customer's language preference.
-            source:
-              type: string
-              description: Source of the customer registration.
-            utms:
-              type: array
-              description: List of UTM attributes associated with the customer.
-            devices:
-              type: array
-              description: List of devices associated with the customer.
-            paymentMethods:
-              type: array
-              description: List of payment methods used by the customer. This array may include various forms of payment, such as credit cards, PayPal, or other payment providers. Each payment method is represented as a string.
-            totalSpent:
-              type: number
-              description: Total amount spent by the customer.
-            lastOrderDate:
-              type: string
-              description: Date of the last order placed by the customer.
-            totalOrders:
-              type: integer
-              description: Total number of orders placed by the customer.
-            avgOrderAmount:
-              type: number
-              description: Average amount spent per order by this customer.
-            channel:
-              type: string
-              description: Indicates the channel through which the customer was acquired or engaged. This is especially useful for systems that support multiple channels to track customer origin and interactions. Understanding the acquisition or engagement channel helps in tailoring marketing strategies, optimizing communication, and analyzing customer preferences.
-              enum:
-              - mobile
-              - pos
-              - web
-              - callcenter
-            custom:
-              type: object
-              additionalProperties: true
-              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
-        referrerCode:
-          type: string
-          description: The referral code of an existing customer who is referring the customer being created. This is required in the create customer request to process the referral.
-        guest:
-          type: boolean
-          description: A flag indicating if the individual interacting with your system is a guest (not signed up). Set this to true for guest users; otherwise, they are treated as registered customers by default.
     RewardCampaignConfiguration:
       type: object
       properties:
@@ -5625,78 +4503,639 @@ components:
                         - string
                         - 'null'
                         description: 'The instructions on how the customer can redeem the coupon. Example: "Enter the coupon code at checkout to apply the discount."'
-    Error:
+    MarkNotificationsReadRequest:
+      type: object
       required:
-      - error
-      - message
-      type: object
+      - notificationIds
       properties:
-        error:
-          type: integer
-          format: int32
-        message:
-          type: string
-    CustomerDailyStreakProgressResponse:
-      type: object
-      properties:
-        currentStreakCount:
-          type: number
-          description: Number of consecutive periods completed in the current active streak
-        highestStreakCount:
-          type: number
-          description: Highest streak count ever reached by this customer for this campaign
-        totalRewardsEarned:
-          type: number
-          description: Total streak rewards earned across all time
-        ongoingReward:
-          type: object
-          description: Details of the currently active reward tier
-          properties:
-            name:
-              type: string
-              description: Reward name as configured in the client language settings
-            type:
-              type: string
-              description: 'Reward type: points or coupon'
-            value:
-              type: string
-              description: Reward value (points amount or coupon description)
-        nextMilestone:
-          type: number
-          nullable: true
-          description: Streak count at which the next reward unlocks, or null if at the last tier
-        lastActivityDate:
-          type: string
-          format: date-time
-          description: Date/time of the last qualifying action in the client's local timezone
-        campaignEndDate:
-          type: string
-          format: date-time
-          nullable: true
-          description: Campaign end date in the client's local timezone, or null if open-ended
-        badges:
+        notificationIds:
           type: array
-          description: Badge milestones ordered by milestoneDay ascending
+          items:
+            type: string
+    CustomerDetailsResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Unique identifier for the customer
+        gameballId:
+          type: number
+          description: The customer's unique ID within the Gameball system
+        customerAttributes:
+          type: object
+          description: Complete customer attributes including PII
+          properties:
+            displayName:
+              type: string
+              description: Display name for the customer.
+            firstName:
+              type: string
+              description: Customer's first name.
+            lastName:
+              type: string
+              description: Customer's last name.
+            email:
+              type: string
+              description: Customer's email address.
+            gender:
+              type: string
+              description: Customer's gender.
+            mobile:
+              type: string
+              description: Customer's mobile number.
+            dateOfBirth:
+              type: string
+              description: Customer's date of birth.
+            joinDate:
+              type: string
+              description: Date the customer joined.
+            country:
+              type: string
+              description: Customer's country.
+            city:
+              type: string
+              description: Customer's city.
+            zip:
+              type: string
+              description: Customer's postal code.
+            preferredLanguage:
+              type: string
+              description: The customer's preferred language for communication and interactions. This is typically used to personalize notifications, messages, and other system interactions based on the customer's language preference.
+            tags:
+              type: array
+              items:
+                type: string
+              description: A list of tags or labels associated with the customer. These tags are used to categorize customers for personalized marketing campaigns, rewards, and tailored communications.
+            source:
+              type: string
+              description: Source of the customer registration.
+            utms:
+              type: array
+              description: List of UTM attributes associated with the customer.
+            utMs:
+              type: array
+              description: List of UTM attributes associated with the customer.
+            devices:
+              type: array
+              description: List of devices associated with the customer.
+            paymentMethods:
+              type: array
+              items:
+                type: string
+              description: List of payment methods used by the customer. This array may include various forms of payment, such as credit cards, PayPal, or other payment providers. Each payment method is represented as a string.
+            totalSpent:
+              type: number
+              description: Total amount spent by the customer.
+            lastOrderDate:
+              type: string
+              description: Date of the last order placed by the customer.
+            totalOrders:
+              type: number
+              description: Total number of orders placed by the customer.
+            avgOrderAmount:
+              type: number
+              description: Average amount spent per order by this customer.
+            channel:
+              type: string
+              description: Indicates the channel through which the customer was acquired or engaged. This is especially useful for systems that support multiple channels to track customer origin and interactions. Understanding the acquisition or engagement channel helps in tailoring marketing strategies, optimizing communication, and analyzing customer preferences.
+              enum:
+              - mobile
+              - pos
+              - web
+              - callcenter
+            custom:
+              type: object
+              additionalProperties: true
+              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
+            manualDate:
+              type: string
+              description: Custom date for manual entries.
+        referralCode:
+          type: string
+          description: The referral code of the customer
+        referralLink:
+          type: string
+          description: The referral link generated for the customer
+        isReferred:
+          type: boolean
+          description: Boolean indicating if this customer was referred
+        dynamicReferralLink:
+          type: string
+          description: Dynamic referral link for mobile apps
+    CustomerResponse:
+      type: object
+      properties:
+        gameballId:
+          type: number
+          description: The customer's unique ID within the Gameball system
+        customerId:
+          type: string
+          description: Unique identifier for the customer
+        customerAttributes:
+          type: object
+          description: Customer attributes (minimized, excluding PII)
+          properties:
+            gender:
+              type: string
+              description: Customer's gender.
+            country:
+              type: string
+              description: Customer's country.
+            city:
+              type: string
+              description: Customer's city.
+            zip:
+              type: string
+              description: Customer's postal code.
+            custom:
+              type: object
+              additionalProperties: true
+              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
+            tags:
+              type: array
+              items:
+                type: string
+              description: Tags associated with the customer.
+            source:
+              type: string
+              description: Source of the customer registration.
+            utMs:
+              type: array
+              description: List of UTM attributes associated with the customer.
+            utms:
+              type: array
+              description: List of UTM attributes associated with the customer.
+            devices:
+              type: array
+              description: List of devices associated with the customer.
+            paymentMethods:
+              type: array
+              items:
+                type: string
+              description: List of payment methods used by the customer.
+            totalSpent:
+              type: number
+              description: Total amount spent by the customer.
+            lastOrderDate:
+              type: string
+              description: Date of the last order placed by the customer.
+            totalOrders:
+              type: number
+              description: Total number of orders placed by the customer.
+            manualDate:
+              type: string
+              description: Custom date for manual entries.
+        referralCode:
+          type: string
+          description: The referral code of the customer
+        referralLink:
+          type: string
+          description: The referral link generated for the customer
+        isReferred:
+          type: boolean
+          description: Boolean indicating if this customer was referred
+        dynamicReferralLink:
+          type: string
+          description: Dynamic referral link for mobile apps
+    CustomerActivitiesCountResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: The total number of activities available in Gameball system.
+    UpsertCustomerResponse:
+      type: object
+      properties:
+        gameballId:
+          type: number
+          description: The customer's unique ID within the Gameball system. This ID is used to store the customer in our database and is different from the customerId used in the dashboard.
+    UpsertCustomerRequest:
+      type: object
+      required:
+      - customerId
+      properties:
+        customerId:
+          type: string
+          description: Unique identifier for the customer that you can reference across the customer's whole lifetime. Could be a database ID, random string, email, or anything that uniquely identifies the customer.
+        email:
+          type: string
+          description: Customer's email address. Required if your account uses email-based channel merging.
+        mobile:
+          type: string
+          description: Customer's mobile number. Required if your account uses mobile-based channel merging.
+        deviceToken:
+          type: string
+          description: Token used to identify the device.
+        osType:
+          type: string
+          description: Operating system type of the device.
+        customerAttributes:
+          type: object
+          description: Additional customer-specific attributes. Includes attributes such as the customer's name, contact details, and purchase history.
+          properties:
+            displayName:
+              type: string
+              description: Display name for the customer.
+            firstName:
+              type: string
+              description: Customer's first name.
+            lastName:
+              type: string
+              description: Customer's last name.
+            email:
+              type: string
+              description: Customer's email address.
+            gender:
+              type: string
+              description: Customer's gender.
+            mobile:
+              type: string
+              description: Customer's mobile number.
+            dateOfBirth:
+              type: string
+              description: Customer's date of birth.
+            joinDate:
+              type: string
+              description: Date the customer joined.
+            country:
+              type: string
+              description: Customer's country.
+            city:
+              type: string
+              description: Customer's city.
+            zip:
+              type: string
+              description: Customer's postal code.
+            preferredLanguage:
+              type: string
+              description: The customer's preferred language for communication and interactions. This is typically used to personalize notifications, messages, and other system interactions based on the customer's language preference.
+            source:
+              type: string
+              description: Source of the customer registration.
+            utms:
+              type: array
+              description: List of UTM attributes associated with the customer.
+            devices:
+              type: array
+              description: List of devices associated with the customer.
+            paymentMethods:
+              type: array
+              description: List of payment methods used by the customer. This array may include various forms of payment, such as credit cards, PayPal, or other payment providers. Each payment method is represented as a string.
+            totalSpent:
+              type: number
+              description: Total amount spent by the customer.
+            lastOrderDate:
+              type: string
+              description: Date of the last order placed by the customer.
+            totalOrders:
+              type: integer
+              description: Total number of orders placed by the customer.
+            avgOrderAmount:
+              type: number
+              description: Average amount spent per order by this customer.
+            channel:
+              type: string
+              description: Indicates the channel through which the customer was acquired or engaged. This is especially useful for systems that support multiple channels to track customer origin and interactions. Understanding the acquisition or engagement channel helps in tailoring marketing strategies, optimizing communication, and analyzing customer preferences.
+              enum:
+              - mobile
+              - pos
+              - web
+              - callcenter
+            custom:
+              type: object
+              additionalProperties: true
+              description: Key-value pairs that allow you to store additional attributes for the customer. This can include any extra information specific to your needs, enabling more personalized interactions and offerings.
+        referrerCode:
+          type: string
+          description: The referral code of an existing customer who is referring the customer being created. This is required in the create customer request to process the referral.
+        guest:
+          type: boolean
+          description: A flag indicating if the individual interacting with your system is a guest (not signed up). Set this to true for guest users; otherwise, they are treated as registered customers by default.
+    ReferralValidationResponse:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          description: Indicates whether the provided referral code is valid and eligible for use
+    TierState:
+      type: object
+      properties:
+        order:
+          type: number
+          description: This represents the numerical order of a tier. Higher numbers indicate higher tiers.
+        name:
+          type: string
+          description: The name of the tier.
+        minProgress:
+          type: number
+          description: 'The minimum amount of progress a customer needs to reach the next tier in the program. This represents the threshold that must be met for a customer to reach this tier. Example: if the minProgress is set to 2000, the customer must accumulate 2000 points, referrals, or completed orders (depending on the tiering method) to advance to the next tier.'
+        icon:
+          type: string
+          description: The URL for the icon associated with the tier. You can utilize this icon URL to display tier badges or indicators in your own custom interface, such as on customer profiles. This offers a visual representation of the customer's tier status.
+    EventRequest:
+      type: object
+      required:
+      - customerId
+      - events
+      properties:
+        customerId:
+          type: string
+          description: Unique identifier for the customer
+        events:
+          type: object
+          description: A mapping of event names to metadata objects
+          additionalProperties:
+            type: object
+            additionalProperties: true
+    Coupon:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The generated coupon code that the customer will use.
+        type:
+          type: string
+          enum:
+          - shipping
+          - fixed
+          - percentage
+          - product
+          - percentage-fees
+          - fixed-cashback
+          - percentage-cashback
+          description: Type of the coupon, such as fixed amount, percentage discount, free shipping, cashback or product-specific coupon.
+        value:
+          type: number
+          description: The monetary value or percentage value of the coupon, depending on its type.
+        usageLimit:
+          type: number
+          description: The total number of times the coupon can be used across all customers.
+        limitPerCustomer:
+          type: number
+          description: The number of times a single customer can use the coupon.
+        startDate:
+          type: string
+          format: date-time
+          description: The date and time when the coupon becomes valid and can be used.
+        expiryDate:
+          type: string
+          format: date-time
+          description: The date and time when the coupon will expire and no longer be valid.
+        capping:
+          type: number
+          description: The maximum discount or value cap that the coupon can offer, even if the discount calculation exceeds this value.
+        minReward:
+          type: number
+          description: Specifies the minimum discount value a customer is guaranteed to receive when using a percentage-based discount coupon.
+        minOrderValue:
+          type: number
+          description: The minimum order value required for the coupon to be applied.
+        entitledProductIds:
+          type: array
+          items:
+            type: string
+          description: A list of product IDs that are eligible for the coupon.
+        entitledVariantIds:
+          type: array
+          items:
+            type: string
+          description: A list of product variant IDs that are eligible for the coupon.
+        entitledCollectionIds:
+          type: array
+          items:
+            type: string
+          description: A list of collection IDs that are eligible for the coupon.
+        entitledMerchantIds:
+          type: array
+          items:
+            type: string
+          description: A list of merchant external IDs that are eligible to redeem the coupon.
+        combinesWith:
+          type: object
+          properties:
+            orderDiscounts:
+              type: boolean
+              description: Indicates if the coupon can be combined with order-level discounts.
+            productDiscounts:
+              type: boolean
+              description: Indicates if the coupon can be combined with product-specific discounts.
+            shippingDiscounts:
+              type: boolean
+              description: Indicates if the coupon can be combined with shipping discounts.
+    TierConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the tier.
+        minProgress:
+          type: number
+          description: 'The minimum amount of progress a customer needs to reach this tier in the program. This represents the threshold that must be met for a customer to reach this tier. Example: if the minProgress is set to 2000, the customer must accumulate 2000 points, referrals, or completed orders (depending on the tiering method) to reach this tier. Possible Values: Total amount spent, Total points earned, Friends referred, Orders completed, Score. Example: If the progress value is 1500 and the tiering-up method is total points earned, this means the customer has earned a total of 1500 points toward their next tier.'
+        order:
+          type: number
+          description: This represents the numerical order of a tier. Higher numbers indicate higher tiers.
+        icon:
+          type: string
+          description: The URL for the icon associated with the tier. You can utilize this icon URL to display tier badges or indicators in your own custom interface, such as on customer profiles.
+        benefits:
+          type: array
+          description: It contains a list of rewards associated with the tier, each offering specific advantages to the customer. This array includes various types of benefits.
           items:
             type: object
             properties:
-              milestoneDay:
+              type:
+                type: string
+                description: 'Indicates the type of benefit the customer will receive. The possible values are: Custom Benefits (Offers tailored and custom rewards to offer customization for specific customer preferences or behaviors), Lifetime Reward (A benefit that can be used once at any time during the customer''s lifetime with Gameball, as long as they remain in this tier), Loyalty Points Earning Custom Configuration (Enables customized settings for how customers earn loyalty points based on their spending amount), Entry Reward (A one-time reward granted to customers upon joining this tier).'
+              description:
+                type:
+                - string
+                - 'null'
+                description: Description of the custom benefit.
+              hyperLink:
+                type:
+                - string
+                - 'null'
+                description: Hyperlink associated with the custom benefit.
+              rankReward:
                 type: number
-                description: Streak day at which this badge is awarded
-              name:
-                type: string
-                description: Badge name
-              imageUrl:
-                type: string
-                description: Badge image URL
-              earned:
-                type: boolean
-                description: Whether this customer has earned this badge
-              earnedDate:
-                type: string
-                format: date-time
-                nullable: true
-                description: Date earned, or null if not yet earned
+                description: The score rewarded for the customer as a reward.
+              walletReward:
+                type: number
+                description: The number of points the customer will earn for this reward.
+              walletRewardFactor:
+                type:
+                - number
+                - 'null'
+                description: 'This is a multiplier factor that indicates how the customer on their tier will be rewarded for each unit of currency they spend. This is returned for the benefits of type Loyalty Points Earning Custom Configuration. Example: If a tier has a walletRewardFactor of 2, it means any customer on this tier will earn 2 loyalty points for every $1 they spend. Therefore, if the customer spends $100, they would receive 200 loyalty points as a reward.'
+              couponReward:
+                type:
+                - object
+                - 'null'
+                description: A coupon object that is awarded to the customer.
+                properties:
+                  couponType:
+                    type:
+                    - string
+                    - 'null'
+                    description: 'The type of coupon applied. Possible values include: free_shipping, percentage_discount, fixed_discount, fixed_rate_discount, free_product, custom.'
+                  discountValue:
+                    type:
+                    - number
+                    - 'null'
+                    description: The value of the discount provided by the coupon in case the coupon type is fixed_discount, percentage_discount or fixed_rate_discount.
+                  product:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      productId:
+                        type:
+                        - string
+                        - 'null'
+                        description: The unique identifier for the product.
+                      productName:
+                        type:
+                        - string
+                        - 'null'
+                        description: The name of the product.
+                      variantId:
+                        type:
+                        - string
+                        - 'null'
+                        description: The unique identifier for the product variant.
+                      variantName:
+                        type:
+                        - string
+                        - 'null'
+                        description: The name of the product variant.
+                      productDisplayName:
+                        type:
+                        - string
+                        - 'null'
+                        description: The display name associated with the product that configured on the dashboard based on required language.
+                  collections:
+                    type:
+                    - array
+                    - 'null'
+                    description: A list of collection IDs that the coupon can be applied to.
+                    items:
+                      type: object
+                      properties:
+                        collectionId:
+                          type:
+                          - string
+                          - 'null'
+                          description: The unique identifier for the collection.
+                        collectionName:
+                          type:
+                          - string
+                          - 'null'
+                          description: The name for the collection.
+                  group:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      handle:
+                        type:
+                        - string
+                        - 'null'
+                        description: A unique identifier used to reference the coupon group in the system.
+                      title:
+                        type:
+                        - string
+                        - 'null'
+                        description: The title of the coupon group.
+                      url:
+                        type:
+                        - string
+                        - 'null'
+                        description: The URL for the coupon group.
+                      iconPath:
+                        type:
+                        - string
+                        - 'null'
+                        description: The path to the icon of the coupon group.
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                        description: A description of the coupon group.
+                      maxPerCustomer:
+                        type:
+                        - number
+                        - 'null'
+                        description: 'The maximum number of times a customer can use the coupon. Example: 5 indicates that each customer can redeem this coupon up to 5 times.'
+                      startDate:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                        description: The date when the coupons within this coupon group will become active and valid for redemption.
+                      expiryDate:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                        description: The date when the coupons within this coupon group will expire and no longer be valid for redemption.
+                      isAvailable:
+                        type:
+                        - boolean
+                        - 'null'
+                        description: Indicates whether the coupon group is currently available.
+                      isActive:
+                        type:
+                        - boolean
+                        - 'null'
+                        description: Indicates whether the coupon group is currently active.
+                  options:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The name of the reward rule configured on the dashboard based on required language.
+                      expiryAfter:
+                        type:
+                        - number
+                        - 'null'
+                        description: 'The number of days after creation that the coupon will expire. Example: If a coupon expires after 14 days, the customer must use it within that period to receive the discount.'
+                      usageLimit:
+                        type:
+                        - number
+                        - 'null'
+                        description: 'The maximum number of times a single coupon can be used. Example: If a coupon has a usage limit of 5, it can be redeemed up to 5 times before it becomes invalid.'
+                      capping:
+                        type:
+                        - number
+                        - 'null'
+                        description: 'The maximum discount value a coupon can provide, regardless of the order amount. Example: If a coupon offers 20% off with a capping of $50, the discount will not exceed $50, even if 20% of the order total is higher.'
+                      minOrderValue:
+                        type:
+                        - number
+                        - 'null'
+                        description: 'The minimum order amount required to apply the coupon. Example: If a coupon has a minimum order value of $100, the customer must spend at least $100 to use the discount.'
+                      codePrefix:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'The prefix that will be added to the beginning of the generated coupon code. Example: If the prefix is "SUMMER", the generated coupon codes might look like "SUMMER12345" or "SUMMERDISCOUNT".'
+                      redeemInstructions:
+                        type:
+                        - string
+                        - 'null'
+                        description: 'The instructions on how the customer can redeem the coupon. Example: "Enter the coupon code at checkout to apply the discount."'
+    CustomerTagsUpdateRequest:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: string
+          description: A comma-separated list of tags to apply or remove (e.g., 'gamer, highSpender').
     CustomerReferralsCountResponse:
       type: object
       properties:
@@ -5902,6 +5341,53 @@ components:
         hasMore:
           type: boolean
           description: Whether there are additional logs to be fetched
+    CustomerReferralsResponse:
+      type: object
+      properties:
+        referredFriends:
+          type: array
+          description: A list of friends referred by the customer.
+          items:
+            type: object
+            properties:
+              customerId:
+                type: string
+                description: Unique identifier for the referred friend.
+              displayName:
+                type: string
+                description: Display name of the referred friend.
+              email:
+                type: string
+                description: Email address of the referred friend.
+              mobileNumber:
+                type: string
+                description: Mobile number of the referred friend.
+              joinDate:
+                type: string
+                description: The date when the referred friend joined.
+              status:
+                type: string
+                enum:
+                - Active
+                - Pending
+                description: 'The current status of the referral: Active (The referral was successfully completed. The referred friend has completed the required action (e.g., placing an order), and the referral is counted for the customer), Pending (The referred friend has used the customer''s referral link but has not yet completed the required action (e.g., signing up or making a purchase) for the referral to be considered complete).'
+        count:
+          type: number
+          description: The total number of friends on the current page.
+        hasMore:
+          type: boolean
+          description: Indicating whether there are additional friends to be fetched beyond the current page.
+    Error:
+      required:
+      - error
+      - message
+      type: object
+      properties:
+        error:
+          type: integer
+          format: int32
+        message:
+          type: string
     ReferralConfiguration:
       type: object
       properties:
@@ -6312,6 +5798,412 @@ components:
                   - object
                   - 'null'
                   description: A coupon object that is awarded as part of the extra reward.
+    CustomerHashResponse:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: A unique, rotating identifier generated for each customer for secure verification
+    Success:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    CustomerActionStreakProgressResponse:
+      type: object
+      properties:
+        numberOfCompletedSteps:
+          type: number
+          description: The number of steps completed by the customer in the current challenge cycle
+        numberOfTimesEarned:
+          type: number
+          description: The total number of times the customer has successfully completed the challenge
+        canAchieveAgain:
+          type: boolean
+          description: Whether the customer is currently eligible to continue the challenge
+        remainingTries:
+          type: number
+          description: The number of remaining allowed completions within the current time interval
+        challengeEndDate:
+          type: string
+          description: The end date of the challenge in the client's local timezone
+        rewardName:
+          type: string
+          description: The name of the reward as defined in the client's configured language
+        couponName:
+          type: string
+          description: The name or value of the discount coupon assigned
+    CustomerCampaignsProgressResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          rewardsCampaignName:
+            type: string
+            description: The name of the rewards campaign.
+          rewardsCampaignId:
+            type: number
+            description: The unique ID of the rewards campaign.
+          isUnlocked:
+            type: boolean
+            description: Indicates if the customer has unlocked the campaign.
+          highScoreAmount:
+            type:
+            - number
+            - 'null'
+            description: The highest score achieved by the customer. This value is applicable only in the context of a high score rewards campaign.
+          currentStreak:
+            type:
+            - number
+            - 'null'
+            description: The current number of consecutive days the customer has visited the website. This value is applicable only in the context of a streak (daily visit) rewards campaign.
+          highestStreak:
+            type:
+            - number
+            - 'null'
+            description: The maximum number of consecutive days the customer has visited the website. This value is also applicable only in the context of a streak (daily visit) rewards campaign.
+          completionPercentage:
+            type: number
+            description: The percentage of the campaign the customer has completed. For example, in a second-order campaign where the customer must make 2 orders, if they have only placed 1 order, the completion percentage will be 50%.
+          achievedCount:
+            type: number
+            description: The number of times the customer has achieved the campaign.
+          canAchieve:
+            type: boolean
+            description: A flag that determines whether the customer is currently eligible to participate in and achieve this reward campaign. It provides a quick indication of the customer's ability to meet the campaign's conditions based on their current status.
+          rewardCampaignConfiguration:
+            type: object
+            description: Comprehensive description of the reward campaign configuration.
+            properties:
+              id:
+                type: number
+                description: Unique identifier for the reward campaign.
+              name:
+                type: string
+                description: Name of the reward campaign.
+              description:
+                type:
+                - string
+                - 'null'
+                description: A brief description of the reward campaign.
+              isRepeatable:
+                type: boolean
+                description: 'Indicates whether the campaign can be earned multiple times. Example: If set to true, a customer can earn the campaign reward each time they meet the criteria, and if set to false, the campaign can only be earned once per customer.'
+              maxAchievement:
+                type: number
+                description: 'Specifies the maximum number of times the campaign can be earned if the value of isRepeatable is true. If the value is -1, it means the campaign can be earned indefinitely. Example: A value of 3 means the customer can earn the campaign reward up to three times before it is no longer available.'
+              type:
+                type: string
+                description: 'The type of the campaign. Possible values: SignUp (Reward is given when a user signs up), SocialMedia (Reward is linked to social media activity), ScheduledChallenge (A time-based challenge that gives rewards), Spin The Wheel (Rewards are given based on a spin-the-wheel game), EventBased (Reward is given based on specific customer events), HighScore (Reward is given based on achieving high scores in a campaign), Birthday (Reward is given for birthday-related activity).'
+              visibility:
+                type: string
+                description: 'The visibility status of the campaign. Possible values: AlwaysVisible (The campaign is always visible on the widget), NotVisible (The campaign is not visible to the customer on the widget), VisibleIfEarned (The campaign becomes visible once the customer earns it on the widget).'
+              icon:
+                type:
+                - string
+                - 'null'
+                description: The URL of the campaign's icon image. This icon visually represents the campaign and can be used in marketing materials or on the platform.
+              redirectionButtonText:
+                type:
+                - string
+                - 'null'
+                description: 'The text displayed on the redirection button within the reward campaign page on the widget. Example: "Claim Your Reward" would prompt customers to take action.'
+              redirectionButtonLink:
+                type:
+                - string
+                - 'null'
+                description: 'The URL that the redirection button points to. When customers click the button, they will be redirected to this link. It should lead to a relevant page that provides more information or facilitates the reward redemption process. Example: "https://yourwebsite.com/rewards" directs customers to a page where they can view their rewards.'
+              widgetDetailsParameter:
+                type:
+                - string
+                - 'null'
+                description: 'This value is used with the openDetails parameter to open the widget for a specific campaign. The value is generated based on the campaign type and campaign ID. You could always use this parameter to trigger the widget on a specific page that you want. This parameter is only required if you are drawing your own UI but still want to display the UI of specific campaigns through the widget. In mobile apps, you can programmatically control the Gameball widget using our SDKs by passing the openDetails parameter with the appropriate value to navigate to different sections. Examples: details_reward_campaign_{reward_campaign_id} (Opens a standard reward campaign), details_wheel_{reward_campaign_id} (Opens a specific wheel campaign), details_scratch_{reward_campaign_id} (Opens a scratch card campaign), details_match_{reward_campaign_id} (Opens a match game campaign).'
+              activation:
+                type:
+                - object
+                - 'null'
+                properties:
+                  startDate:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    description: 'The date and time when the campaign becomes active. This value determines when customers can begin to earn or win rewards associated with the campaign. Example: "2024-11-01T00:00:00" indicates that the campaign starts on November 1, 2024.'
+                  endDate:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    description: 'The date and time when the campaign ends. After this date, customers will no longer be able to earn this campaign. Example: "2024-11-30T23:59:59" indicates that the campaign ends on November 30, 2024, at 11:59 PM.'
+              rewards:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rankReward:
+                      type: number
+                      description: The score rewarded for achieving this reward campaign.
+                    walletReward:
+                      type: number
+                      description: 'The number of points the customer will earn upon achieving this reward campaign. Example: If you have set up a "First Order" campaign where a customer earns 200 points as a reward for placing their first order, the walletReward value would be 200.'
+                    walletRewardFactor:
+                      type:
+                      - number
+                      - 'null'
+                      description: 'The multiplier applied to the points a customer earns based on the amount they spend during this campaign. This factor is used in transactional campaigns, such as points multipliers. Example: In a "Double Points" campaign, the walletRewardFactor would be set to 2, meaning the customer will earn twice the normal amount of points for their purchases during the campaign.'
+                    couponReward:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        couponType:
+                          type:
+                          - string
+                          - 'null'
+                          description: 'The type of coupon applied. Possible values include: free_shipping, percentage_discount, fixed_discount, fixed_rate_discount, free_product, custom.'
+                        discountValue:
+                          type:
+                          - number
+                          - 'null'
+                          description: The value of the discount provided by the coupon in case the coupon type is fixed_discount, percentage_discount or fixed_rate_discount.
+                        product:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            productId:
+                              type:
+                              - string
+                              - 'null'
+                            productName:
+                              type:
+                              - string
+                              - 'null'
+                            variantId:
+                              type:
+                              - string
+                              - 'null'
+                            variantName:
+                              type:
+                              - string
+                              - 'null'
+                            productDisplayName:
+                              type:
+                              - string
+                              - 'null'
+                        collections:
+                          type:
+                          - array
+                          - 'null'
+                          description: A list of collection IDs that the coupon can be applied to.
+                          items:
+                            type: object
+                            properties:
+                              collectionId:
+                                type:
+                                - string
+                                - 'null'
+                                description: The unique identifier for the collection.
+                              collectionName:
+                                type:
+                                - string
+                                - 'null'
+                                description: The name for the collection.
+                        group:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            handle:
+                              type:
+                              - string
+                              - 'null'
+                              description: A unique identifier used to reference the coupon group in the system.
+                            title:
+                              type:
+                              - string
+                              - 'null'
+                              description: The title of the coupon group.
+                            url:
+                              type:
+                              - string
+                              - 'null'
+                              description: The URL for the coupon group.
+                            iconPath:
+                              type:
+                              - string
+                              - 'null'
+                              description: The path to the icon of the coupon group.
+                            description:
+                              type:
+                              - string
+                              - 'null'
+                              description: A description of the coupon group.
+                            maxPerCustomer:
+                              type:
+                              - number
+                              - 'null'
+                              description: 'The maximum number of times a customer can use the coupon. Example: 5 indicates that each customer can redeem this coupon up to 5 times.'
+                            startDate:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                              description: The date when the coupons within this coupon group will become active and valid for redemption.
+                            expiryDate:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                              description: The date when the coupons within this coupon group will expire and no longer be valid for redemption.
+                            isAvailable:
+                              type:
+                              - boolean
+                              - 'null'
+                              description: Indicates whether the coupon group is currently available.
+                            isActive:
+                              type:
+                              - boolean
+                              - 'null'
+                              description: Indicates whether the coupon group is currently active.
+                        options:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The name of the reward rule configured on the dashboard based on required language.
+                            expiryAfter:
+                              type:
+                              - number
+                              - 'null'
+                              description: 'The number of days after creation that the coupon will expire. Example: If a coupon expires after 14 days, the customer must use it within that period to receive the discount.'
+                            usageLimit:
+                              type:
+                              - number
+                              - 'null'
+                              description: 'The maximum number of times a single coupon can be used. Example: If a coupon has a usage limit of 5, it can be redeemed up to 5 times before it becomes invalid.'
+                            capping:
+                              type:
+                              - number
+                              - 'null'
+                              description: 'The maximum discount value a coupon can provide, regardless of the order amount. Example: If a coupon offers 20% off with a capping of $50, the discount will not exceed $50, even if 20% of the order total is higher.'
+                            minOrderValue:
+                              type:
+                              - number
+                              - 'null'
+                              description: 'The minimum order amount required to apply the coupon. Example: If a coupon has a minimum order value of $100, the customer must spend at least $100 to use the discount.'
+                            codePrefix:
+                              type:
+                              - string
+                              - 'null'
+                              description: 'The prefix that will be added to the beginning of the generated coupon code. Example: If the prefix is "SUMMER", the generated coupon codes might look like "SUMMER12345" or "SUMMERDISCOUNT".'
+                            redeemInstructions:
+                              type:
+                              - string
+                              - 'null'
+                              description: 'The instructions on how the customer can redeem the coupon. Example: "Enter the coupon code at checkout to apply the discount."'
+    CustomerTierProgressResponse:
+      type: object
+      properties:
+        current:
+          $ref: '#/components/schemas/TierState'
+          description: The customer's current tier.
+        next:
+          $ref: '#/components/schemas/TierState'
+          description: The next tier the customer can reach.
+        progress:
+          type: number
+          description: 'The current progress of the customer toward the next tier, reflecting their activity and engagement within the program. This value is calculated based on the client''s chosen tiering-up method, indicating how close the customer is to advancing to a higher tier. Example: If the progress value is 1500 and the tiering-up method is total points earned, this means the customer has earned a total of 1500 points toward their next tier. Possible Values: Total amount spent, Total points earned, Friends referred, Orders completed, Score.'
+    CustomerNotifications:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              body:
+                type: string
+              isRead:
+                type: boolean
+              createdAt:
+                type: string
+                format: date-time
+        nextCursor:
+          type:
+          - string
+          - 'null'
+    CustomerDailyStreakProgressResponse:
+      type: object
+      properties:
+        currentStreakCount:
+          type: number
+          description: Number of consecutive periods completed in the current active streak
+        highestStreakCount:
+          type: number
+          description: Highest streak count ever reached by this customer for this campaign
+        totalRewardsEarned:
+          type: number
+          description: Total streak rewards earned across all time
+        ongoingReward:
+          type: object
+          description: Details of the currently active reward tier
+          properties:
+            name:
+              type: string
+              description: Reward name as configured in the client language settings
+            type:
+              type: string
+              description: 'Reward type: points or coupon'
+            value:
+              type: string
+              description: Reward value (points amount or coupon description)
+        nextMilestone:
+          type: number
+          nullable: true
+          description: Streak count at which the next reward unlocks, or null if at the last tier
+        lastActivityDate:
+          type: string
+          format: date-time
+          description: Date/time of the last qualifying action in the client's local timezone
+        campaignEndDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Campaign end date in the client's local timezone, or null if open-ended
+        badges:
+          type: array
+          description: Badge milestones ordered by milestoneDay ascending
+          items:
+            type: object
+            properties:
+              milestoneDay:
+                type: number
+                description: Streak day at which this badge is awarded
+              name:
+                type: string
+                description: Badge name
+              imageUrl:
+                type: string
+                description: Badge image URL
+              earned:
+                type: boolean
+                description: Whether this customer has earned this badge
+              earnedDate:
+                type: string
+                format: date-time
+                nullable: true
+                description: Date earned, or null if not yet earned
     CustomerBalanceResponse:
       type: object
       properties:
@@ -6351,36 +6243,144 @@ components:
         totalEarnedPoints:
           type: number
           description: The total number of points that the customer has earned over their entire lifetime within the Gameball program. This includes all points accumulated from various activities like cashback rewards, referrals, or rewards campaigns.
-    EventRequest:
+    CustomerAutomationCampaignsResponse:
       type: object
-      required:
-      - customerId
-      - events
       properties:
-        customerId:
-          type: string
-          description: Unique identifier for the customer
-        events:
-          type: object
-          description: A mapping of event names to metadata objects
-          additionalProperties:
+        campaigns:
+          type: array
+          description: A list of campaigns containing automation workflows
+          items:
             type: object
-            additionalProperties: true
-    TierState:
+            properties:
+              automation:
+                type: array
+                description: A list of automation workflows within a campaign
+                items:
+                  type: object
+                  properties:
+                    order:
+                      type: number
+                      description: The order in which this automation appears
+                    name:
+                      type: string
+                      description: The internal name of the automation workflow
+                    isUnlocked:
+                      type: boolean
+                      description: Whether this automation is unlocked
+                    completed:
+                      type: boolean
+                      description: Whether the automation has been fully completed
+                    steps:
+                      type:
+                      - array
+                      - 'null'
+                      description: List of steps involved in completing the automation.
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: The type of step, for example rewarding a badge or adding points.
+                          order:
+                            type: number
+                            description: The order of this step within the automation sequence.
+                          completed:
+                            type: boolean
+                            description: Whether this step has been completed or not.
+                          configuration:
+                            type:
+                            - object
+                            - 'null'
+                            description: Configuration details for the step, such as badge name & icon.
+                            additionalProperties: true
+                    completionPercentage:
+                      type: number
+                      description: Percentage of completion for the automation
+              automationCount:
+                type: number
+                description: Total number of automations available within this campaign
+        count:
+          type: number
+          description: The total number of automation campaigns available
+    CustomerCouponsResponse:
       type: object
       properties:
-        order:
+        coupons:
+          type: array
+          description: List of coupon objects associated with the customer
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the coupon
+              code:
+                type: string
+                description: The coupon code that the customer will use
+              value:
+                type: number
+                description: The monetary value or percentage value of the coupon
+              type:
+                type: string
+                description: Type of the coupon
+                enum:
+                - Free Shipping
+                - Fixed Rate Discount
+                - Percentage
+                - Free Product
+                - Custom
+                - Percentage-based Fees Discount
+                - Percentage-based Cashback
+              target:
+                type: string
+                description: How the coupon is associated with the customer
+                enum:
+                - Online
+                - POS
+                - Permanent
+                - Reward
+                - Automation
+              currency:
+                type: string
+                description: Currency code if the coupon has a fixed monetary value
+              startDate:
+                type: string
+                format: date-time
+                description: The date and time when the coupon becomes valid
+              expiryDate:
+                type: string
+                format: date-time
+                description: The date and time when the coupon will expire
+              isExpired:
+                type: boolean
+                description: Indicates if the coupon has expired
+              isActive:
+                type: boolean
+                description: Status of the coupon, whether it is active or not
+              usageLimit:
+                type: number
+                description: The total number of times the coupon can be used
+              limitPerCustomer:
+                type: number
+                description: The number of times a single customer can use the coupon
+              usedCount:
+                type: number
+                description: Number of times the coupon has been used
+              customerUsedCount:
+                type: number
+                description: Number of times the coupon has been used by this customer
+              isAvailableToUse:
+                type: boolean
+                description: Flag determining whether coupon can be used by customer at given time
+              iconPath:
+                type: string
+                description: Path or URL to the icon image for the coupon
+    CustomerNotificationsCountResponse:
+      type: object
+      properties:
+        count:
           type: number
-          description: This represents the numerical order of a tier. Higher numbers indicate higher tiers.
-        name:
-          type: string
-          description: The name of the tier.
-        minProgress:
-          type: number
-          description: 'The minimum amount of progress a customer needs to reach the next tier in the program. This represents the threshold that must be met for a customer to reach this tier. Example: if the minProgress is set to 2000, the customer must accumulate 2000 points, referrals, or completed orders (depending on the tiering method) to advance to the next tier.'
-        icon:
-          type: string
-          description: The URL for the icon associated with the tier. You can utilize this icon URL to display tier badges or indicators in your own custom interface, such as on customer profiles. This offers a visual representation of the customer's tier status.
+          description: The total number of notifications available for the customer in Gameball system
   securitySchemes:
     apiKey:
       type: apiKey
