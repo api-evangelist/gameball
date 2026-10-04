@@ -50,6 +50,10 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-09-16'
 image: https://cdn.prod.website-files.com/6908b0d43805904c24a1139a/6909d1a17d9fb50ab471f71f_logo.svg
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: vercel
 tags:
 - Company
 - Loyalty
@@ -316,6 +320,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/gameball-capability-edges.yml
+  name: Gameball Business Capability Map
 - type: Website
   url: https://gameball.co
 - type: DeveloperPortal
