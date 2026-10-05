@@ -1,0 +1,27 @@
+slug: gameball
+provider: Gameball
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Integrations
+  spec_file: gameball-integrations-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.72
+  evidence: Get Customer Coupons; Validate Referrer Code; Create api integrations transactions redeem;
+    Create api integrations transactions cashback; schemas TierConfiguration, CustomerTierProgressResponse,
+    CustomerReferralsResponse
+  reason: Operations create/read loyalty customers and drive coupons, referrals, VIP tier progress, points
+    redemption and cashback — loyalty programme administration. Some ambiguity because customer CRUD also
+    touches customer data management, so L2 chosen on the dominant loyalty surface.
