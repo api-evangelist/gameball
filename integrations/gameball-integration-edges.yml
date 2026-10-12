@@ -1,0 +1,260 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/gameball/integrations
+checked:
+- https://composio.dev/toolkits/gameball
+- https://monid.ai/tools/gameball
+- https://n8n.io/integrations/gameball/
+- https://zapier.com/apps/gameball/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: gameball
+  url: https://zapier.com/apps/gameball/integrations
+  external_url: https://www.gameball.co/
+  partner_tier: BRONZE
+  triggers:
+  - key: player_profile_updated
+    label: Player Updated
+  actions:
+  - key: add_manual_points
+    label: Add Manual Points
+  - key: attach_tag
+    label: Attach Tag
+  - key: create_update_player
+    label: Create/Update Player
+  - key: get_player_data
+    label: Get Player Data
+  - key: send_action
+    label: Send Event
+  searches: []
+edges:
+- partner_name: Google Forms (Legacy)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/google-forms-legacy
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: LeagueApps
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/leagueapps
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: http://leagueapps.com/
+- partner_name: SurveyMonkey
+  partner: surveymonkey
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/surveymonkey
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HWp
+- partner_name: GoTo Webinar
+  partner: gotowebinar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/gotowebinar
+  direction: third-party
+  category: Webinars
+  partner_url: https://www.gotomeeting.com/
+- partner_name: Incentivefox
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/incentivefox
+  direction: third-party
+  category: IT Operations
+  partner_url: https://www.incentivefox.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Webflow
+  partner: webflow
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/webflow
+  direction: third-party
+  category: Website Builders
+  partner_url: https://webflow.com/
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: Close
+  partner: close
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/close
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+- partner_name: Drip
+  partner: drip
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/drip
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://www.getdrip.com/
+- partner_name: Leadinfo
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/leadinfo
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.leadinfo.com/en/
+- partner_name: Roll
+  partner: roll
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/roll
+  direction: third-party
+  category: Project Management
+  partner_url: https://www.rollhq.com/
+- partner_name: CentrixOne
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/centrixone-da104369
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.centrix.one/
+- partner_name: Game My Biz
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
+  direction: third-party
+  category: Dashboards
+  partner_url: https://gamemybiz.com/
+templates:
+- title: Give rewards to Gameball players with new Mailchimp subscriptions
+  url: https://zapier.com/apps/gameball/integrations/mailchimp/382355/give-rewards-to-gameball-players-with-new-mailchimp-subscriptions
+  apps:
+  - mailchimp
+  - gameball
+- title: Give rewards to players in Gameball for new Drip subscriptions
+  url: https://zapier.com/apps/drip/integrations/gameball/382540/give-rewards-to-players-in-gameball-for-new-drip-subscriptions
+  apps:
+  - drip
+  - gameball
+- title: Reward Gameball players when new ReCharge subscriptions are created
+  url: https://zapier.com/apps/gameball/integrations/recharge/382584/reward-gameball-players-when-new-recharge-subscriptions-are-created
+  apps:
+  - recharge
+  - gameball
+- title: Reward players in Gameball when ReCharge subscriptions are reactivated
+  url: https://zapier.com/apps/gameball/integrations/recharge/382594/reward-players-in-gameball-when-recharge-subscriptions-are-reactivated
+  apps:
+  - recharge
+  - gameball
+- title: Reward players through Gameball for new Paypal completed payments
+  url: https://zapier.com/apps/gameball/integrations/paypal/434482/reward-players-through-gameball-for-new-paypal-completed-payments
+  apps:
+  - paypal
+  - gameball
+- title: Send rewards from Gameball to new GoTo Webinar attendees
+  url: https://zapier.com/apps/gameball/integrations/gotowebinar/434497/send-rewards-from-gameball-to-new-goto-webinar-attendees
+  apps:
+  - gotowebinar
+  - gameball
+- title: Relay rewards to new Crowdcast registrants through Gameball
+  url: https://zapier.com/apps/crowdcast/integrations/gameball/440447/relay-rewards-to-new-crowdcast-registrants-through-gameball
+  apps:
+  - crowdcast
+  - gameball
+- title: Give rewards to new GoTo Webinar registrants with Gameball
+  url: https://zapier.com/apps/gameball/integrations/gotowebinar/447894/give-rewards-to-new-goto-webinar-registrants-with-gameball
+  apps:
+  - gotowebinar
+  - gameball
+- title: Reward new customers in Stripe through Gameball
+  url: https://zapier.com/apps/gameball/integrations/stripe-legacy/447907/reward-new-customers-in-stripe-through-gameball
+  apps:
+  - stripe-legacy
+  - gameball
+- title: Provide Gameball rewards to new Crowdcast webinar attendees
+  url: https://zapier.com/apps/crowdcast/integrations/gameball/447995/provide-gameball-rewards-to-new-crowdcast-webinar-attendees
+  apps:
+  - crowdcast
+  - gameball
+- title: Send rewards to Gameball players with new Crowdcast recording views
+  url: https://zapier.com/apps/crowdcast/integrations/gameball/448010/send-rewards-to-gameball-players-with-new-crowdcast-recording-views
+  apps:
+  - crowdcast
+  - gameball
+- title: Relay Gameball rewards for new links clicked through Mailchimp emails
+  url: https://zapier.com/apps/gameball/integrations/mailchimp/448021/relay-gameball-rewards-for-new-links-clicked-through-mailchimp-emails
+  apps:
+  - mailchimp
+  - gameball
+template_total: 23
