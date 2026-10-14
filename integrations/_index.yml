@@ -116,7 +116,6 @@
   arazzo: null
 - slug: gameball-microsoft-excel
   label: Microsoft Excel
-  partner: microsoft-excel
   partner_name: Microsoft Excel
   category: Microsoft
   type: marketplace
@@ -124,7 +123,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/gameball/integrations/excel
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: gameball-facebook-lead-ads-for-business-admins
   label: Facebook Lead Ads (for Business admins)
@@ -193,4 +192,16 @@
   evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
   source: edge
   status: pending-partner-spec
+  arazzo: null
+- slug: gameball-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
   arazzo: null
