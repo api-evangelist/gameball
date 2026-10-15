@@ -9,6 +9,7 @@ checked:
 - https://n8n.io/integrations/gameball/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
 - https://zapier.com/apps/gameball/integrations
+- wordpress/integrations/wordpress-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -259,6 +260,23 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-ai-agents.py
   first_seen: '2026-10-15'
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/gameball/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Gameball
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates:
 - title: Give rewards to Gameball players with new Mailchimp subscriptions
   url: https://zapier.com/apps/gameball/integrations/mailchimp/382355/give-rewards-to-gameball-players-with-new-mailchimp-subscriptions
