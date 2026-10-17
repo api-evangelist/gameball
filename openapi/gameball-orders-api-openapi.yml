@@ -861,24 +861,6 @@ components:
           oneOf:
           - $ref: '#/components/schemas/RewardPreviewProgress'
           - type: 'null'
-    RewardPreviewProgress:
-      type: object
-      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
-      properties:
-        currentPercentage:
-          type: number
-          description: Completion % (0–100) before this event.
-        wouldBePercentage:
-          type: number
-          description: Completion % (0–100, capped) after this event fires.
-        completionRewardPoints:
-          type:
-          - integer
-          - 'null'
-          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
-        completionRewardType:
-          type: string
-          description: '`Points` or `Coupon`.'
     OrderRewardPreviewResponse:
       type: object
       properties:
@@ -944,6 +926,24 @@ components:
           - $ref: '#/components/schemas/RewardPreviewEventResult'
           - type: 'null'
           description: The `place_order` event preview — exactly one entry with the same shape as an `events[]` entry of Preview Event Rewards.
+    RewardPreviewProgress:
+      type: object
+      description: Present only for `ProgressOnly` — accumulative / multi-step campaigns the event advances without completing.
+      properties:
+        currentPercentage:
+          type: number
+          description: Completion % (0–100) before this event.
+        wouldBePercentage:
+          type: number
+          description: Completion % (0–100, capped) after this event fires.
+        completionRewardPoints:
+          type:
+          - integer
+          - 'null'
+          description: Points granted when the campaign eventually completes; `null` when the completion reward is a coupon.
+        completionRewardType:
+          type: string
+          description: '`Points` or `Coupon`.'
     RewardPreviewEventResult:
       type: object
       properties:
