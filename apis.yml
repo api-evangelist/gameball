@@ -80,7 +80,8 @@ tags_raw:
 - Loyalty & Incentives
 apis:
 - name: Gameball MCP Server
-  description: Official remote Model Context Protocol server exposing 54 tools over the Gameball merchant/dashboard
+  description: >-
+    Official remote Model Context Protocol server exposing 54 tools over the Gameball merchant/dashboard
     surface — customer lookup and points adjustment, tag management, earning configuration and custom
     earning rules, redemption options, reward-campaign authoring (event, date, calendar, game, mission),
     tier and program state, widget settings and localization, and analytics. OAuth 2.0 with PKCE and dynamic
@@ -100,86 +101,6 @@ apis:
     url: authentication/gameball-authentication.yml
   - type: SourceCode
     url: https://github.com/gameballers/gameball-mcp-codex
-- aid: gameball:gameball-batches-api
-  name: Gameball Batches API
-  description: The Batches API from Gameball — 1 operation(s) for batches.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
-  tags:
-  - Batches
-  properties:
-  - type: OpenAPI
-    url: openapi/gameball-batches-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gameball.co
-  - type: APIReference
-    url: https://docs.gameball.co/api-reference/introduction
-  - type: Authentication
-    url: authentication/gameball-authentication.yml
-  - type: RateLimits
-    url: rate-limits/gameball-rate-limits.yml
-  - type: Webhooks
-    url: asyncapi/gameball-webhooks.yml
-  - type: ErrorCatalog
-    url: errors/gameball-error-codes.yml
-  - type: ErrorCatalog
-    url: errors/gameball-problem-types.yml
-  - type: Sandbox
-    url: sandbox/gameball-sandbox.yml
-- aid: gameball:gameball-customers-api
-  name: Gameball Customers API
-  description: The Customers API from Gameball — 1 operation(s) for customers.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
-  tags:
-  - Customers
-  properties:
-  - type: OpenAPI
-    url: openapi/gameball-customers-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gameball.co
-  - type: APIReference
-    url: https://docs.gameball.co/api-reference/introduction
-  - type: Authentication
-    url: authentication/gameball-authentication.yml
-  - type: RateLimits
-    url: rate-limits/gameball-rate-limits.yml
-  - type: Webhooks
-    url: asyncapi/gameball-webhooks.yml
-  - type: ErrorCatalog
-    url: errors/gameball-error-codes.yml
-  - type: ErrorCatalog
-    url: errors/gameball-problem-types.yml
-  - type: Sandbox
-    url: sandbox/gameball-sandbox.yml
-- aid: gameball:gameball-events-api
-  name: Gameball Events API
-  description: The Events API from Gameball — 1 operation(s) for events.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
-  tags:
-  - Event
-  tags_raw:
-  - Events
-  properties:
-  - type: OpenAPI
-    url: openapi/gameball-events-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gameball.co
-  - type: APIReference
-    url: https://docs.gameball.co/api-reference/introduction
-  - type: Authentication
-    url: authentication/gameball-authentication.yml
-  - type: RateLimits
-    url: rate-limits/gameball-rate-limits.yml
-  - type: Webhooks
-    url: asyncapi/gameball-webhooks.yml
-  - type: ErrorCatalog
-    url: errors/gameball-error-codes.yml
-  - type: ErrorCatalog
-    url: errors/gameball-problem-types.yml
-  - type: Sandbox
-    url: sandbox/gameball-sandbox.yml
 - aid: gameball:gameball-gameball-api-api
   name: Gameball API
   description: The Gameball API API from Gameball — 0 operation(s) for gameball api.
@@ -234,18 +155,16 @@ apis:
     url: errors/gameball-problem-types.yml
   - type: Sandbox
     url: sandbox/gameball-sandbox.yml
-- aid: gameball:gameball-orders-api
-  name: Gameball Orders API
-  description: The Orders API from Gameball — 4 operation(s) for orders.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
+- aid: gameball:gameball-actions-api
+  name: Gameball Actions API
+  description: The Actions API from Gameball — 2 operation(s) for actions.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
   tags:
-  - Order
-  tags_raw:
-  - Orders
+  - Actions
   properties:
   - type: OpenAPI
-    url: openapi/gameball-orders-api-openapi.yml
+    url: openapi/gameball-actions-api-openapi.yml
   - type: Documentation
     url: https://docs.gameball.co
   - type: APIReference
@@ -262,16 +181,16 @@ apis:
     url: errors/gameball-problem-types.yml
   - type: Sandbox
     url: sandbox/gameball-sandbox.yml
-- aid: gameball:gameball-payments-api
-  name: Gameball Payments API
-  description: The Payments API from Gameball — 1 operation(s) for payments.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
+- aid: gameball:gameball-ai-api
+  name: Gameball AI API
+  description: The Ai API from Gameball — 21 operation(s) for ai.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
   tags:
-  - Payments
+  - Ai
   properties:
   - type: OpenAPI
-    url: openapi/gameball-payments-api-openapi.yml
+    url: openapi/gameball-ai-api-openapi.yml
   - type: Documentation
     url: https://docs.gameball.co
   - type: APIReference
@@ -288,16 +207,1371 @@ apis:
     url: errors/gameball-problem-types.yml
   - type: Sandbox
     url: sandbox/gameball-sandbox.yml
-- aid: gameball:gameball-plants-api
-  name: Gameball Plants API
-  description: The Plants API from Gameball — 2 operation(s) for plants.
-  humanURL: https://docs.gameball.co/api-reference/introduction
-  baseURL: https://api.gameball.co/api/v4.0
+- aid: gameball:gameball-alerts-api
+  name: Gameball Alerts API
+  description: The Alerts API from Gameball — 5 operation(s) for alerts.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
   tags:
-  - Plants
+  - Alerts
   properties:
   - type: OpenAPI
-    url: openapi/gameball-plants-api-openapi.yml
+    url: openapi/gameball-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-analytics-api
+  name: Gameball Analytics API
+  description: The Analytics API from Gameball — 54 operation(s) for analytics.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-audience-api
+  name: Gameball Audience API
+  description: The Audience API from Gameball — 4 operation(s) for audience.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Audience
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-audience-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-audit-api
+  name: Gameball Audit API
+  description: The Audit API from Gameball — 2 operation(s) for audit.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-audit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-auditruns-api
+  name: Gameball Audit Runs API
+  description: The AuditRuns API from Gameball — 6 operation(s) for auditruns.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - AuditRuns
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-auditruns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-awsmarketplace-api
+  name: Gameball Aws Marketplace API
+  description: The AwsMarketplace API from Gameball — 3 operation(s) for awsmarketplace.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - AwsMarketplace
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-awsmarketplace-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-billing-api
+  name: Gameball Billing API
+  description: The Billing API from Gameball — 10 operation(s) for billing.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-bots-api
+  name: Gameball Bots API
+  description: The Bots API from Gameball — 58 operation(s) for bots.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Bots
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-bots-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-botsz-api
+  name: Gameball Bots Z API
+  description: The BotsZ API from Gameball — 32 operation(s) for botsz.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - BotsZ
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-botsz-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-challengeroi-api
+  name: Gameball Challenge ROI API
+  description: The ChallengeROI API from Gameball — 2 operation(s) for challengeroi.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ChallengeROI
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-challengeroi-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-challenges-api
+  name: Gameball Challenges API
+  description: The Challenges API from Gameball — 34 operation(s) for challenges.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Challenges
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-challenges-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-client-api
+  name: Gameball Client API
+  description: The Client API from Gameball — 43 operation(s) for client.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Client
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-client-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientbotsettings-api
+  name: Gameball Client Bot Settings API
+  description: The ClientBotSettings API from Gameball — 13 operation(s) for clientbotsettings.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientBotSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientbotsettings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientcurrencies-api
+  name: Gameball Client Currencies API
+  description: The ClientCurrencies API from Gameball — 3 operation(s) for clientcurrencies.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientCurrencies
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientcurrencies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientgeneralsettings-api
+  name: Gameball Client General Settings API
+  description: The ClientGeneralSettings API from Gameball — 17 operation(s) for clientgeneralsettings.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientGeneralSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientgeneralsettings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientpointssettings-api
+  name: Gameball Client Points Settings API
+  description: The ClientPointsSettings API from Gameball — 17 operation(s) for clientpointssettings.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientPointsSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientpointssettings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientwalletpasssettings-api
+  name: Gameball Client Wallet Pass Settings API
+  description: >-
+    The ClientWalletPassSettings API from Gameball — 6 operation(s) for clientwalletpasssettings.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientWalletPassSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientwalletpasssettings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-clientwebhooks-api
+  name: Gameball Client Webhooks API
+  description: The ClientWebhooks API from Gameball — 1 operation(s) for clientwebhooks.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ClientWebhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-clientwebhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-common-api
+  name: Gameball Common API
+  description: The Common API from Gameball — 9 operation(s) for common.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Common
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-common-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-currencies-api
+  name: Gameball Currencies API
+  description: The Currencies API from Gameball — 1 operation(s) for currencies.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Currencies
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-currencies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-datawarehouseintegrationjobs-api
+  name: Gameball Data Warehouse Integration Jobs API
+  description: >-
+    The DataWarehouseIntegrationJobs API from Gameball — 1 operation(s) for datawarehouseintegrationjobs.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - DataWarehouseIntegrationJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-datawarehouseintegrationjobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-discountcodes-api
+  name: Gameball Discount Codes API
+  description: The DiscountCodes API from Gameball — 11 operation(s) for discountcodes.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - DiscountCodes
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-discountcodes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-familywallet-api
+  name: Gameball Family Wallet API
+  description: The FamilyWallet API from Gameball — 3 operation(s) for familywallet.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - FamilyWallet
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-familywallet-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-familywalletlanding-api
+  name: Gameball Family Wallet Landing API
+  description: The FamilyWalletLanding API from Gameball — 2 operation(s) for familywalletlanding.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - FamilyWalletLanding
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-familywalletlanding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-fraudscores-api
+  name: Gameball Fraud Scores API
+  description: The FraudScores API from Gameball — 3 operation(s) for fraudscores.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - FraudScores
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-fraudscores-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-home-api
+  name: Gameball Home API
+  description: The Home API from Gameball — 13 operation(s) for home.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Home
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-home-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-internal-api
+  name: Gameball Internal API
+  description: The Internal API from Gameball — 92 operation(s) for internal.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Internal
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-internal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-internalai-api
+  name: Gameball Internal AI API
+  description: The InternalAI API from Gameball — 1 operation(s) for internalai.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - InternalAI
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-internalai-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-internalloyaltyanalyzer-api
+  name: Gameball Internal Loyalty Analyzer API
+  description: >-
+    The InternalLoyaltyAnalyzer API from Gameball — 2 operation(s) for internalloyaltyanalyzer.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - InternalLoyaltyAnalyzer
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-internalloyaltyanalyzer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-levels-api
+  name: Gameball Levels API
+  description: The Levels API from Gameball — 10 operation(s) for levels.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Levels
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-levels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-lookupfile-api
+  name: Gameball Lookup File API
+  description: The LookupFile API from Gameball — 1 operation(s) for lookupfile.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - LookupFile
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-lookupfile-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-media-api
+  name: Gameball Media API
+  description: The Media API from Gameball — 1 operation(s) for media.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-media-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-mutations-api
+  name: Gameball Mutations API
+  description: The Mutations API from Gameball — 6 operation(s) for mutations.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Mutations
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-mutations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-ops-api
+  name: Gameball Ops API
+  description: The Ops API from Gameball — 3 operation(s) for ops.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Ops
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-ops-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-ordercalculation-api
+  name: Gameball Order Calculation API
+  description: The OrderCalculation API from Gameball — 1 operation(s) for ordercalculation.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - OrderCalculation
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-ordercalculation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-plans-api
+  name: Gameball Plans API
+  description: The Plans API from Gameball — 1 operation(s) for plans.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-players-api
+  name: Gameball Players API
+  description: The Players API from Gameball — 45 operation(s) for players.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Players
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-players-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-playersactivitylog-api
+  name: Gameball Players Activity Log API
+  description: The PlayersActivityLog API from Gameball — 5 operation(s) for playersactivitylog.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - PlayersActivityLog
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-playersactivitylog-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-programaudits-api
+  name: Gameball Program Audits API
+  description: The ProgramAudits API from Gameball — 4 operation(s) for programaudits.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ProgramAudits
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-programaudits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-programs-api
+  name: Gameball Programs API
+  description: The Programs API from Gameball — 13 operation(s) for programs.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-programs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-secureinternal-api
+  name: Gameball Secure Internal API
+  description: The SecureInternal API from Gameball — 4 operation(s) for secureinternal.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - SecureInternal
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-secureinternal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-seeddata-api
+  name: Gameball Seed Data API
+  description: The SeedData API from Gameball — 2 operation(s) for seeddata.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - SeedData
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-seeddata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-segment-api
+  name: Gameball Segment API
+  description: The Segment API from Gameball — 18 operation(s) for segment.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Segment
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-segment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-shopify-api
+  name: Gameball Shopify API
+  description: The Shopify API from Gameball — 8 operation(s) for shopify.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Shopify
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-shopify-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-shopifyflow-api
+  name: Gameball Shopify Flow API
+  description: The ShopifyFlow API from Gameball — 1 operation(s) for shopifyflow.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - ShopifyFlow
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-shopifyflow-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-shopline-api
+  name: Gameball Shopline API
+  description: The Shopline API from Gameball — 1 operation(s) for shopline.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Shopline
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-shopline-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-subscription-api
+  name: Gameball Subscription API
+  description: The Subscription API from Gameball — 4 operation(s) for subscription.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-tactics-api
+  name: Gameball Tactics API
+  description: The Tactics API from Gameball — 1 operation(s) for tactics.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Tactics
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-tactics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-tags-api
+  name: Gameball Tags API
+  description: The Tags API from Gameball — 9 operation(s) for tags.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-tasks-api
+  name: Gameball Tasks API
+  description: The Tasks API from Gameball — 4 operation(s) for tasks.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-wizard-api
+  name: Gameball Wizard API
+  description: The Wizard API from Gameball — 9 operation(s) for wizard.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Wizard
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-wizard-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-worldcupadmin-api
+  name: Gameball World Cup Admin API
+  description: The WorldCupAdmin API from Gameball — 5 operation(s) for worldcupadmin.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - WorldCupAdmin
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-worldcupadmin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gameball.co
+  - type: APIReference
+    url: https://docs.gameball.co/api-reference/introduction
+  - type: Authentication
+    url: authentication/gameball-authentication.yml
+  - type: RateLimits
+    url: rate-limits/gameball-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/gameball-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/gameball-error-codes.yml
+  - type: ErrorCatalog
+    url: errors/gameball-problem-types.yml
+  - type: Sandbox
+    url: sandbox/gameball-sandbox.yml
+- aid: gameball:gameball-add-ons-api
+  name: Gameball Add Ons API
+  description: The Add Ons API from Gameball — 3 operation(s) for add ons.
+  humanURL: https://github.com/gameballers/gameball-mcp-codex
+  baseURL: https://mcp.gameball.co/mcp
+  tags:
+  - Add Ons
+  properties:
+  - type: OpenAPI
+    url: openapi/gameball-add-ons-api-openapi.yml
   - type: Documentation
     url: https://docs.gameball.co
   - type: APIReference

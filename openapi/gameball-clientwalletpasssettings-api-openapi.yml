@@ -1,0 +1,901 @@
+openapi: 3.2.0
+info:
+  title: Gameball Client Wallet Pass Settings API
+tags:
+- name: ClientWalletPassSettings
+paths:
+  /api/v1/ClientWalletPassSettings:
+    get:
+      tags:
+      - ClientWalletPassSettings
+      summary: Returns the client's Apple Wallet pass configuration (merged with Passbook…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+      operationId: getApiV1ClientWalletPassSettings
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ClientWalletPassSettings
+      summary: Validates (contract §1) and persists the client's pass configuration
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+      operationId: putApiV1ClientWalletPassSettings
+      x-operation-id-source: derived
+  /api/v1/ClientWalletPassSettings/Broadcast:
+    post:
+      tags:
+      - ClientWalletPassSettings
+      summary: Sets the broadcast message and triggers an APNs push to every pass of the client
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastRequestViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastRequestViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+      operationId: postApiV1ClientWalletPassSettingsBroadcast
+      x-operation-id-source: derived
+  /api/v1/ClientWalletPassSettings/Refresh:
+    post:
+      tags:
+      - ClientWalletPassSettings
+      summary: Silently re-issues every pass of the client so saved config changes roll out…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+      operationId: postApiV1ClientWalletPassSettingsRefresh
+      x-operation-id-source: derived
+  /api/v1/ClientWalletPassSettings/Google:
+    get:
+      tags:
+      - ClientWalletPassSettings
+      summary: Returns the client's Google Wallet configuration (merged with the Lambda's…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+      operationId: getApiV1ClientWalletPassSettingsGoogle
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ClientWalletPassSettings
+      summary: Validates (config plan §3) and persists the client's Google Wallet configuration
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+      operationId: putApiV1ClientWalletPassSettingsGoogle
+      x-operation-id-source: derived
+  /api/v1/ClientWalletPassSettings/Google/Broadcast:
+    post:
+      tags:
+      - ClientWalletPassSettings
+      summary: Sends a native Google Wallet message (header + body) to every loyalty object of…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastRequestViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastRequestViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+      operationId: postApiV1ClientWalletPassSettingsGoogleBroadcast
+      x-operation-id-source: derived
+  /api/v1/ClientWalletPassSettings/Google/Refresh:
+    post:
+      tags:
+      - ClientWalletPassSettings
+      summary: Re-applies the loyalty class and re-writes every loyalty object so saved config…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+      operationId: postApiV1ClientWalletPassSettingsGoogleRefresh
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastViewModel:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        sentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        passCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        passCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletRefreshRunViewModel:
+      type: object
+      properties:
+        startedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        heartbeatAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        finishedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastViewModel:
+      type: object
+      properties:
+        header:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        sentAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastRequestViewModel:
+      type: object
+      properties:
+        header:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastRequestViewModel:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassColorsViewModel:
+      type: object
+      properties:
+        background:
+          type:
+          - string
+          - 'null'
+        foreground:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletLinkViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassLocationViewModel:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        relevantText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassImagesViewModel:
+      type: object
+      properties:
+        icon:
+          type:
+          - string
+          - 'null'
+        icon2x:
+          type:
+          - string
+          - 'null'
+        icon3x:
+          type:
+          - string
+          - 'null'
+        logo:
+          type:
+          - string
+          - 'null'
+        logo2x:
+          type:
+          - string
+          - 'null'
+        logo3x:
+          type:
+          - string
+          - 'null'
+        strip:
+          type:
+          - string
+          - 'null'
+        strip2x:
+          type:
+          - string
+          - 'null'
+        strip3x:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassBackFieldViewModel:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        attributedValue:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletDetailFieldViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        header:
+          type:
+          - string
+          - 'null'
+        body:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassFieldViewModel:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletLocationViewModel:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletCardCellViewModel:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletConfigViewModel:
+      type: object
+      properties:
+        clientId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        cardTitle:
+          type:
+          - string
+          - 'null'
+        backgroundColor:
+          type:
+          - string
+          - 'null'
+        images:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletImagesViewModel'
+        locations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletLocationViewModel'
+        cardRow:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletCardRowViewModel'
+        detailFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletDetailFieldViewModel'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletLinkViewModel'
+        broadcast:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastViewModel'
+        refreshedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        refreshRun:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletRefreshRunViewModel'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletBroadcastResultViewModel'
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastResultViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletCardRowViewModel:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletCardCellViewModel'
+        end:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletCardCellViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.WalletPass.WalletPassConfigViewModel:
+      type: object
+      properties:
+        client:
+          type:
+          - string
+          - 'null'
+        displayName:
+          type:
+          - string
+          - 'null'
+        locations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassLocationViewModel'
+        colors:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassColorsViewModel'
+        staticBackFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBackFieldViewModel'
+        images:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassImagesViewModel'
+        fields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassFieldViewModel'
+        broadcast:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.WalletPass.WalletPassBroadcastViewModel'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.BLL.ViewModels.GoogleWallet.GoogleWalletImagesViewModel:
+      type: object
+      properties:
+        logo:
+          type:
+          - string
+          - 'null'
+        hero:
+          type:
+          - string
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false

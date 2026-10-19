@@ -1,0 +1,175 @@
+openapi: 3.2.0
+info:
+  title: Gameball Ops API
+tags:
+- name: Ops
+paths:
+  /ops/v1/aws-marketplace/report-usage:
+    post:
+      tags:
+      - Ops
+      summary: Reports one AWS Marketplace usage record by hand, billing the buyer for the…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.AwsMarketplaceUsageRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.AwsMarketplaceUsageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.AwsMarketplaceUsageRequest'
+      responses:
+        '200':
+          description: OK
+      operationId: postOpsV1AwsMarketplaceReportUsage
+      x-operation-id-source: derived
+  /ops/v1/publish-message:
+    post:
+      tags:
+      - Ops
+      summary: Publish a MassTransit message by specifying the DTO type name, optional routing…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.PublishMessageRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.PublishMessageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.PublishMessageRequest'
+      responses:
+        '200':
+          description: OK
+      operationId: postOpsV1PublishMessage
+      x-operation-id-source: derived
+  /ops/v1/invalidate-l1-cache:
+    post:
+      tags:
+      - Ops
+      summary: Invalidate FusionCache (L1 in-memory) entries by exact keys or flush all…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.InvalidateCacheRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.InvalidateCacheRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.Ops.InvalidateCacheRequest'
+      responses:
+        '200':
+          description: OK
+      operationId: postOpsV1InvalidateL1Cache
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.API.Controllers.V1.Ops.PublishMessageRequest:
+      type: object
+      properties:
+        messageType:
+          type:
+          - string
+          - 'null'
+        routingKey:
+          type:
+          - string
+          - 'null'
+        payload: {}
+      additionalProperties: false
+    GameBall.API.Controllers.V1.Ops.AwsMarketplaceUsageRequest:
+      type: object
+      properties:
+        licenseArn:
+          type:
+          - string
+          - 'null'
+        customerAwsAccountId:
+          type:
+          - string
+          - 'null'
+          description: "The buyer's AWS account id, as returned by ResolveCustomer for this purchase. Supplied by the\n            caller because no column on the licence holds it, and it is read from the resolve log for now."
+        dimension:
+          type:
+          - string
+          - 'null'
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.API.Controllers.V1.Ops.InvalidateCacheRequest:
+      type: object
+      properties:
+        keys:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        flush:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false

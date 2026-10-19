@@ -1,0 +1,1183 @@
+openapi: 3.2.0
+info:
+  title: Gameball AI API
+tags:
+- name: AI
+paths:
+  /api/v1/Ai/recent-campaigns:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: isAI
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 3
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel'
+      summary: Get api ai recent campaigns
+      x-summary-source: derived
+      operationId: getApiV1AiRecentCampaigns
+      x-operation-id-source: derived
+  /api/v1/Ai/credits/check:
+    get:
+      tags:
+      - AI
+      summary: Check if the client has enough credits for an AI action (pre-flight check).
+      parameters:
+      - name: actionType
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: getApiV1AiCreditsCheck
+      x-operation-id-source: derived
+  /api/v1/Ai/ask:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AskQuestionAboutDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AskQuestionAboutDataRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AskQuestionAboutDataRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Create api ai ask
+      x-summary-source: derived
+      operationId: postApiV1AiAsk
+      x-operation-id-source: derived
+  /api/v1/Ai/tiers/insights:
+    get:
+      tags:
+      - AI
+      summary: Analyzes tier performance data and generates AI-powered insights for loyalty…
+      parameters:
+      - name: refresh
+        in: query
+        description: Optional parameter to force refresh and bypass cache
+        schema:
+          type: boolean
+          default: false
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: getApiV1AiTiersInsights
+      x-operation-id-source: derived
+  /api/v1/Ai/store-insights:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api ai store insights
+      x-summary-source: derived
+      operationId: getApiV1AiStoreInsights
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/generate:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai opportunities generate
+      x-summary-source: derived
+      operationId: postApiV1AiOpportunitiesGenerate
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/generate-from-mutation:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.MutationTacticGenerationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.MutationTacticGenerationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.MutationTacticGenerationRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai opportunities generate from mutation
+      x-summary-source: derived
+      operationId: postApiV1AiOpportunitiesGenerateFromMutation
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/{jobId}/insights:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api ai opportunities by job id insights
+      x-summary-source: derived
+      operationId: getApiV1AiOpportunitiesByJobIdInsights
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/{jobId}/tactics:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api ai opportunities by job id tactics
+      x-summary-source: derived
+      operationId: getApiV1AiOpportunitiesByJobIdTactics
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: jobId
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api ai opportunities
+      x-summary-source: derived
+      operationId: getApiV1AiOpportunities
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/tactics:
+    get:
+      tags:
+      - AI
+      parameters:
+      - name: jobId
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api ai opportunities tactics
+      x-summary-source: derived
+      operationId: getApiV1AiOpportunitiesTactics
+      x-operation-id-source: derived
+  /api/v1/Ai/tactics/{tacticId}/execute:
+    post:
+      tags:
+      - AI
+      summary: Executes selected opportunity tactics by creating segments and campaigns from…
+      parameters:
+      - name: tacticId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: postApiV1AiTacticsByTacticIdExecute
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/{opportunityId}/generate:
+    post:
+      tags:
+      - AI
+      summary: Triggers generation of new tactics for a specific existing opportunity
+      parameters:
+      - name: opportunityId
+        in: path
+        description: The opportunity ID to generate tactics for
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: postApiV1AiOpportunitiesByOpportunityIdGenerate
+      x-operation-id-source: derived
+  /api/v1/Ai/opportunities/{opportunityId}/feedback:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: opportunityId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      summary: Create api ai opportunities by opportunity id feedback
+      x-summary-source: derived
+      operationId: postApiV1AiOpportunitiesByOpportunityIdFeedback
+      x-operation-id-source: derived
+  /api/v1/Ai/tactics/{tacticId}/feedback:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: tacticId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      summary: Create api ai tactics by tactic id feedback
+      x-summary-source: derived
+      operationId: postApiV1AiTacticsByTacticIdFeedback
+      x-operation-id-source: derived
+  /api/v1/Ai/game-design:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai game design
+      x-summary-source: derived
+      operationId: postApiV1AiGameDesign
+      x-operation-id-source: derived
+  /api/v1/Ai/image-generation:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai image generation
+      x-summary-source: derived
+      operationId: postApiV1AiImageGeneration
+      x-operation-id-source: derived
+  /api/v1/Ai/suggest-reward:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+          text/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+          application/*+json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai suggest reward
+      x-summary-source: derived
+      operationId: postApiV1AiSuggestReward
+      x-operation-id-source: derived
+  /api/v1/Ai/campaign-roi:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+          text/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+          application/*+json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai campaign roi
+      x-summary-source: derived
+      operationId: postApiV1AiCampaignRoi
+      x-operation-id-source: derived
+  /api/v1/Ai/audit:
+    post:
+      tags:
+      - AI
+      summary: On-demand audit endpoint.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AuditRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AuditRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.API.Controllers.V1.AuditRequest'
+      responses:
+        '200':
+          description: OK
+      operationId: postApiV1AiAudit
+      x-operation-id-source: derived
+  /api/v1/Ai/brand-colors:
+    post:
+      tags:
+      - AI
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.Branding.Models.BrandColorsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.Branding.Models.BrandColorsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Common.Connectors.Branding.Models.BrandColorsRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Create api ai brand colors
+      x-summary-source: derived
+      operationId: postApiV1AiBrandColors
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type: boolean
+      additionalProperties: false
+    GameBall.BLL.ViewModels.AIInsights.OpportunityFeedbackRequest:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EOpportunityFeedback'
+        reason:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.API.Controllers.V1.AskQuestionAboutDataRequest:
+      type: object
+      properties:
+        question:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Connectors.Branding.Models.BrandColorsRequest:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EOpportunityFeedback:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      format: int32
+    GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateRequest:
+      type: object
+      properties:
+        stream:
+          type:
+          - boolean
+          - 'null'
+        bgRemoval:
+          type:
+          - boolean
+          - 'null'
+        data:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateData'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel:
+      type: object
+      properties:
+        challengeId:
+          type: integer
+          format: int32
+        internalName:
+          type:
+          - string
+          - 'null'
+        segmentName:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EChallengeBehaviorTypes'
+        roiCost:
+          type: number
+          format: double
+        roiRevenue:
+          type: number
+          format: double
+      additionalProperties: false
+    System.Text.Json.Nodes.JsonNode:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNodeOptions'
+        parent:
+          $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+        root:
+          $ref: '#/components/schemas/System.Text.Json.Nodes.JsonNode'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EChallengeBehaviorTypes:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 28
+      - 29
+      - 30
+      - 31
+      - 32
+      - 33
+      - 34
+      - 35
+      type: integer
+      format: int32
+    GameBall.API.Controllers.V1.AuditRequest:
+      type: object
+      properties:
+        opportunityId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tacticId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    System.Text.Json.Nodes.JsonNodeOptions:
+      type: object
+      properties:
+        propertyNameCaseInsensitive:
+          type: boolean
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.AIInsights.AiCreatedChallengeSummaryViewModel'
+      additionalProperties: false
+    GameBall.Common.Connectors.AIGateway.Models.AIGatewayGenerateData:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.API.Controllers.V1.MutationTacticGenerationRequest:
+      type: object
+      properties:
+        mutationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false

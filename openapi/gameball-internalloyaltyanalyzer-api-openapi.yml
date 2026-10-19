@@ -1,0 +1,87 @@
+openapi: 3.2.0
+info:
+  title: Gameball Internal Loyalty Analyzer API
+tags:
+- name: InternalLoyaltyAnalyzer
+paths:
+  /internal/v1/loyalty-analyzer/trigger/{clientId}:
+    post:
+      tags:
+      - InternalLoyaltyAnalyzer
+      summary: Runs the full loyalty analyzer pipeline (relevance → performance → resolution)…
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: clientKeyId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: postInternalV1LoyaltyAnalyzerTriggerByClientId
+      x-operation-id-source: derived
+  /internal/v1/loyalty-analyzer/debug/relevance/{clientId}/{opportunityId}:
+    get:
+      tags:
+      - InternalLoyaltyAnalyzer
+      summary: 'Debug: directly evaluates relevance for a single opportunity and returns the…'
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: opportunityId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: getInternalV1LoyaltyAnalyzerDebugRelevanceByClientIdByOpportunityId
+      x-operation-id-source: derived

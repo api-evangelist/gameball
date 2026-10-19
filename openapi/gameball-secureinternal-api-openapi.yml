@@ -1,0 +1,686 @@
+openapi: 3.2.0
+info:
+  title: Gameball Secure Internal API
+tags:
+- name: SecureInternal
+paths:
+  /api/internal/v1/player/{playerUniqueId}:
+    get:
+      tags:
+      - SecureInternal
+      parameters:
+      - name: playerUniqueId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayerMinimumInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayerMinimumInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayerMinimumInfo'
+      summary: Get api internal player by player unique id
+      x-summary-source: derived
+      operationId: getApiInternalV1PlayerByPlayerUniqueId
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - SecureInternal
+      parameters:
+      - name: playerUniqueId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      summary: Delete api internal player by player unique id
+      x-summary-source: derived
+      operationId: deleteApiInternalV1PlayerByPlayerUniqueId
+      x-operation-id-source: derived
+  /api/internal/v1/player:
+    post:
+      tags:
+      - SecureInternal
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.InternalPlayer'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.InternalPlayer'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.InternalPlayer'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayer'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayer'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayer'
+      summary: Create api internal player
+      x-summary-source: derived
+      operationId: postApiInternalV1Player
+      x-operation-id-source: derived
+  /api/internal/v1/player/{playerUniqueId}/id:
+    get:
+      tags:
+      - SecureInternal
+      parameters:
+      - name: playerUniqueId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Get api internal player by player unique id id
+      x-summary-source: derived
+      operationId: getApiInternalV1PlayerByPlayerUniqueIdId
+      x-operation-id-source: derived
+  /api/internal/v1/DiscountCode:
+    post:
+      tags:
+      - SecureInternal
+      summary: Create discount code for specific customer
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        description: Payload contains coupon details (type, value, ...etc).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.DiscountCodeIntegrationViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.DiscountCodeIntegrationViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.DiscountCodeIntegrationViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.BLL.Helper.BussinessCustomResponse_1_System.Object'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.BLL.Helper.BussinessCustomResponse_1_System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.BLL.Helper.BussinessCustomResponse_1_System.Object'
+      operationId: postApiInternalV1DiscountCode
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.DiscountCodeIntegrationViewModel:
+      required:
+      - amount
+      - bodyHashed
+      - playerUniqueId
+      - transactionTime
+      - type
+      - usageTarget
+      type: object
+      properties:
+        discountCode:
+          type:
+          - string
+          - 'null'
+        discountCodePin:
+          type:
+          - string
+          - 'null'
+        playerUniqueId:
+          minLength: 1
+          type: string
+        mobile:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        codeClientId:
+          type:
+          - string
+          - 'null'
+        pricingRuleId:
+          type:
+          - string
+          - 'null'
+        ruleId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        amount:
+          minLength: 1
+          type: string
+        currency:
+          type:
+          - string
+          - 'null'
+        usageTarget:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EDiscountCodeTargets'
+        type:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EDiscountCodeTypes'
+        transactionTime:
+          type: string
+          format: date-time
+        bodyHashed:
+          minLength: 1
+          type: string
+        destination:
+          type:
+          - string
+          - 'null'
+        guestIdentifier:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type: boolean
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EDiscountCodeTypes:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 11
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.InternalPlayer:
+      required:
+      - mobileNumber
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+        mobileNumber:
+          minLength: 1
+          pattern: ^(?!0+$)(\+\d{1,3}[- ]?)?(?!0+$)\d{10,15}$
+          type: string
+        email:
+          pattern: ^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;,.]{0,1}\s*)+$
+          type:
+          - string
+          - 'null'
+        birthday:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayerMinimumInfo:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.InternalPlayerMinimumInfo'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.InternalPlayerMinimumInfo:
+      type: object
+      properties:
+        pLayerId:
+          type: integer
+          format: int64
+        playerUniqueId:
+          type:
+          - string
+          - 'null'
+        displayName:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        mobileNumber:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        joinDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        referralCode:
+          type:
+          - string
+          - 'null'
+        referralLink:
+          type:
+          - string
+          - 'null'
+        dynamicReferralLink:
+          type:
+          - string
+          - 'null'
+        levelName:
+          type:
+          - string
+          - 'null'
+        levelIconPath:
+          type:
+          - string
+          - 'null'
+        pointsBalance:
+          type: integer
+          format: int32
+        pointsValue:
+          type: number
+          format: double
+        pendingPoints:
+          type: integer
+          format: int32
+        pendingPointsValue:
+          type: number
+          format: double
+        pointsToExpire:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pointsToExpireValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        expiryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        currency:
+          type:
+          - string
+          - 'null'
+        pointsName:
+          type:
+          - string
+          - 'null'
+        lastActivePointsStatus:
+          type: integer
+          format: int32
+        lastPendingPointsStatus:
+          type: integer
+          format: int32
+        lastLevelStatus:
+          type:
+          - string
+          - 'null'
+        lastActivePointsDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastPendingPointsDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastLevelDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        hash:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EDiscountCodeTargets:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      format: int32
+    GameBall.BLL.Helper.BussinessCustomResponse_1_System.Object:
+      type: object
+      properties:
+        response: {}
+        success:
+          type: boolean
+        errorMsg:
+          type:
+          - string
+          - 'null'
+        errorCode:
+          type: integer
+          format: int32
+        liveMode:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.InternalPlayer:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.InternalPlayer'
+      additionalProperties: false

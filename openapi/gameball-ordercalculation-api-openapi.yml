@@ -1,0 +1,55 @@
+openapi: 3.2.0
+info:
+  title: Gameball Order Calculation API
+tags:
+- name: OrderCalculation
+paths:
+  /api/v1/OrderCalculation/RecalculateOrders:
+    post:
+      tags:
+      - OrderCalculation
+      parameters:
+      - name: clientId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: ToEmail
+        in: query
+        schema:
+          type: string
+      - name: From
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: To
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Create api order calculation recalculate orders
+      x-summary-source: derived
+      operationId: postApiV1OrderCalculationRecalculateOrders
+      x-operation-id-source: derived

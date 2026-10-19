@@ -1,0 +1,538 @@
+openapi: 3.2.0
+info:
+  title: Gameball Client Currencies API
+tags:
+- name: ClientCurrencies
+paths:
+  /api/v1/client-currencies:
+    get:
+      tags:
+      - ClientCurrencies
+      summary: 'Returns the whole multi-currency settings section in one call: the feature…'
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel'
+      operationId: getApiV1ClientCurrencies
+      x-operation-id-source: derived
+    post:
+      tags:
+      - ClientCurrencies
+      summary: Configures an additional currency with its rate.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      operationId: postApiV1ClientCurrencies
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ClientCurrencies
+      summary: Replaces the whole list of additional currencies with the submitted array in…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      operationId: putApiV1ClientCurrencies
+      x-operation-id-source: derived
+  /api/v1/client-currencies/toggle:
+    put:
+      tags:
+      - ClientCurrencies
+      summary: Turns the multi-currency feature on or off for the workspace.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.MultiCurrencyToggleViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.MultiCurrencyToggleViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.MultiCurrencyToggleViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      operationId: putApiV1ClientCurrenciesToggle
+      x-operation-id-source: derived
+  /api/v1/client-currencies/{currencyCode}:
+    put:
+      tags:
+      - ClientCurrencies
+      summary: Updates the rate of an already configured currency.
+      parameters:
+      - name: currencyCode
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      operationId: putApiV1ClientCurrenciesByCurrencyCode
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ClientCurrencies
+      summary: Removes a configured currency.
+      parameters:
+      - name: currencyCode
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      operationId: deleteApiV1ClientCurrenciesByCurrencyCode
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel:
+      type: object
+      properties:
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+        rate:
+          type: number
+          format: double
+        lastUpdate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastUpdatedByName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.Client.MultiCurrencyToggleViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type: boolean
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel'
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.Client.MultiCurrencySettingsViewModel:
+      type: object
+      properties:
+        isMultiCurrencyEnabled:
+          type: boolean
+        baseCurrency:
+          type:
+          - string
+          - 'null'
+        currencies:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.Client.ClientCurrencyRequestViewModel:
+      type: object
+      properties:
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        rate:
+          type: number
+          format: double
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.Client.ClientCurrencyViewModel'
+      additionalProperties: false

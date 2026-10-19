@@ -1,0 +1,852 @@
+openapi: 3.2.0
+info:
+  title: Gameball Audit Runs API
+tags:
+- name: AuditRuns
+paths:
+  /api/v1/audit-runs:
+    get:
+      tags:
+      - AuditRuns
+      summary: Get paginated audit run history for the client
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel'
+      operationId: getApiV1AuditRuns
+      x-operation-id-source: derived
+  /api/v1/audit-runs/{id}/details:
+    get:
+      tags:
+      - AuditRuns
+      summary: Get full details of a specific audit run including results and mutations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel'
+      operationId: getApiV1AuditRunsByIdDetails
+      x-operation-id-source: derived
+  /api/v1/audit-runs/latest:
+    get:
+      tags:
+      - AuditRuns
+      summary: Get the latest audit run status for the client
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel'
+      operationId: getApiV1AuditRunsLatest
+      x-operation-id-source: derived
+  /api/v1/audit-runs/trigger:
+    post:
+      tags:
+      - AuditRuns
+      summary: Trigger a full audit pipeline for the client (Relevance + Performance +…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse'
+      operationId: postApiV1AuditRunsTrigger
+      x-operation-id-source: derived
+  /api/v1/audit-runs/status/{jobId}:
+    get:
+      tags:
+      - AuditRuns
+      summary: Poll the status of a triggered audit job
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse'
+      operationId: getApiV1AuditRunsStatusByJobId
+      x-operation-id-source: derived
+  /api/v1/audit-runs/entity-status:
+    get:
+      tags:
+      - AuditRuns
+      summary: Get the latest audit status for specified entities (tactics and opportunities).
+      parameters:
+      - name: tacticIds
+        in: query
+        schema:
+          type: string
+      - name: opportunityIds
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse'
+      operationId: getApiV1AuditRunsEntityStatus
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse:
+      type: object
+      properties:
+        tacticStatuses:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.TacticAuditStatus'
+        opportunityStatuses:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.OpportunityAuditStatus'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.TacticAuditStatus:
+      type: object
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+        liftPct:
+          type:
+          - number
+          - 'null'
+          format: double
+        processedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.MutationProposalViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        clientId:
+          type: integer
+          format: int32
+        sourceType:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EMutationSourceType'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        proposedChanges:
+          type:
+          - string
+          - 'null'
+        rationale:
+          type:
+          - string
+          - 'null'
+        playbookRefs:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        evidenceBundle:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EMutationProposalStatus'
+        resolvedBy:
+          type:
+          - string
+          - 'null'
+        resolvedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        feedbackReason:
+          type:
+          - string
+          - 'null'
+        rejectionCategory:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EMutationRejectionCategory'
+        resultingEntityId:
+          type:
+          - string
+          - 'null'
+        parentProposalId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EAuditRunType:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse:
+      type: object
+      properties:
+        jobId:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EMutationRejectionCategory:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 99
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel:
+      type: object
+      properties:
+        auditRun:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel'
+        performanceResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.PerformanceAuditResultViewModel'
+        relevanceResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.RelevanceAuditResultViewModel'
+        mutationProposals:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.MutationProposalViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.RelevanceAuditResultViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        opportunityId:
+          type: integer
+          format: int32
+        opportunityTitle:
+          type:
+          - string
+          - 'null'
+        stateBefore:
+          type:
+          - string
+          - 'null'
+        stateAfter:
+          type:
+          - string
+          - 'null'
+        verdict:
+          type:
+          - string
+          - 'null'
+        confidenceScore:
+          type:
+          - number
+          - 'null'
+          format: double
+        evidenceJson:
+          type:
+          - string
+          - 'null'
+        rationaleText:
+          type:
+          - string
+          - 'null'
+        processedAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.EntityAuditStatusResponse'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.PerformanceAuditResultViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        tacticId:
+          type: integer
+          format: int32
+        tacticName:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        liftPct:
+          type:
+          - number
+          - 'null'
+          format: double
+        confidenceIntervalLow:
+          type:
+          - number
+          - 'null'
+          format: double
+        confidenceIntervalHigh:
+          type:
+          - number
+          - 'null'
+          format: double
+        guardrailChecksJson:
+          type:
+          - string
+          - 'null'
+        evidenceJson:
+          type:
+          - string
+          - 'null'
+        rationaleText:
+          type:
+          - string
+          - 'null'
+        verdict:
+          type:
+          - string
+          - 'null'
+        processedAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EMutationProposalStatus:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunDetailViewModel'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.TriggerAuditResponse'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditJobPollingResponse:
+      type: object
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+        isReady:
+          type: boolean
+        itemsProcessed:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        itemsTotal:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EAuditRunType'
+        status:
+          type:
+          - string
+          - 'null'
+        asOfDate:
+          type: string
+          format: date-time
+        itemsTotal:
+          type: integer
+          format: int32
+        itemsProcessed:
+          type: integer
+          format: int32
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunViewModel'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EMutationSourceType:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.AuditRunListViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        auditType:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        asOfDate:
+          type: string
+          format: date-time
+        itemsTotal:
+          type: integer
+          format: int32
+        itemsProcessed:
+          type: integer
+          format: int32
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        performanceResultCount:
+          type: integer
+          format: int32
+        relevanceResultCount:
+          type: integer
+          format: int32
+        mutationProposalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.BLL.ViewModels.LoyaltyAnalyzer.OpportunityAuditStatus:
+      type: object
+      properties:
+        verdict:
+          type:
+          - string
+          - 'null'
+        trend:
+          type:
+          - string
+          - 'null'
+        processedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false

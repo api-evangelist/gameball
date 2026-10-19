@@ -1,0 +1,470 @@
+openapi: 3.2.0
+info:
+  title: Gameball Aws Marketplace API
+tags:
+- name: AwsMarketplace
+paths:
+  /v1/aws-marketplace/fulfillment:
+    post:
+      tags:
+      - AwsMarketplace
+      summary: Where AWS Marketplace sends the buyer immediately after purchase.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                x-amzn-marketplace-token:
+                  type: string
+            encoding:
+              x-amzn-marketplace-token:
+                style: form
+      responses:
+        '200':
+          description: OK
+      operationId: postV1AwsMarketplaceFulfillment
+      x-operation-id-source: derived
+  /v1/aws-marketplace/registration:
+    post:
+      tags:
+      - AwsMarketplace
+      summary: Completes signup for a buyer who arrived from AWS Marketplace.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Admin.BLL.ViewModels.Registrations.AwsMarketplaceRegistrationViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Admin.BLL.ViewModels.Registrations.AwsMarketplaceRegistrationViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.Admin.BLL.ViewModels.Registrations.AwsMarketplaceRegistrationViewModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Internal.Models.TokenViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Internal.Models.TokenViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Internal.Models.TokenViewModel'
+      operationId: postV1AwsMarketplaceRegistration
+      x-operation-id-source: derived
+  /v1/aws-marketplace/events:
+    post:
+      tags:
+      - AwsMarketplace
+      summary: Where EventBridge delivers AWS Marketplace lifecycle notifications — upgrades…
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          text/json:
+            schema: {}
+          application/*+json:
+            schema: {}
+      responses:
+        '200':
+          description: OK
+      operationId: postV1AwsMarketplaceEvents
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.Common.Connectors.Internal.Models.TokenViewModel:
+      type: object
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+        refreshToken:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        isFirstLogin:
+          type: boolean
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isPrimaryUser:
+          type: boolean
+        clientId:
+          type: integer
+          format: int32
+        clientName:
+          type:
+          - string
+          - 'null'
+        userWorkspaces:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.Common.Connectors.Internal.Models.UserWorkspaceTuple'
+        merchantIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        branchIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        upvotyToken:
+          type:
+          - string
+          - 'null'
+        apiKey:
+          type:
+          - string
+          - 'null'
+        isBaseWorkspace:
+          type: boolean
+        twoFactorEnabled:
+          type: boolean
+        twoFactorActivationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        isSAVirtualLogin:
+          type: boolean
+        isSubscriptionConfigured:
+          type: boolean
+        isChecklistEnabled:
+          type: boolean
+        clientType:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EClientTypes'
+        dashboardLocal:
+          type:
+          - string
+          - 'null'
+        completedOnboardingSteps:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EOnboardingSteps'
+        edition:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EClientEditions'
+        blockLevel:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EClientBlockLevels'
+      additionalProperties: false
+    GameBall.Common.Connectors.Internal.Models.UserWorkspaceTuple:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastUpdate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        workspaceName:
+          type:
+          - string
+          - 'null'
+        clientId:
+          type: integer
+          format: int32
+        isDefault:
+          type: boolean
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EClientTypes:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      type: integer
+      format: int32
+    GameBall.Admin.BLL.ViewModels.Registrations.AwsMarketplaceRegistrationViewModel:
+      required:
+      - companyName
+      - ownerEmail
+      - registrationToken
+      type: object
+      properties:
+        registrationToken:
+          minLength: 1
+          type: string
+        companyName:
+          maxLength: 255
+          minLength: 1
+          type: string
+        ownerEmail:
+          maxLength: 255
+          minLength: 1
+          type: string
+          format: email
+        firstName:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+        lastName:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        password:
+          maxLength: 128
+          minLength: 8
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EClientBlockLevels:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Internal.Models.TokenViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.Internal.Models.TokenViewModel'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EClientEditions:
+      enum:
+      - 0
+      - 1
+      type: integer
+      format: int32
+    GameBall.Common.Model.Enums.EOnboardingSteps:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 8
+      type: integer
+      format: int32

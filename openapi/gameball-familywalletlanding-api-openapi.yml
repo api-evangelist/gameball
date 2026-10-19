@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  title: Gameball Family Wallet Landing API
+tags:
+- name: FamilyWalletLanding
+paths:
+  /v1/family-wallet/info:
+    get:
+      tags:
+      - FamilyWalletLanding
+      summary: This endpoint used for initialize family landing page
+      parameters:
+      - name: hash
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: getV1FamilyWalletInfo
+      x-operation-id-source: derived
+  /v1/family-wallet/join:
+    post:
+      tags:
+      - FamilyWalletLanding
+      summary: This endpoint used by invitees for accepting family invitation
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.JoinFamilyWalletBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.JoinFamilyWalletBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.JoinFamilyWalletBody'
+      responses:
+        '200':
+          description: OK
+      operationId: postV1FamilyWalletJoin
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.BLL.ViewModels.JoinFamilyWalletBody:
+      type: object
+      properties:
+        hash:
+          type:
+          - string
+          - 'null'
+        playerIdentifier:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false

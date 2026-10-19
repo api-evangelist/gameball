@@ -1,0 +1,12 @@
+{
+ "url": "https://api.gameball.co/swagger/v1/swagger.json",
+ "final": "https://api.gameball.co/swagger/v1/swagger.json",
+ "status": 200,
+ "content_type": "application/json;charset=utf-8",
+ "bytes": 2760826,
+ "sha256": "2621d00df2f1341a06932ba616845a6a7622fbce3f966e17e1f39c26fe648c38",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

@@ -1,0 +1,578 @@
+openapi: 3.2.0
+info:
+  title: Gameball Billing API
+tags:
+- name: Billing
+paths:
+  /api/v1/Billing/PaymentMethods:
+    get:
+      tags:
+      - Billing
+      summary: Get api billing payment methods
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-summary-source: derived
+      operationId: getApiV1BillingPaymentMethods
+      x-operation-id-source: derived
+  /api/v1/Billing/DefaultPayment:
+    get:
+      tags:
+      - Billing
+      summary: Get api billing default payment
+      parameters:
+      - name: bmethodId
+        in: query
+        description: BillingPaymentMethodId
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-summary-source: derived
+      operationId: getApiV1BillingDefaultPayment
+      x-operation-id-source: derived
+  /api/v1/Billing/attachCoupon:
+    get:
+      tags:
+      - Billing
+      parameters:
+      - name: promo
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Get api billing attach coupon
+      x-summary-source: derived
+      operationId: getApiV1BillingAttachCoupon
+      x-operation-id-source: derived
+  /api/v1/Billing/deattachCoupon:
+    put:
+      tags:
+      - Billing
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Replace api billing deattach coupon
+      x-summary-source: derived
+      operationId: putApiV1BillingDeattachCoupon
+      x-operation-id-source: derived
+  /api/v1/Billing/customerInvoices:
+    get:
+      tags:
+      - Billing
+      summary: Get all invoices for a customer
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      operationId: getApiV1BillingCustomerInvoices
+      x-operation-id-source: derived
+  /api/v1/Billing/deletePayment:
+    delete:
+      tags:
+      - Billing
+      parameters:
+      - name: bmethodId
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete api billing delete payment
+      x-summary-source: derived
+      operationId: deleteApiV1BillingDeletePayment
+      x-operation-id-source: derived
+  /api/v1/Billing/StripeSession:
+    get:
+      tags:
+      - Billing
+      summary: Get api billing stripe session
+      parameters:
+      - name: pricingPlanId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: mode
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      x-summary-source: derived
+      operationId: getApiV1BillingStripeSession
+      x-operation-id-source: derived
+  /api/v1/Billing/current-subscription:
+    get:
+      tags:
+      - Billing
+      parameters:
+      - name: clientId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails'
+      summary: Get api billing current subscription
+      x-summary-source: derived
+      operationId: getApiV1BillingCurrentSubscription
+      x-operation-id-source: derived
+  /api/v1/Billing/coupon:
+    get:
+      tags:
+      - Billing
+      parameters:
+      - name: promo
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get api billing coupon
+      x-summary-source: derived
+      operationId: getApiV1BillingCoupon
+      x-operation-id-source: derived
+  /api/v1/Billing/recharge:
+    post:
+      tags:
+      - Billing
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Create api billing recharge
+      x-summary-source: derived
+      operationId: postApiV1BillingRecharge
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails:
+      type: object
+      properties:
+        plan:
+          type:
+          - string
+          - 'null'
+        total:
+          type:
+          - number
+          - 'null'
+          format: double
+        nextPaymentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextPaymentAttemptDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        coupon:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.Billing.Models.CustomerCoupon'
+        startingDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextSubsctiption:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails'
+        collectionMethod:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.Billing.Models.EStripeCollectionMethod'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Connectors.Billing.Models.CustomerCoupon:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        percentOff:
+          type:
+          - number
+          - 'null'
+          format: double
+        amountOff:
+          type:
+          - number
+          - 'null'
+          format: double
+        duration:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.Common.Connectors.Billing.Models.CustomerSubscriptionDetails'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Connectors.Billing.Models.EStripeCollectionMethod:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32

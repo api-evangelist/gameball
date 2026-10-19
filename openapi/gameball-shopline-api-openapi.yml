@@ -1,0 +1,251 @@
+openapi: 3.2.0
+info:
+  title: Gameball Shopline API
+tags:
+- name: Shopline
+paths:
+  /api/v1/Shopline/bulk-operation-finish:
+    post:
+      tags:
+      - Shopline
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ShoplineBulkOperation'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ShoplineBulkOperation'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ShoplineBulkOperation'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean'
+      summary: Create api shopline bulk operation finish
+      x-summary-source: derived
+      operationId: postApiV1ShoplineBulkOperationFinish
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Boolean:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type: boolean
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ShoplineBulkOperation:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+        languageId:
+          type: integer
+          format: int32
+        fileURL:
+          type:
+          - string
+          - 'null'
+        operationId:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EShoplineBulkOperationTypes'
+        shopName:
+          type:
+          - string
+          - 'null'
+        accessToken:
+          type:
+          - string
+          - 'null'
+        encryptedToken:
+          type:
+          - string
+          - 'null'
+        objectCount:
+          type: integer
+          format: int32
+        jobId:
+          type:
+          - string
+          - 'null'
+        guestOnly:
+          type: boolean
+        fromDate:
+          type:
+          - string
+          - 'null'
+          format: date-span
+        sinceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EShoplineBulkOperationTypes:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false

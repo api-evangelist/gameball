@@ -1,0 +1,528 @@
+openapi: 3.2.0
+info:
+  title: Gameball Program Audits API
+tags:
+- name: ProgramAudits
+paths:
+  /api/v1/program-audits/trigger:
+    post:
+      tags:
+      - ProgramAudits
+      summary: Triggers a fresh program audit via Hangfire background job.
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      operationId: postApiV1ProgramAuditsTrigger
+      x-operation-id-source: derived
+  /api/v1/program-audits/latest:
+    get:
+      tags:
+      - ProgramAudits
+      summary: Gets the latest audit summary for the authenticated client
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel'
+      operationId: getApiV1ProgramAuditsLatest
+      x-operation-id-source: derived
+  /api/v1/program-audits/{id}/details:
+    get:
+      tags:
+      - ProgramAudits
+      summary: Gets detailed audit results including all insights and recommendations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel'
+      operationId: getApiV1ProgramAuditsByIdDetails
+      x-operation-id-source: derived
+  /api/v1/program-audits/recommendations/{recommendationId}/approve:
+    put:
+      tags:
+      - ProgramAudits
+      summary: Approves or rejects a program audit recommendation
+      parameters:
+      - name: recommendationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse'
+      operationId: putApiV1ProgramAuditsRecommendationsByRecommendationIdApprove
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse:
+      type: object
+      properties:
+        recommendationId:
+          type: integer
+          format: int32
+        status:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        approvedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EProgramAuditBlockType:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32
+    GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationRequest:
+      type: object
+      properties:
+        approve:
+          type: boolean
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ApproveRecommendationResponse'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel:
+      type: object
+      properties:
+        auditRunId:
+          type: integer
+          format: int32
+        runDate:
+          type: string
+          format: date-time
+        programHealthScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        blocks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditBlockSummary'
+        totalInsights:
+          type: integer
+          format: int32
+        totalRecommendations:
+          type: integer
+          format: int32
+        pendingRecommendations:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditRecommendationViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        targetEntity:
+          type:
+          - string
+          - 'null'
+        targetRecordId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        severity:
+          type:
+          - string
+          - 'null'
+        reason:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        proposedPayload: {}
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditSummaryViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditBlockDetailViewModel:
+      type: object
+      properties:
+        blockType:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EProgramAuditBlockType'
+        healthScore:
+          type: integer
+          format: int32
+        healthScoreBreakdown: {}
+        insights:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.Common.Connectors.AIGateway.Models.ProgramAudit.ProgramAuditInsight'
+        recommendations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditRecommendationViewModel'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditBlockSummary:
+      type: object
+      properties:
+        blockType:
+          type:
+          - string
+          - 'null'
+        healthScore:
+          type: integer
+          format: int32
+        insightCount:
+          type: integer
+          format: int32
+        recommendationCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel:
+      type: object
+      properties:
+        auditRunId:
+          type: integer
+          format: int32
+        runDate:
+          type: string
+          format: date-time
+        programHealthScore:
+          type: integer
+          format: int32
+        blocks:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditBlockDetailViewModel'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.BLL.ViewModels.ProgramAudit.ProgramAuditDetailsViewModel'
+      additionalProperties: false
+    GameBall.Common.Connectors.AIGateway.Models.ProgramAudit.ProgramAuditInsight:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        severity:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false

@@ -1,0 +1,794 @@
+openapi: 3.2.0
+info:
+  title: Gameball Players Activity Log API
+tags:
+- name: PlayersActivityLog
+paths:
+  /api/v1/PlayersActivityLog/view:
+    get:
+      tags:
+      - PlayersActivityLog
+      parameters:
+      - name: playerId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: pageNo
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: filter
+        in: query
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        schema:
+          type: string
+      - name: dir
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel'
+      summary: Get api players activity log view
+      x-summary-source: derived
+      operationId: getApiV1PlayersActivityLogView
+      x-operation-id-source: derived
+  /api/v1/PlayersActivityLog/minimal:
+    get:
+      tags:
+      - PlayersActivityLog
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel'
+      summary: Get api players activity log minimal
+      x-summary-source: derived
+      operationId: getApiV1PlayersActivityLogMinimal
+      x-operation-id-source: derived
+  /api/v1/PlayersActivityLog/view/count:
+    get:
+      tags:
+      - PlayersActivityLog
+      parameters:
+      - name: playerId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: filter
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Int32'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Int32'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Int32'
+      summary: Get api players activity log view count
+      x-summary-source: derived
+      operationId: getApiV1PlayersActivityLogViewCount
+      x-operation-id-source: derived
+  /api/v1/PlayersActivityLog/export:
+    get:
+      tags:
+      - PlayersActivityLog
+      parameters:
+      - name: playerId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: filter
+        in: query
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        schema:
+          type: string
+      - name: dir
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Get api players activity log export
+      x-summary-source: derived
+      operationId: getApiV1PlayersActivityLogExport
+      x-operation-id-source: derived
+  /api/v1/PlayersActivityLog/export-v2:
+    get:
+      tags:
+      - PlayersActivityLog
+      parameters:
+      - name: playerId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: filter
+        in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: lang
+        in: header
+        schema:
+          type: string
+      - name: APIKey
+        in: header
+        required: true
+        schema:
+          type: string
+          default: 8fdfd2dffd-9mnvhu25d6c3d
+      - name: SecretKey
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String'
+      summary: Get api players activity log export v2
+      x-summary-source: derived
+      operationId: getApiV1PlayersActivityLogExportV2
+      x-operation-id-source: derived
+components:
+  schemas:
+    GameBall.Common.ProcessResult.ProcessResultStatusCode:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 101
+      - 102
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 320
+      - 321
+      - 322
+      - 323
+      - 324
+      - 325
+      - 326
+      - 327
+      - 328
+      - 329
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 337
+      - 351
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 418
+      - 419
+      - 420
+      - 421
+      - 422
+      - 423
+      - 424
+      - 425
+      - 426
+      - 427
+      - 500
+      - 503
+      - 800
+      - 801
+      type: integer
+      format: int32
+    GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel:
+      type: object
+      properties:
+        pageNo:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        searchText:
+          type:
+          - string
+          - 'null'
+        count:
+          type: integer
+          format: int32
+        hasNext:
+          type: boolean
+        hasPrevious:
+          type: boolean
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.PlayerActivityViewModel'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.String:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel:
+      type: object
+      properties:
+        activityId:
+          type:
+          - string
+          - 'null'
+        activityTypeId:
+          type: integer
+          format: int32
+        creationDate:
+          type: string
+          format: date-time
+        points:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        displayName:
+          type:
+          - string
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        playerId:
+          type: integer
+          format: int64
+      additionalProperties: false
+    GameBall.BLL.ViewModels.PlayerActivityViewModel:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+        creationDate:
+          type: string
+          format: date-time
+        lastUpdate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        clientId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        clientKeyId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityId:
+          type:
+          - string
+          - 'null'
+        activityDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        externalId:
+          type:
+          - string
+          - 'null'
+        displayName:
+          type:
+          - string
+          - 'null'
+        transactionId:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+        accountState:
+          $ref: '#/components/schemas/GameBall.Common.Model.Enums.EAccountState'
+        playerId:
+          type: integer
+          format: int64
+        achievementId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        points:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityTypeId:
+          type: integer
+          format: int32
+        isManualActivity:
+          type: boolean
+        pointsStatus:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pendingActivationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expiryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reason:
+          type:
+          - string
+          - 'null'
+        couponGroup:
+          type:
+          - string
+          - 'null'
+        calculatedRedemption:
+          type:
+          - number
+          - 'null'
+          format: double
+        actualRedemption:
+          type:
+          - number
+          - 'null'
+          format: double
+        paymentRewardAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        outstandingPoints:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        rewardThreshold:
+          type:
+          - number
+          - 'null'
+          format: double
+        currency:
+          type:
+          - string
+          - 'null'
+        originalCurrency:
+          type:
+          - string
+          - 'null'
+        exchangeRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        originalAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        redemptionRewardFactor:
+          type:
+          - number
+          - 'null'
+          format: double
+        rewardPoints:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rewardFactor:
+          type:
+          - number
+          - 'null'
+          format: double
+        campaignEnabled:
+          type:
+          - boolean
+          - 'null'
+        clientSystemId:
+          type:
+          - string
+          - 'null'
+        couponCode:
+          type:
+          - string
+          - 'null'
+        couponType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        couponValue:
+          type:
+          - number
+          - 'null'
+          format: double
+        couponProduct:
+          type:
+          - string
+          - 'null'
+        couponProductVariant:
+          type:
+          - string
+          - 'null'
+        couponUsed:
+          type:
+          - boolean
+          - 'null'
+        guestIdentifier:
+          type:
+          - string
+          - 'null'
+        walletCashback:
+          type:
+          - number
+          - 'null'
+          format: double
+        merchantId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        merchantExternalId:
+          type:
+          - string
+          - 'null'
+        merchantName:
+          type:
+          - string
+          - 'null'
+        branchId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        branchExternalId:
+          type:
+          - string
+          - 'null'
+        branchName:
+          type:
+          - string
+          - 'null'
+        playerDeleted:
+          type:
+          - boolean
+          - 'null'
+        familyWalletId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        relatedActivityId:
+          type:
+          - string
+          - 'null'
+        familyAmount:
+          type:
+          - number
+          - 'null'
+          format: double
+        familyRedeemedPoints:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isFamilyActivity:
+          type: boolean
+        usedCouponCodes:
+          type:
+          - string
+          - 'null'
+        rewardName:
+          type:
+          - string
+          - 'null'
+        automationId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        automationName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Int32:
+      type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GameBall.Common.ProcessResult.ProcessResultStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatusCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          $ref: '#/components/schemas/GameBall.Common.Paging.PaginatedItemsViewModel_1_GameBall.BLL.ViewModels.PlayerActivityViewModel'
+      additionalProperties: false
+    GameBall.Common.Model.Enums.EAccountState:
+      enum:
+      - 1
+      - 2
+      type: integer
+      format: int32
+    ? GameBall.Common.ProcessResult.ProcessResultViewModel_1_System.Collections.Generic.List_1_GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel
+    : type: object
+      properties:
+        isSucceeded:
+          type: boolean
+        methodName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/GameBall.Common.ProcessResult.ProcessResultStatus'
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GameBall.BLL.ViewModels.PlayerActivityLogMinimalViewModel'
+      additionalProperties: false
