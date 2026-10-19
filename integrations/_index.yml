@@ -265,3 +265,105 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: gameball-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/gameball
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: gameball
+      version: 0.1.7
+      released: '2022-05-03'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/gameball
+      repo_leg: github-org:gameballers
+      publisher_leg: email:gameball.co
+      matched_by: domain
+    - name: react-native-gameball
+      version: 3.1.2
+      released: '2026-04-08'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/react-native-gameball
+      repo_leg: github-org:gameballers
+      publisher_leg: email:gameball.co
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: gameball-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/gameball/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: gameball
+      version: 1.0.0
+      released: '2020-08-25'
+      released_field: upload_time
+      lapsed: true
+      page: https://pypi.org/project/gameball/
+      repo_leg: github-org:gameballers
+      publisher_leg: email:gameball.co
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: gameball-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/gameball
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: gameball
+      version: 3.1.5
+      released: '2022-01-16'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/gameball
+      repo_leg: domain:gameball.co
+      publisher_leg: org:gameball
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
