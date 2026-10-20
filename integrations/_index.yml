@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/drip/integrations/gameball/382540/give-rewards-to-players-in-gameball-for-new-drip-subscriptions
   template: https://zapier.com/apps/drip/integrations/gameball/382540/give-rewards-to-players-in-gameball-for-new-drip-subscriptions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: gameball-send-rewards-from-gameball-to-new-goto-webinar-attendees
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/gameball/integrations/gotowebinar/434497/send-rewards-from-gameball-to-new-goto-webinar-attendees
   template: https://zapier.com/apps/gameball/integrations/gotowebinar/434497/send-rewards-from-gameball-to-new-goto-webinar-attendees
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: gameball-give-rewards-to-new-goto-webinar-registrants-with-gameball
@@ -43,189 +45,8 @@
   evidence: https://zapier.com/apps/gameball/integrations/gotowebinar/447894/give-rewards-to-new-goto-webinar-registrants-with-gameball
   template: https://zapier.com/apps/gameball/integrations/gotowebinar/447894/give-rewards-to-new-goto-webinar-registrants-with-gameball
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
-  arazzo: null
-- slug: gameball-google-forms-legacy
-  label: Google Forms (Legacy)
-  partner_name: Google Forms (Legacy)
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/google-forms-legacy
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-leagueapps
-  label: LeagueApps
-  partner_name: LeagueApps
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/leagueapps
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-surveymonkey
-  label: SurveyMonkey
-  partner: surveymonkey
-  partner_name: SurveyMonkey
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/surveymonkey
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: gameball-incentivefox
-  label: Incentivefox
-  partner_name: Incentivefox
-  category: IT Operations
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/incentivefox
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-google-calendar
-  label: Google Calendar
-  partner: google-calendar
-  partner_name: Google Calendar
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/google-calendar
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: gameball-webflow
-  label: Webflow
-  partner: webflow
-  partner_name: Webflow
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/webflow
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: gameball-microsoft-excel
-  label: Microsoft Excel
-  partner_name: Microsoft Excel
-  category: Microsoft
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/excel
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-facebook-lead-ads-for-business-admins
-  label: Facebook Lead Ads (for Business admins)
-  partner_name: Facebook Lead Ads (for Business admins)
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/facebook-lead-ads-beta
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-close
-  label: Close
-  partner: close
-  partner_name: Close
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/close
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: gameball-leadinfo
-  label: Leadinfo
-  partner_name: Leadinfo
-  category: Marketing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/leadinfo
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-roll
-  label: Roll
-  partner: roll
-  partner_name: Roll
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/roll
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-centrixone
-  label: CentrixOne
-  partner_name: CentrixOne
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/centrixone-da104369
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-game-my-biz
-  label: Game My Biz
-  partner_name: Game My Biz
-  category: Dashboards
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: gameball-twilio-segment
-  label: Twilio Segment
-  partner: segment
-  partner_name: Twilio Segment
-  type: marketplace
-  marketplace: segment-partner-destinations
-  channel: partner-built
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: gameball-a2a-protocol-own-agent-card
-  label: A2A protocol (own Agent Card)
-  partner_name: A2A protocol (own Agent Card)
-  category: A2A agent
-  type: register
-  channel: provider-built
-  evidence: https://docs.gameball.co/.well-known/agent-card.json
-  source: edge
-  relationship: compatible
-  contract_reference:
-    register: provider's own /.well-known/agent-card.json
-    spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: Gameball Docs
-    organization: Gameball Docs
-    matched_domain: gameball.co
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  status: not-a-workflow
   arazzo: null
 - slug: gameball-zapier
   label: Zapier
@@ -366,4 +187,201 @@
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
   status: not-a-workflow
+  arazzo: null
+- slug: gameball-a2a-protocol-own-agent-card
+  label: A2A protocol (own Agent Card)
+  partner_name: A2A protocol (own Agent Card)
+  category: A2A agent
+  type: register
+  channel: provider-built
+  evidence: https://docs.gameball.co/.well-known/agent-card.json
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Gameball Docs
+    organization: Gameball Docs
+    matched_domain: gameball.co
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: gameball-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: marketplace
+  marketplace: segment-partner-destinations
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: gameball-google-forms-legacy
+  label: Google Forms (Legacy)
+  partner: google-forms
+  partner_name: Google Forms (Legacy)
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/google-forms-legacy
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-leagueapps
+  label: LeagueApps
+  partner_name: LeagueApps
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/leagueapps
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-surveymonkey
+  label: SurveyMonkey
+  partner: surveymonkey
+  partner_name: SurveyMonkey
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/surveymonkey
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-incentivefox
+  label: Incentivefox
+  partner_name: Incentivefox
+  category: IT Operations
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/incentivefox
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-google-calendar
+  label: Google Calendar
+  partner: google-calendar
+  partner_name: Google Calendar
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/google-calendar
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-webflow
+  label: Webflow
+  partner: webflow
+  partner_name: Webflow
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/webflow
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-microsoft-excel
+  label: Microsoft Excel
+  partner_name: Microsoft Excel
+  category: Microsoft
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/excel
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-facebook-lead-ads-for-business-admins
+  label: Facebook Lead Ads (for Business admins)
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads (for Business admins)
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/facebook-lead-ads-beta
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-close
+  label: Close
+  partner: close
+  partner_name: Close
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/close
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: gameball-leadinfo
+  label: Leadinfo
+  partner_name: Leadinfo
+  category: Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/leadinfo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-roll
+  label: Roll
+  partner: roll
+  partner_name: Roll
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/roll
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-centrixone
+  label: CentrixOne
+  partner_name: CentrixOne
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/centrixone-da104369
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: gameball-game-my-biz
+  label: Game My Biz
+  partner_name: Game My Biz
+  category: Dashboards
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null

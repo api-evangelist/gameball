@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/gameball/integrations
@@ -42,232 +42,6 @@ marketplace_apps:
     label: Send Event
   searches: []
 edges:
-- partner_name: Google Forms (Legacy)
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/google-forms-legacy
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://google.com/
-- partner_name: LeagueApps
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/leagueapps
-  direction: third-party
-  category: Scheduling & Booking
-  partner_url: http://leagueapps.com/
-- partner_name: SurveyMonkey
-  partner: surveymonkey
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/surveymonkey
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://zpr.io/62HWp
-- partner_name: GoTo Webinar
-  partner: gotowebinar
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/gotowebinar
-  direction: third-party
-  category: Webinars
-  partner_url: https://www.gotomeeting.com/
-- partner_name: Incentivefox
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/incentivefox
-  direction: third-party
-  category: IT Operations
-  partner_url: https://www.incentivefox.com/
-- partner_name: Google Calendar
-  partner: google-calendar
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/google-calendar
-  direction: third-party
-  category: Calendar
-  partner_url: https://calendar.google.com/
-- partner_name: Webflow
-  partner: webflow
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/webflow
-  direction: third-party
-  category: Website Builders
-  partner_url: https://webflow.com/
-- partner_name: Microsoft Excel
-  partner: null
-  partner_match: null
-  partner_candidate: zapier
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/excel
-  direction: third-party
-  category: Microsoft
-  partner_url: https://zapier.com/office.com
-- partner_name: Facebook Lead Ads (for Business admins)
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/facebook-lead-ads-beta
-  direction: third-party
-  category: Ads & Conversion
-  partner_url: https://facebook.com/
-- partner_name: Close
-  partner: close
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/close
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
-- partner_name: Drip
-  partner: drip
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/drip
-  direction: third-party
-  category: Drip Emails
-  partner_url: https://www.getdrip.com/
-- partner_name: Leadinfo
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/leadinfo
-  direction: third-party
-  category: Marketing
-  partner_url: https://www.leadinfo.com/en/
-- partner_name: Roll
-  partner: roll
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/roll
-  direction: third-party
-  category: Project Management
-  partner_url: https://www.rollhq.com/
-- partner_name: CentrixOne
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/centrixone-da104369
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.centrix.one/
-- partner_name: Game My Biz
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
-  direction: third-party
-  category: Dashboards
-  partner_url: https://gamemybiz.com/
-- partner_name: Twilio Segment
-  partner: segment
-  partner_match: aggregator
-  marketplace: segment-partner-destinations
-  channel: partner-built
-  direction: third-party
-  type: marketplace
-  relationship: platform-app
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - actions-gameball
-      status: PUBLIC_BETA
-      partner_owned: true
-      connection_modes:
-      - cloud:server
-      - cloud:web
-      accepted_methods:
-      - Alias
-      - Group
-      - Identify
-      - Page
-      - Track
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: A2A protocol (own Agent Card)
-  partner: null
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: A2A agent
-  evidence: https://docs.gameball.co/.well-known/agent-card.json
-  channel: provider-built
-  relationship: compatible
-  shape: a2a
-  evidence_kind: own-wellknown
-  degree: conformant
-  report_only: true
-  a2a_card:
-    grade: conformant
-    verdict: live
-    protocol_version: '0.3'
-    deviations:
-    - supportedInterfaces-instead-of-additionalInterfaces
-    card_subject: docs
-  contract_reference:
-    register: provider's own /.well-known/agent-card.json
-    spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: Gameball Docs
-    organization: Gameball Docs
-    matched_domain: gameball.co
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  detected_by: sweep-ai-agents.py
-  first_seen: '2026-10-15'
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -409,6 +183,247 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: A2A protocol (own Agent Card)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: A2A agent
+  evidence: https://docs.gameball.co/.well-known/agent-card.json
+  channel: provider-built
+  relationship: compatible
+  shape: a2a
+  evidence_kind: own-wellknown
+  degree: conformant
+  report_only: true
+  a2a_card:
+    grade: conformant
+    verdict: live
+    protocol_version: '0.3'
+    deviations:
+    - supportedInterfaces-instead-of-additionalInterfaces
+    card_subject: docs
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Gameball Docs
+    organization: Gameball Docs
+    matched_domain: gameball.co
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-19'
+  detected_by: sweep-ai-agents.py
+  first_seen: '2026-10-15'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: segment-partner-destinations
+  channel: partner-built
+  direction: third-party
+  type: marketplace
+  relationship: platform-app
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-gameball
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - actions-gameball
+      status: PUBLIC_BETA
+      partner_owned: true
+      connection_modes:
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Alias
+      - Group
+      - Identify
+      - Page
+      - Track
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Google Forms (Legacy)
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/google-forms-legacy
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: LeagueApps
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/leagueapps
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: http://leagueapps.com/
+- partner_name: SurveyMonkey
+  partner: surveymonkey
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/surveymonkey
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HWp
+- partner_name: GoTo Webinar
+  partner: gotowebinar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/gotowebinar
+  direction: third-party
+  category: Webinars
+  partner_url: https://www.gotomeeting.com/
+- partner_name: Incentivefox
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/incentivefox
+  direction: third-party
+  category: IT Operations
+  partner_url: https://www.incentivefox.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Webflow
+  partner: webflow
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/webflow
+  direction: third-party
+  category: Website Builders
+  partner_url: https://webflow.com/
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: facebook-lead-ads
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: Close
+  partner: close
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/close
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.close.com/?utm_source=Partner&utm_medium=Integration_Listing&utm_campaign=2025_Partnerships&utm_content=Home
+- partner_name: Drip
+  partner: drip
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/drip
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://www.getdrip.com/
+- partner_name: Leadinfo
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/leadinfo
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.leadinfo.com/en/
+- partner_name: Roll
+  partner: roll
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/roll
+  direction: third-party
+  category: Project Management
+  partner_url: https://www.rollhq.com/
+- partner_name: CentrixOne
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/centrixone-da104369
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.centrix.one/
+- partner_name: Game My Biz
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/gameball/integrations/game-my-biz
+  direction: third-party
+  category: Dashboards
+  partner_url: https://gamemybiz.com/
 templates:
 - title: Give rewards to Gameball players with new Mailchimp subscriptions
   url: https://zapier.com/apps/gameball/integrations/mailchimp/382355/give-rewards-to-gameball-players-with-new-mailchimp-subscriptions
